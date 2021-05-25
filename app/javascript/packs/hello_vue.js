@@ -7,10 +7,16 @@
 
 import Vue from 'vue'
 import App from '../app.vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import axios from '../plugins/axios'
+import router from '../router/index.js'
+
+Vue.prototype.$axios = axios
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
-    render: h => h(App)
+    render: h => h(App),
+    router
   }).$mount()
   document.body.appendChild(app.$el)
 
