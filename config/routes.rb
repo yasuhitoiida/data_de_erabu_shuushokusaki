@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   namespace :api, format: 'json' do
-    resources :users, only: :create
+    post 'login', to: 'sessions#create'
+    resources :users, only: :create do
+      collection do
+        get 'me'
+      end
+    end
   end
   get '*path', to: 'home#index'
   root 'home#index'

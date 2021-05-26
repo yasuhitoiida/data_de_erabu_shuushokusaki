@@ -265,6 +265,7 @@ DEPENDENCIES
   factory_bot_rails
   foreman
   jbuilder (~> 2.7)
+  jwt
   listen (~> 3.2)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.5)
