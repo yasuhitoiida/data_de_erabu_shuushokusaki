@@ -5,6 +5,7 @@ import Register from '../pages/register.vue'
 import Login from '../pages/login.vue'
 import MyPage from '../pages/mypage.vue'
 import AlternativeInput from '../pages/analysis/alternative_input.vue'
+import CriteriaInput from '../pages/analysis/criteria_input.vue'
 import store from '../store/index.js'
 
 Vue.use(Router)
@@ -15,7 +16,8 @@ const router = new Router({
              {path: '/register', component: Register},
              {path: '/login', component: Login},
              {path: '/mypage', component: MyPage, meta: { requiredAuth: true }},
-             {path: '/analysis/step1', component: AlternativeInput}]
+             {path: '/analysis/step1', component: AlternativeInput},
+             {path: '/analysis/step2', component: CriteriaInput}]
 })
 
 router.beforeEach((to, from, next) => {
