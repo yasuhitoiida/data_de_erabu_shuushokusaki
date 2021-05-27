@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h3>STEP1 就職先の選択肢を入力してください</h3>
-    {{ checkAlternatives }}
     <div class="col-8 offset-2">
       <div
         v-for="(item, index) in alternatives"
@@ -48,7 +47,9 @@ export default {
       this.alternatives.push(null)
     },
     handleAlternative() {
-      this.setAlternatives(this.alternatives)
+      const array = this.alternatives.filter(v => v)
+      this.setAlternatives(array)
+      this.$router.push('/analysis/step2')
     },
     ...mapActions('analysis', ['setAlternatives'])
   }
