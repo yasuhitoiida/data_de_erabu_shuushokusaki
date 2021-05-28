@@ -24,13 +24,21 @@
         >
         <input v-model="addedCriteria[n-1]">
       </div>
-      <button
+      <div>
+        <router-link
+          @click.native="addCriteria"
+          to="#"
+        >
+        条件を追加
+      </router-link>
+      </div>
+      <router-link
         type="button"
-        class="btn btn-success"
-        @click="addCriteria"
+        class="btn btn-secondary"
+        to="/analysis/step1"
       >
-        追加
-      </button>
+      戻る
+      </router-link>
       <button
         type="button"
         class="btn btn-success"
@@ -46,7 +54,7 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 export default {
-  name: 'Login',
+  name: 'CriteriaSelect',
   data() {
     return {
       criteria: [
@@ -80,11 +88,12 @@ export default {
       this.errors = null
     },
     addCriteria() {
-      this.criteriaAdditionNumber += 1
+      this.criteriaAdditionNumber ++
     },
     handleCriteria() {
       const array = this.selectedCriteria.filter(v => v)
       this.setCriteria(array)
+      this.$router.push('/analysis/step3')
     },
     ...mapActions('analysis', ['setCriteria'])
   }
