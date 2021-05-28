@@ -11,12 +11,15 @@
           class="form-control"
         >
       </div>
+      <div>
+        <router-link to="#" @click.native="addForm">記入欄を追加</router-link>
+      </div>
       <button
         type="button"
-        class="btn btn-success"
-        @click="addForm"
+        class="btn btn-secondary"
+        to="/"
       >
-        追加
+        戻る
       </button>
       <button
         type="button"
@@ -32,7 +35,7 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  name: 'Login',
+  name: 'AlternativeInput',
   data() {
     return {
       alternatives: [null, null, null],
