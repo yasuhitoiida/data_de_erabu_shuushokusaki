@@ -2,7 +2,10 @@
   <div class="container">
     <h3>STEP3 条件の重要性を比較してください</h3>
     <div class="col-8 offset-2">
-      <EvaluationList :combination-array="combinationArray" @catch-data="setEvaluationData"></EvaluationList>
+      <EvaluationList
+        :combination-array="combinationArray"
+        @catch-data="setEvaluationData"
+      />
       <router-link
         type="button"
         class="btn btn-secondary"
@@ -53,7 +56,7 @@ export default {
     handleCriterionImportance() {
       const array = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData)
       this.setCriterionImportances(array)
-      // this.$router.push('/analysis/step4')
+      this.$router.push('/analysis/step4')
     },
     ...mapActions('analysis', ['setCriterionImportances'])
   }

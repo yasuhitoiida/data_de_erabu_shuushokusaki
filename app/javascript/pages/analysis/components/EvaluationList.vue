@@ -6,9 +6,9 @@
     >
       <EvaluationItem
         :combination="item"
-        :name="index"
+        :name="listName + item"
         @catch-value="sendData(index, $event)"
-      ></EvaluationItem>
+      />
     </div>
   </div>
 </template>
@@ -24,6 +24,10 @@ export default {
     combinationArray: {
       type: Array,
       required: true
+    },
+    listName: {
+      type: String,
+      required: false
     }
   },
   data() {
@@ -35,7 +39,7 @@ export default {
     sendData(ind, val) {
       let obj = {}
       obj.combination = this.combinationArray[ind]
-      obj.score = val
+      obj.value = val
       this.evaluationListData[ind] = obj
       this.$emit('catch-data', this.evaluationListData)
     }

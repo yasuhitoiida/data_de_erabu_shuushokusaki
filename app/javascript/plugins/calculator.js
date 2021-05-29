@@ -3,8 +3,8 @@ export default {
     const newArray = []
     let i, j
     for(i = 1; i < arr.length; i++){
-      const f = arr.slice(i-1)
-      for(j = 1; j < arr.length; j++){
+      const a = arr.slice(i-1)
+      for(j = 1; j < a.length; j++){
         newArray.push([a[0], a[j]])
       }
     }
@@ -28,7 +28,7 @@ export default {
     for(j = 0; j < evalData.length; j++) {
       const factorA = array.find(f => f.name === evalData[j].combination[0])
       const factorB = array.find(f => f.name === evalData[j].combination[1])
-      const value = evalData[j].score
+      const value = evalData[j].value
       const abs = this.abs(value - 4)
       const score = 2 * abs + 1
       if (value < 4) {

@@ -2,12 +2,14 @@ import axios from '../../plugins/axios.js'
 const state = {
   alternatives: null,
   criteria: null,
-  criterionImportances: null
+  criterionImportances: null,
+  alternativeEvaluations: null
 }
 const getters = {
   getAlternatives: state => state.alternatives,
   getCriteria: state => state.criteria,
-  getCriterionImportances: state => state.criterionImportances
+  getCriterionImportances: state => state.criterionImportances,
+  getAlternativeEvaluations: state => state.alternativeEvaluations
 }
 const mutations = {
   setAlternatives(state, array) {
@@ -16,8 +18,11 @@ const mutations = {
   setCriteria(state, array) {
     state.criteria = array
   },
-  setCriterionImportances(state, hash) {
-    state.criterionImportances = hash
+  setCriterionImportances(state, array) {
+    state.criterionImportances = array
+  },
+  setAlternativeEvaluations(state, array) {
+    state.alternativeEvaluations = array
   }
 }
 const actions = {
@@ -27,8 +32,11 @@ const actions = {
   setCriteria({commit}, array) {
     commit('setCriteria', array)
   },
-  setCriterionImportances({commit}, hash) {
-    commit('setCriterionImportances', hash)
+  setCriterionImportances({commit}, array) {
+    commit('setCriterionImportances', array)
+  },
+  setAlternativeEvaluations({commit}, array) {
+    commit('setAlternativeEvaluations', array)
   }
 }
 
