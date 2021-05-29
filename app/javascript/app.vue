@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <Header />
+    <TheHeader />
     <router-view />
   </div>
 </template>
 
 <script>
-import Header from './components/header.vue'
+import TheHeader from './components/TheHeader.vue'
 export default {
   components: {
-    Header
+    TheHeader
   },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>STEP3 条件の重要性を比較してください</h3>
+    <h3>STEP4 条件ごとにどちらの就職先が優れているか比較してください</h3>
     <div class="col-8 offset-2">
       <div
         v-for="(item, index) in combinationArray"
@@ -53,7 +53,7 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 export default {
-  name: 'CriteriaPriority',
+  name: 'AlternativeEvaluation',
   data() {
     return {
       combinationArray: [],
