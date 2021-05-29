@@ -26,18 +26,18 @@
       </div>
       <div>
         <router-link
-          @click.native="addCriterion"
           to="#"
+          @click.native="addCriterion"
         >
-        条件を追加
-      </router-link>
+          条件を追加
+        </router-link>
       </div>
       <router-link
         type="button"
         class="btn btn-secondary"
         to="/analysis/step1"
       >
-      戻る
+        戻る
       </router-link>
       <button
         type="button"

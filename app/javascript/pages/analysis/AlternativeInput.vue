@@ -12,15 +12,20 @@
         >
       </div>
       <div>
-        <router-link to="#" @click.native="addForm">記入欄を追加</router-link>
+        <router-link
+          to="#"
+          @click.native="addForm"
+        >
+          記入欄を追加
+        </router-link>
       </div>
-      <button
+      <router-link
         type="button"
         class="btn btn-secondary"
         to="/"
       >
         戻る
-      </button>
+      </router-link>
       <button
         type="button"
         class="btn btn-success"

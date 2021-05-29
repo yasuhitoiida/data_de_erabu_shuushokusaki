@@ -12,10 +12,10 @@
         class="input-inline"
       >
         <input
-          @change="sendValue(n)"
           type="radio"
           :name="name"
           :value="n"
+          @change="sendValue(n)"
         >
       </span>
     </div>
@@ -36,7 +36,7 @@ export default {
       required: true
     },
     name: {
-      type: Number,
+      type: String,
       required: true
     }
   },
