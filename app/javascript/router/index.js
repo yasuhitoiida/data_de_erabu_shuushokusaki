@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../pages/home.vue'
-import Register from '../pages/register.vue'
-import Login from '../pages/login.vue'
-import MyPage from '../pages/mypage.vue'
-import AlternativeInput from '../pages/analysis/alternative_input.vue'
-import CriteriaSelect from '../pages/analysis/criteria_select.vue'
-import CriteriaPriority from '../pages/analysis/criteria_priority.vue'
+import Home from '../pages/Home.vue'
+import Register from '../pages/Register.vue'
+import Login from '../pages/Login.vue'
+import MyPage from '../pages/MyPage.vue'
+import AlternativeInput from '../pages/analysis/AlternativeInput.vue'
+import CriterionSelect from '../pages/analysis/CriterionSelect.vue'
+import CriterionImportance from '../pages/analysis/CriterionImportance.vue'
+import AlternativeEvaluation from '../pages/analysis/AlternativeEvaluation.vue'
 import store from '../store/index.js'
 
 Vue.use(Router)
@@ -18,8 +19,9 @@ const router = new Router({
              {path: '/login', component: Login},
              {path: '/mypage', component: MyPage, meta: { requiredAuth: true }},
              {path: '/analysis/step1', component: AlternativeInput},
-             {path: '/analysis/step2', component: CriteriaSelect},
-             {path: '/analysis/step3', component: CriteriaPriority}]
+             {path: '/analysis/step2', component: CriterionSelect},
+             {path: '/analysis/step3', component: CriterionImportance},
+             {path: '/analysis/step4', component: AlternativeEvaluation}]
 })
 
 router.beforeEach((to, from, next) => {

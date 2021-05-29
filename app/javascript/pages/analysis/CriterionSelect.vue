@@ -14,7 +14,7 @@
         ><label :for="index">{{ item }}</label>
       </div>
       <div
-        v-for="n in criteriaAdditionNumber"
+        v-for="n in criterionAdditionNumber"
         :key="n"
       >
         <input
@@ -26,7 +26,7 @@
       </div>
       <div>
         <router-link
-          @click.native="addCriteria"
+          @click.native="addCriterion"
           to="#"
         >
         条件を追加
@@ -42,7 +42,7 @@
       <button
         type="button"
         class="btn btn-success"
-        @click="handleCriteria"
+        @click="handleSelectedCriteria"
       >
         決定
       </button>
@@ -54,7 +54,7 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 export default {
-  name: 'CriteriaSelect',
+  name: 'CriterionSelect',
   data() {
     return {
       criteria: [
@@ -73,7 +73,7 @@ export default {
       ],
       selectedCriteria: [],
       addedCriteria: [],
-      criteriaAdditionNumber: 0,
+      criterionAdditionNumber: 0,
       errors: null
     }
   },
@@ -87,10 +87,10 @@ export default {
     handleErrors() {
       this.errors = null
     },
-    addCriteria() {
-      this.criteriaAdditionNumber ++
+    addCriterion() {
+      this.criterionAdditionNumber ++
     },
-    handleCriteria() {
+    handleSelectedCriteria() {
       const array = this.selectedCriteria.filter(v => v)
       this.setCriteria(array)
       this.$router.push('/analysis/step3')
