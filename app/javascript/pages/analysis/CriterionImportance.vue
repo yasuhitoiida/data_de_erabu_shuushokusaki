@@ -55,6 +55,7 @@ export default {
     },
     handleCriterionImportance() {
       const array = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData)
+      console.log(array)
       this.setCriterionImportances(array)
       this.$router.push('/analysis/step4')
     },
