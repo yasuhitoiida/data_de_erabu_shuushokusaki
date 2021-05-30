@@ -10,6 +10,12 @@ export default {
     }
     return newArray
   },
+  createEvalData(com, val) {
+    let obj = {}
+    obj.combination = com
+    obj.value = val
+    return obj
+  },
   abs(val) {
     return val < 0 ? -val : val
   },
