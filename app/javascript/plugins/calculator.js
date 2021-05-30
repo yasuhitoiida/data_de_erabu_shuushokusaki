@@ -20,11 +20,10 @@ export default {
     return n ** (1 / arr.length)
   },
   weightCalculation(factors, evalData) {
-    const array = []
     let i, j, k, m
-    for(i = 0; i < factors.length; i++){
-      array.push({ name: factors[i], score: []})
-    }
+    const array = factors.map(f => {
+      return { name: f, score: [], geomean: null, weight: null }
+    })
     for(j = 0; j < evalData.length; j++) {
       const factorA = array.find(f => f.name === evalData[j].combination[0])
       const factorB = array.find(f => f.name === evalData[j].combination[1])
@@ -47,5 +46,11 @@ export default {
       array[m].weight = array[m].geomean / geomeanTotal
     }
     return array
-  }
+  },
+  // resultCalculation(cri, alt) {
+  //   for(let i = 0; i < cri.length; i++) {
+  //     const altData = alt.find(f => f.criterion === cri[i].name).data
+  //     for(let j = 0; j < altData.length; j++) {
+  //       cri[i].weight *
+  // }
 }

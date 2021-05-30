@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>STEP4 条件ごとにどちらの就職先が優れているか比較してください</h3>
+    <h3>結果</h3>
     <div class="col-8 offset-2">
       <div
         v-for="(item, index) in criteria"
@@ -51,11 +51,12 @@ export default {
     }
   },
   created() {
+    const cri = this.getCriterionImportances
+    const alt = this.getAlternativeEvaluations
     this.combinationArray = this.$calculator.makePairs(this.getAlternatives)
-    this.criteria = this.getCriteria
   },
   computed: {
-    ...mapGetters('analysis', ['getCriteria', 'getAlternatives'])
+    ...mapGetters('analysis', ['getCriterionImportances', 'getAlternativeEvaluations'])
   },
   methods: {
     handleErrors() {
@@ -65,12 +66,14 @@ export default {
       this.evaluationDataCollection[ind] = { criterion: cri, data: arr }
     },
     handleAlternativeEvaluation() {
-      const array = this.evaluationDataCollection.map(f => {
+      const e = this.evaluationDataCollection
+      const array = []
+      for(let i = 0; i < e.length; i++) {
         const hash = {}
-        hash.data = this.$calculator.weightCalculation(this.getAlternatives, f.data)
-        hash.criterion = f.criterion
-        return hash
-      })
+        hash.data = this.$calculator.weightCalculation(this.getAlternatives, e[i].data)
+        hash.criterion = e[i].criterion
+        array.push(hash)
+      }
       this.setAlternativeEvaluations(array)
       console.log(array)
     },
