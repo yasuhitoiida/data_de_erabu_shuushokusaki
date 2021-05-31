@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     sendData(ind, val) {
-      const obj = this.$calculator.createEvalData(this.combinationArray[ind], val)
+      const obj = this.$calculator.makeEvalData(this.combinationArray[ind], val)
       this.evaluationListData[ind] = obj
       this.$emit('catch-data', this.evaluationListData)
     }

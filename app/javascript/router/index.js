@@ -8,6 +8,7 @@ import AlternativeInput from '../pages/analysis/AlternativeInput.vue'
 import CriterionSelect from '../pages/analysis/CriterionSelect.vue'
 import CriterionImportance from '../pages/analysis/CriterionImportance.vue'
 import AlternativeEvaluation from '../pages/analysis/AlternativeEvaluation.vue'
+import Result from '../pages/analysis/Result.vue'
 import store from '../store/index.js'
 
 Vue.use(Router)
@@ -21,7 +22,8 @@ const router = new Router({
              {path: '/analysis/step1', component: AlternativeInput},
              {path: '/analysis/step2', component: CriterionSelect},
              {path: '/analysis/step3', component: CriterionImportance},
-             {path: '/analysis/step4', component: AlternativeEvaluation}]
+             {path: '/analysis/step4', component: AlternativeEvaluation},
+             {path: '/analysis/result', component: Result}]
 })
 
 router.beforeEach((to, from, next) => {
