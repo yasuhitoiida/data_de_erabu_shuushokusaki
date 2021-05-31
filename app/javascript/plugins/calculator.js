@@ -10,11 +10,8 @@ export default {
     }
     return newArray
   },
-  createEvalData(com, val) {
-    let obj = {}
-    obj.combination = com
-    obj.value = val
-    return obj
+  makeEvalData(com, val) {
+    return { combination: com, value: val }
   },
   abs(val) {
     return val < 0 ? -val : val
@@ -26,7 +23,7 @@ export default {
     return n ** (1 / arr.length)
   },
   weightCalculation(factors, evalData) {
-    let i, j, k, m
+    let j, k, m
     const array = factors.map(f => {
       return { name: f, score: [], geomean: null, weight: null }
     })
@@ -48,15 +45,30 @@ export default {
       array[k].geomean = this.geomean(array[k].score)
     }
     for(m = 0; m < array.length; m++) {
-      let geomeanTotal = array.reduce((sum, f) => sum + f.geomean, 0);
+      let geomeanTotal = array.reduce((sum, f) => sum + f.geomean, 0)
       array[m].weight = array[m].geomean / geomeanTotal
     }
     return array
   },
-  // resultCalculation(cri, alt) {
-  //   for(let i = 0; i < cri.length; i++) {
-  //     const altData = alt.find(f => f.criterion === cri[i].name).data
-  //     for(let j = 0; j < altData.length; j++) {
-  //       cri[i].weight *
-  // }
+  resultCalculation(criImp, altEval) {
+    const array = altEval.map(f => {
+      const w = criImp.find(g => g.name === f.criterion).weight
+      const d = f.data.map(h => {
+        const score = h.weight * w
+        return { name: h.name, score: score }
+      })
+      return { criterion: f.criterion, data: d }
+    })
+    return array
+  },
+  totalCalculation(result, alt) {
+    for(let i = 0; i < result.length; i++) {
+      const a = result[i].data.map(f => {
+        return f.find(g => g.name === alt[i])
+      })
+      const score = a.reduce((sum, f) => sum + f.score, 0)
+      array.push({ alternative: alt[i], score: score })
+    }
+    return array
+  }
 }

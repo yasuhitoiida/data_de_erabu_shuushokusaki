@@ -12,9 +12,11 @@ import axios from '../plugins/axios.js'
 import router from '../router/index.js'
 import store from '../store/index.js'
 import calculator from '../plugins/calculator.js'
+import graph from '../plugins/graph.js'
 
 Vue.prototype.$axios = axios
 Vue.prototype.$calculator = calculator
+Vue.prototype.$graph = graph
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

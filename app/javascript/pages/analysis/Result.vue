@@ -1,20 +1,8 @@
 <template>
   <div class="container">
     <h3>結果</h3>
+    <ResultGraph :chart-data="chartData" v-if="graph"></ResultGraph>
     <div class="col-8 offset-2">
-      <div
-        v-for="(item, index) in criteria"
-        :key="index"
-      >
-        <div>
-          {{ item }}
-        </div>
-        <EvaluationList
-          :combination-array="combinationArray"
-          :list-name="item"
-          @catch-data="setEvaluationDataCollection(item, index, $event)"
-        />
-      </div>
       <router-link
         type="button"
         class="btn btn-secondary"
@@ -24,8 +12,8 @@
       </router-link>
       <button
         type="button"
-        class="btn btn-success"
-        @click="handleAlternativeEvaluation"
+        class="btn btn-danger"
+        @click="handleResult"
       >
         決定
       </button>
@@ -37,28 +25,32 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import EvaluationList from './components/EvaluationList.vue'
+import ResultGraph from '../../components/ResultGraph.vue'
 export default {
-  name: 'AlternativeEvaluation',
+  name: 'Result',
   components: {
-    EvaluationList
+    EvaluationList,
+    ResultGraph
   },
   data() {
     return {
-      combinationArray: [],
-      evaluationDataCollection: [],
-      criteria: [],
-      errors: null
+      chartData: null,
+      graph: false
     }
   },
-  created() {
-    const cri = this.getCriterionImportances
-    const alt = this.getAlternativeEvaluations
-    this.combinationArray = this.$calculator.makePairs(this.getAlternatives)
-  },
   computed: {
-    ...mapGetters('analysis', ['getCriterionImportances', 'getAlternativeEvaluations'])
+    ...mapGetters('analysis', ['getAlternatives', 'getCriterionImportances', 'getAlternativeEvaluations'])
   },
   methods: {
+    handleResult() {
+      const cri = this.getCriterionImportances
+      const alt = this.getAlternativeEvaluations
+      const array = this.$calculator.resultCalculation(cri, alt)
+      console.log(array)
+      this.chartData = this.$graph.createResultChartData(array)
+      console.log(this.chartData)
+      this.graph = true
+    },
     handleErrors() {
       this.errors = null
     },

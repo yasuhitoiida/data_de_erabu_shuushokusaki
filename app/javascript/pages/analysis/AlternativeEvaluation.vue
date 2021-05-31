@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h3>STEP4 条件ごとにどちらの就職先が優れているか比較してください</h3>
+    {{ this.getAlternatives }}
     <div class="col-8 offset-2">
       <div
         v-for="(item, index) in criteria"
@@ -73,6 +74,7 @@ export default {
       })
       this.setAlternativeEvaluations(array)
       console.log(array)
+      this.$router.push('/analysis/result')
     },
     ...mapActions('analysis', ['setAlternativeEvaluations'])
   }
