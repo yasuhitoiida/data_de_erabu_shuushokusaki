@@ -7,11 +7,12 @@
     </div>
     <div class="col">
       <span
-        v-for="n in 7"
-        :key="n"
-        class="input-inline"
+        :class="name"
       >
         <input
+          v-for="n in 7"
+          :id="n-1"
+          :key="n"
           type="radio"
           :name="name"
           :value="n"

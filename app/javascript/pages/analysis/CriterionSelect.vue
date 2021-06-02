@@ -2,16 +2,23 @@
   <div class="container">
     <h3>STEP2 就職先を決める上で考慮する条件を選んでください</h3>
     <div class="col-8 offset-2">
+      <template v-if="errors">
+        <li
+          class="error-message"
+        >
+          就職先は2つ以上入力してください
+        </li>
+      </template>
       <div
         v-for="(item, index) in criteria"
         :key="item"
       >
         <input
-          :id="index"
+          :id="'criterion' + index"
           v-model="selectedCriteria"
           type="checkbox"
           :value="item"
-        ><label :for="index">{{ item }}</label>
+        ><label :for="'criterion' + index">{{ item }}</label>
       </div>
       <div
         v-for="n in criterionAdditionNumber"
@@ -84,16 +91,17 @@ export default {
     ...mapGetters('analysis', ['getAlternatives'])
   },
   methods: {
-    handleErrors() {
-      this.errors = null
-    },
     addCriterion() {
       this.criterionAdditionNumber ++
     },
     handleSelectedCriteria() {
       const array = this.selectedCriteria.filter(v => v)
-      this.setCriteria(array)
-      this.$router.push('/analysis/step3')
+      if (array.length >= 1) {
+        this.setCriteria(array)
+        this.$router.push('/analysis/step3')
+      } else {
+        this.errors = true
+      }
     },
     ...mapActions('analysis', ['setCriteria'])
   }
