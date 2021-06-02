@@ -2,6 +2,13 @@
   <div class="container">
     <h3>STEP3 条件の重要性を比較してください</h3>
     <div class="col-8 offset-2">
+      <template v-if="errors">
+        <li
+          class="error-message"
+        >
+          未入力の項目があります
+        </li>
+      </template>
       <EvaluationList
         :combination-array="combinationArray"
         @catch-data="setEvaluationData"
@@ -40,24 +47,27 @@ export default {
       errors: null
     }
   },
-  created() {
-    this.combinationArray = this.$calculator.makePairs(this.getCriteria)
-  },
   computed: {
     ...mapGetters('analysis', ['getCriteria'])
   },
+  created() {
+    this.combinationArray = this.$calculator.makePairs(this.getCriteria)
+  },
   methods: {
-    handleErrors() {
-      this.errors = null
-    },
     setEvaluationData(arr) {
-      this.evaluationData = arr
+      const l = arr.filter(v => v).length
+      if (l == this.combinationArray.length) {
+        this.evaluationData = arr
+      }
     },
     handleCriterionImportance() {
-      const array = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData)
-      console.log(array)
-      this.setCriterionImportances(array)
-      this.$router.push('/analysis/step4')
+      if (this.evaluationData) {
+        const array = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData)
+        this.setCriterionImportances(array)
+        this.$router.push('/analysis/step4')
+      } else {
+        this.errors = true
+      }
     },
     ...mapActions('analysis', ['setCriterionImportances'])
   }

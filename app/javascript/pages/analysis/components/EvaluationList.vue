@@ -6,7 +6,7 @@
     >
       <EvaluationItem
         :combination="item"
-        :name="listName + item"
+        :name="listNumber + '-' + index"
         @catch-value="sendData(index, $event)"
       />
     </div>
@@ -25,9 +25,9 @@ export default {
       type: Array,
       required: true
     },
-    listName: {
-      type: String,
-      required: false
+    listNumber: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -40,6 +40,15 @@ export default {
       const obj = this.$calculator.makeEvalData(this.combinationArray[ind], val)
       this.evaluationListData[ind] = obj
       this.$emit('catch-data', this.evaluationListData)
+
+      // const radioChange = document.querySelectorAll("input");
+    	// for(var elem of radioChange) {
+    	// 	elem.addEventListener('change',function(){
+    	// 		if( this.checked ) {
+    	// 			console.log(this.value);
+    	// 		}
+    	// 	});
+    	// }
     }
   }
 }

@@ -1,12 +1,20 @@
 <template>
   <div class="container">
     <h3>STEP1 就職先の選択肢を入力してください</h3>
-    <div class="col-8 offset-2">
+    <div class="col-8 offset-2 alternative-forms">
+      <template v-if="errors">
+        <li
+          class="error-message"
+        >
+          条件は1つ以上選択してください
+        </li>
+      </template>
       <div
         v-for="(item, index) in alternatives"
         :key="index"
       >
         <input
+          :id="'alternative' + index"
           v-model="alternatives[index]"
           class="form-control"
         >
@@ -48,16 +56,17 @@ export default {
     }
   },
   methods: {
-    handleErrors() {
-      this.errors = null
-    },
     addForm() {
       this.alternatives.push(null)
     },
     handleAlternative() {
       const array = this.alternatives.filter(v => v)
-      this.setAlternatives(array)
-      this.$router.push('/analysis/step2')
+      if (array.length >= 2 ) {
+        this.setAlternatives(array)
+        this.$router.push('/analysis/step2')
+      } else {
+        this.errors = true
+      }
     },
     ...mapActions('analysis', ['setAlternatives'])
   }

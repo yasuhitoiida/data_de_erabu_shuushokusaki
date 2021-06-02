@@ -1,8 +1,14 @@
 <template>
   <div class="container">
     <h3>STEP4 条件ごとにどちらの就職先が優れているか比較してください</h3>
-    {{ this.getAlternatives }}
     <div class="col-8 offset-2">
+      <template v-if="errors">
+        <li
+          class="error-message"
+        >
+          未入力の項目があります
+        </li>
+      </template>
       <div
         v-for="(item, index) in criteria"
         :key="index"
@@ -12,7 +18,7 @@
         </div>
         <EvaluationList
           :combination-array="combinationArray"
-          :list-name="item"
+          :list-number="index"
           @catch-data="setEvaluationDataCollection(item, index, $event)"
         />
       </div>
@@ -51,30 +57,34 @@ export default {
       errors: null
     }
   },
+  computed: {
+    ...mapGetters('analysis', ['getCriteria', 'getAlternatives'])
+  },
   created() {
     this.combinationArray = this.$calculator.makePairs(this.getAlternatives)
     this.criteria = this.getCriteria
   },
-  computed: {
-    ...mapGetters('analysis', ['getCriteria', 'getAlternatives'])
-  },
   methods: {
-    handleErrors() {
-      this.errors = null
-    },
     setEvaluationDataCollection(cri, ind, arr) {
-      this.evaluationDataCollection[ind] = { criterion: cri, data: arr }
+      const l = arr.filter(v => v).length
+      if (l == this.combinationArray.length) {
+        this.evaluationDataCollection[ind] = { criterion: cri, data: arr }
+      }
     },
     handleAlternativeEvaluation() {
-      const array = this.evaluationDataCollection.map(f => {
-        const hash = {}
-        hash.data = this.$calculator.weightCalculation(this.getAlternatives, f.data)
-        hash.criterion = f.criterion
-        return hash
-      })
-      this.setAlternativeEvaluations(array)
-      console.log(array)
-      this.$router.push('/analysis/result')
+      const l = this.evaluationDataCollection.filter(v => v).length
+      if (l == this.criteria.length) {
+        const array = this.evaluationDataCollection.map(f => {
+          const hash = {}
+          hash.data = this.$calculator.weightCalculation(this.getAlternatives, f.data)
+          hash.criterion = f.criterion
+          return hash
+        })
+        this.setAlternativeEvaluations(array)
+        this.$router.push('/analysis/result')
+      } else {
+        this.errors = true
+      }
     },
     ...mapActions('analysis', ['setAlternativeEvaluations'])
   }
