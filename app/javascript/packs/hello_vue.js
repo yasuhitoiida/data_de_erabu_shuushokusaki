@@ -8,12 +8,15 @@
 import Vue from 'vue'
 import App from '../app.vue'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import BootstrapVue from 'bootstrap-vue'
 import axios from '../plugins/axios.js'
 import router from '../router/index.js'
 import store from '../store/index.js'
 import calculator from '../plugins/calculator.js'
 import graph from '../plugins/graph.js'
 
+Vue.use(BootstrapVue)
 Vue.prototype.$axios = axios
 Vue.prototype.$calculator = calculator
 Vue.prototype.$graph = graph

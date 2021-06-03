@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <h3>STEP1 就職先の選択肢を入力してください</h3>
     <div class="col-8 offset-2 alternative-forms">
+      <h3>STEP1 就職先の選択肢を入力してください</h3>
       <template v-if="errors">
         <li
           class="error-message"
         >
-          条件は1つ以上選択してください
+          就職先は2つ以上選択してください
         </li>
       </template>
       <div
@@ -27,28 +27,22 @@
           記入欄を追加
         </router-link>
       </div>
-      <router-link
-        type="button"
-        class="btn btn-secondary"
-        to="/"
-      >
-        戻る
-      </router-link>
-      <button
-        type="button"
-        class="btn btn-success"
-        @click="handleAlternative"
-      >
-        決定
-      </button>
+      <TheButtons
+        preview-page-path="/"
+        @ok-button="handleAlternative"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import TheButtons from './components/TheButtons.vue'
 export default {
   name: 'AlternativeInput',
+  components: {
+    TheButtons
+  },
   data() {
     return {
       alternatives: [null, null, null],
@@ -74,6 +68,9 @@ export default {
 </script>
 
 <style scoped>
+h3 {
+  margin: 50px auto;
+}
 input {
   margin-bottom: 10px;
 }

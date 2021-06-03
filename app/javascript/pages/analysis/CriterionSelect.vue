@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <h3>STEP2 就職先を決める上で考慮する条件を選んでください</h3>
     <div class="col-8 offset-2">
+      <h3>STEP2 就職先を決める上で考慮する条件を選んでください</h3>
       <template v-if="errors">
         <li
           class="error-message"
         >
-          就職先は2つ以上入力してください
+          条件は2つ以上入力してください
         </li>
       </template>
       <div
@@ -39,20 +39,10 @@
           条件を追加
         </router-link>
       </div>
-      <router-link
-        type="button"
-        class="btn btn-secondary"
-        to="/analysis/step1"
-      >
-        戻る
-      </router-link>
-      <button
-        type="button"
-        class="btn btn-success"
-        @click="handleSelectedCriteria"
-      >
-        決定
-      </button>
+      <TheButtons
+        preview-page-path="/analysis/step1"
+        @ok-button="handleSelectedCriteria"
+      />
     </div>
   </div>
 </template>
@@ -60,8 +50,12 @@
 <script>
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
+import TheButtons from './components/TheButtons.vue'
 export default {
   name: 'CriterionSelect',
+  components: {
+    TheButtons
+  },
   data() {
     return {
       criteria: [
@@ -96,7 +90,7 @@ export default {
     },
     handleSelectedCriteria() {
       const array = this.selectedCriteria.filter(v => v)
-      if (array.length >= 1) {
+      if (array.length >= 2) {
         this.setCriteria(array)
         this.$router.push('/analysis/step3')
       } else {
@@ -109,7 +103,13 @@ export default {
 </script>
 
 <style scoped>
+h3 {
+  margin: 50px auto;
+}
 input {
   margin-bottom: 10px;
+}
+.buttons {
+  margin-top: 10px;
 }
 </style>
