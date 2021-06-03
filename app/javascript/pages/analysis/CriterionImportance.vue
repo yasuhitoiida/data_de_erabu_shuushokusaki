@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h3>STEP3 条件の重要性を比較してください</h3>
     <div class="col-8 offset-2">
+      <h3>STEP3 条件の重要性を比較してください</h3>
       <template v-if="errors">
         <li
           class="error-message"
@@ -13,20 +13,10 @@
         :combination-array="combinationArray"
         @catch-data="setEvaluationData"
       />
-      <router-link
-        type="button"
-        class="btn btn-secondary"
-        to="/analysis/step2"
-      >
-        戻る
-      </router-link>
-      <button
-        type="button"
-        class="btn btn-success"
-        @click="handleCriterionImportance"
-      >
-        決定
-      </button>
+      <TheButtons
+        preview-page-path="/analysis/step2"
+        @ok-button="handleCriterionImportance"
+      />
     </div>
   </div>
 </template>
@@ -35,10 +25,12 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import EvaluationList from './components/EvaluationList.vue'
+import TheButtons from './components/TheButtons.vue'
 export default {
   name: 'CriterionImportance',
   components: {
-    EvaluationList
+    EvaluationList,
+    TheButtons
   },
   data() {
     return {
@@ -75,6 +67,9 @@ export default {
 </script>
 
 <style scoped>
+h3 {
+  margin: 50px auto;
+}
 input {
   margin-bottom: 10px;
 }

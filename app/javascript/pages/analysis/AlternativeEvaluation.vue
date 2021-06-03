@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h3>STEP4 条件ごとにどちらの就職先が優れているか比較してください</h3>
     <div class="col-8 offset-2">
+      <h3>STEP4 条件ごとにどちらの就職先が優れているか比較してください</h3>
       <template v-if="errors">
         <li
           class="error-message"
@@ -22,20 +22,10 @@
           @catch-data="setEvaluationDataCollection(item, index, $event)"
         />
       </div>
-      <router-link
-        type="button"
-        class="btn btn-secondary"
-        to="/analysis/step3"
-      >
-        戻る
-      </router-link>
-      <button
-        type="button"
-        class="btn btn-success"
-        @click="handleAlternativeEvaluation"
-      >
-        決定
-      </button>
+      <TheButtons
+        preview-page-path="/analysis/step3"
+        @ok-button="handleAlternativeEvaluation"
+      />
     </div>
   </div>
 </template>
@@ -44,10 +34,12 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import EvaluationList from './components/EvaluationList.vue'
+import TheButtons from './components/TheButtons.vue'
 export default {
   name: 'AlternativeEvaluation',
   components: {
-    EvaluationList
+    EvaluationList,
+    TheButtons
   },
   data() {
     return {
@@ -92,6 +84,9 @@ export default {
 </script>
 
 <style scoped>
+h3 {
+  margin: 50px auto;
+}
 input {
   margin-bottom: 10px;
 }
