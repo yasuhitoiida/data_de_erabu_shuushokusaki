@@ -6,17 +6,16 @@ RSpec.describe 'Analysis', type: :system do
   describe 'STEP1' do
     it '入力された就職先が2つ未満のときエラーメッセージが表示される' do
       visit '/analysis/step1'
-      find('#alternative0').set('company0')
+      find("#alternative0").set("company0")
       click_on '決定'
       expect(page).to have_selector('.error-message')
     end
   end
 
   describe 'STEP2' do
-    it '条件が2つ以上選択されていないときエラーメッセージが表示される' do
+    it '条件が一つも選択されていないときエラーメッセージが表示される' do
       visit '/analysis/step1'
       alternative_input(alternative_number)
-      check('criterion0')
       click_on '決定'
       expect(page).to have_selector('.error-message')
     end

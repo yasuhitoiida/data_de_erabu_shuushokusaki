@@ -41,7 +41,7 @@ RSpec.describe 'User', type: :system do
         fill_in 'パスワード', with: password
         click_on 'ログイン'
       end
-      expect(page).to have_selector('.navbar', text: user.name), 'ログインできていません'
+      expect(page).to have_selector('.navbar', text: 'ログアウト'), 'ログインできていません'
     end
 
     it 'ログインページで各フィールドに入力し「ログイン」を押すとログインできる' do
@@ -51,7 +51,7 @@ RSpec.describe 'User', type: :system do
         fill_in 'パスワード', with: password
         click_on 'ログイン'
       end
-      expect(page).to have_selector('.navbar', text: user.name), 'ログインできていません'
+      expect(page).to have_content('ログアウト'), 'ログインできていません'
       expect(page).to have_current_path('/'), 'トップページに遷移できていません'
     end
 

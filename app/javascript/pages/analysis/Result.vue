@@ -1,15 +1,25 @@
 <template>
   <div class="container">
+    <h3>結果</h3>
+    <ResultGraph
+      v-if="graph"
+      :chart-data="chartData"
+    />
     <div class="col-8 offset-2">
-      <h3>結果</h3>
-      <ResultGraph
-        v-if="graph"
-        :chart-data="chartData"
-      />
-      <TheButtons
-        preview-page-path="/analysis/step4"
-        @ok-button="handleResult"
-      />
+      <router-link
+        type="button"
+        class="btn btn-secondary"
+        to="/analysis/step3"
+      >
+        戻る
+      </router-link>
+      <button
+        type="button"
+        class="btn btn-danger"
+        @click="handleResult"
+      >
+        決定
+      </button>
     </div>
   </div>
 </template>
@@ -18,12 +28,10 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import ResultGraph from '../../components/ResultGraph.vue'
-import TheButtons from './components/TheButtons.vue'
 export default {
   name: 'Result',
   components: {
-    ResultGraph,
-    TheButtons
+    ResultGraph
   },
   data() {
     return {
@@ -47,9 +55,6 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 50px auto;
-}
 input {
   margin-bottom: 10px;
 }
