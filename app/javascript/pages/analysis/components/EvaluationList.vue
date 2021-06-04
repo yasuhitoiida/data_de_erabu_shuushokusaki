@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-for="(item, index) in combinationArray"
+      v-for="(item, index) in combinations"
       :key="index"
     >
       <EvaluationItem
@@ -21,7 +21,7 @@ export default {
     EvaluationItem
   },
   props: {
-    combinationArray: {
+    factors: {
       type: Array,
       required: true
     },
@@ -32,13 +32,27 @@ export default {
   },
   data() {
     return {
+      combinations: null,
       evaluationListData: []
     }
   },
+  created() {
+    this.combinations = this.$calculator.makePairs(this.factors)
+  },
   methods: {
+    isInputDataEnough(arr) {
+      const l = arr.filter(v => v).length
+      if (l == this.combinations.length) {
+        return true
+      } else {
+        return false
+      }
+    },
     sendData(ind, val) {
       this.evaluationListData[ind] = val
-      this.$emit('catch-data', this.evaluationListData)
+      if (this.isInputDataEnough(this.evaluationListData)) {
+        this.$emit('catch-data', this.evaluationListData)
+      }
 
       // const radioChange = document.querySelectorAll("input");
     	// for(var elem of radioChange) {

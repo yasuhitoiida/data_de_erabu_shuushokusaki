@@ -10,7 +10,7 @@
         </li>
       </template>
       <EvaluationList
-        :combination-array="combinationArray"
+        :factors="getCriteria"
         @catch-data="setEvaluationData"
       />
       <TheButtons
@@ -34,7 +34,6 @@ export default {
   },
   data() {
     return {
-      combinationArray: [],
       evaluationData: null,
       errors: null
     }
@@ -42,22 +41,9 @@ export default {
   computed: {
     ...mapGetters('analysis', ['getCriteria'])
   },
-  created() {
-    this.combinationArray = this.$calculator.makePairs(this.getCriteria)
-  },
   methods: {
-    isInputDataEnough(arr) {
-      const l = arr.filter(v => v).length
-      if (l == this.combinationArray.length) {
-        return true
-      } else {
-        return false
-      }
-    },
     setEvaluationData(arr) {
-      if (this.isInputDataEnough(arr)) {
-        this.evaluationData = arr
-      }
+      this.evaluationData = arr
     },
     handleCriterionImportance() {
       if (this.evaluationData) {
