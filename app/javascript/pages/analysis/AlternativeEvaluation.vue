@@ -10,14 +10,14 @@
         </li>
       </template>
       <div
-        v-for="(item, index) in criteria"
+        v-for="(item, index) in getCriteria"
         :key="index"
       >
         <div>
           {{ item }}
         </div>
         <EvaluationList
-          :combination-array="combinationArray"
+          :factors="getAlternatives"
           :list-number="index"
           @catch-data="setEvaluationDataCollection(item, index, $event)"
         />
@@ -43,29 +43,20 @@ export default {
   },
   data() {
     return {
-      combinationArray: [],
       evaluationDataCollection: [],
-      criteria: [],
       errors: null
     }
   },
   computed: {
     ...mapGetters('analysis', ['getCriteria', 'getAlternatives'])
   },
-  created() {
-    this.combinationArray = this.$calculator.makePairs(this.getAlternatives)
-    this.criteria = this.getCriteria
-  },
   methods: {
     setEvaluationDataCollection(cri, ind, arr) {
-      const l = arr.filter(v => v).length
-      if (l == this.combinationArray.length) {
-        this.evaluationDataCollection[ind] = { criterion: cri, data: arr }
-      }
+      this.evaluationDataCollection[ind] = { criterion: cri, data: arr }
     },
     handleAlternativeEvaluation() {
       const l = this.evaluationDataCollection.filter(v => v).length
-      if (l == this.criteria.length) {
+      if (l == this.getCriteria.length) {
         const array = this.evaluationDataCollection.map(f => {
           const hash = {}
           hash.data = this.$calculator.weightCalculation(this.getAlternatives, f.data)

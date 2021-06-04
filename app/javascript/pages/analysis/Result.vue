@@ -41,6 +41,9 @@ export default {
       const array = this.$calculator.resultCalculation(cri, alt)
       this.chartData = this.$graph.createResultChartData(array)
       this.graph = true
+      console.log(cri)
+      console.log(alt)
+      console.log(array)
     },
   }
 }

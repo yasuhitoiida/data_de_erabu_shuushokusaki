@@ -10,9 +10,6 @@ export default {
     }
     return newArray
   },
-  makeEvalData(com, val) {
-    return { combination: com, value: val }
-  },
   abs(val) {
     return val < 0 ? -val : val
   },
@@ -23,22 +20,23 @@ export default {
     return n ** (1 / arr.length)
   },
   weightCalculation(factors, evalData) {
-    let j, k, m
+    let i, j, k, m
     const array = factors.map(f => {
       return { name: f, score: [], geomean: null, weight: null }
     })
-    for(j = 0; j < evalData.length; j++) {
-      const factorA = array.find(f => f.name === evalData[j].combination[0])
-      const factorB = array.find(f => f.name === evalData[j].combination[1])
-      const value = evalData[j].value
-      const abs = this.abs(value - 4)
-      const score = 2 * abs + 1
-      if (value < 4) {
-        factorA.score.push(score)
-        factorB.score.push(1 / score)
-      } else {
-        factorB.score.push(score)
-        factorA.score.push(1 / score)
+    for(i = 0; i < factors.length-1; i++) {
+      const a = evalData.splice(0, factors.length-1-i)
+      for(j = 0; j < a.length; j++) {
+        const value = a[j]
+        const abs = this.abs(value - 4)
+        const score = 2 * abs + 1
+        if (value < 4) {
+          array[i].score.push(score)
+          array[i+j+1].score.push(1 / score)
+        } else {
+          array[i+j+1].score.push(score)
+          array[i].score.push(1 / score)
+        }
       }
     }
     for(k = 0; k < array.length; k++) {
