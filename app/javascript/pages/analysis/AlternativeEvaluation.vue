@@ -57,9 +57,16 @@ export default {
     this.criteria = this.getCriteria
   },
   methods: {
-    setEvaluationDataCollection(cri, ind, arr) {
+    isInputDataEnough(arr) {
       const l = arr.filter(v => v).length
       if (l == this.combinationArray.length) {
+        return true
+      } else {
+        return false
+      }
+    },
+    setEvaluationDataCollection(cri, ind, arr) {
+      if (this.isInputDataEnough(arr)) {
         this.evaluationDataCollection[ind] = { criterion: cri, data: arr }
       }
     },

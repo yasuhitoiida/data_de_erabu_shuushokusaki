@@ -46,9 +46,16 @@ export default {
     this.combinationArray = this.$calculator.makePairs(this.getCriteria)
   },
   methods: {
-    setEvaluationData(arr) {
+    isInputDataEnough(arr) {
       const l = arr.filter(v => v).length
       if (l == this.combinationArray.length) {
+        return true
+      } else {
+        return false
+      }
+    },
+    setEvaluationData(arr) {
+      if (this.isInputDataEnough(arr)) {
         this.evaluationData = arr
       }
     },

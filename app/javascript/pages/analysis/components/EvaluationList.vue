@@ -37,8 +37,7 @@ export default {
   },
   methods: {
     sendData(ind, val) {
-      const obj = this.$calculator.makeEvalData(this.combinationArray[ind], val)
-      this.evaluationListData[ind] = obj
+      this.evaluationListData[ind] = val
       this.$emit('catch-data', this.evaluationListData)
 
       // const radioChange = document.querySelectorAll("input");
