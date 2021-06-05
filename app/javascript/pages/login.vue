@@ -2,11 +2,9 @@
   <div class="col-4 offset-4">
     <h1>ログイン</h1>
     <template v-if="errors">
-      <li
-        class="error-message"
-      >
-        パスワードが一致しません
-      </li>
+      <ErrorMessage
+        :messages="errors"
+      />
     </template>
     <div id="login-form">
       <div class="email-form">
@@ -42,9 +40,12 @@
 
 <script>
 import { mapActions } from 'vuex'
-
+import ErrorMessage from '../components/ErrorMessage.vue'
 export default {
   name: 'Login',
+  components: {
+    ErrorMessage
+  },
   data() {
     return {
       user: {
@@ -64,7 +65,7 @@ export default {
         this.$router.push('/')
       } catch(err) {
         console.log(err)
-        this.errors = err
+        this.errors = ['パスワードが一致しません']
         this.user.password = null
       }
     },

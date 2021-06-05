@@ -2,13 +2,9 @@
   <div class="col-4 offset-4">
     <h1>ユーザー登録</h1>
     <template v-if="errors">
-      <li
-        v-for="error in errors"
-        :key="error"
-        class="error-message"
-      >
-        {{ error }}
-      </li>
+      <ErrorMessage
+        :messages="errors"
+      />
     </template>
     <div id="register-form">
       <div class="name">
@@ -58,8 +54,12 @@
 </template>
 
 <script>
+import ErrorMessage from '../components/ErrorMessage.vue'
 export default {
   name: 'Register',
+  components: {
+    ErrorMessage
+  },
   data() {
     return {
       user: {

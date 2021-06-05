@@ -3,11 +3,9 @@
     <div class="col-8 offset-2">
       <h3>STEP2 就職先を決める上で考慮する条件を選んでください</h3>
       <template v-if="errors">
-        <li
-          class="error-message"
-        >
-          条件は2つ以上入力してください
-        </li>
+        <ErrorMessage
+          :messages="errors"
+        />
       </template>
       <div
         v-for="(item, index) in criteria"
@@ -51,10 +49,12 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import TheButtons from './components/TheButtons.vue'
+import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
   name: 'CriterionSelect',
   components: {
-    TheButtons
+    TheButtons,
+    ErrorMessage
   },
   data() {
     return {
@@ -94,7 +94,7 @@ export default {
         this.setCriteria(array)
         this.$router.push('/analysis/step3')
       } else {
-        this.errors = true
+        this.errors = ['条件を2つ以上選んでください']
       }
     },
     ...mapActions('analysis', ['setCriteria'])

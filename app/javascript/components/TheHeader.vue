@@ -1,28 +1,4 @@
 <template>
-  <!-- <nav class="navbar">
-    <span>データで選ぶ就職先</span>
-    <template v-if="!isAuthenticated">
-      <span>
-        <router-link
-          to="/register"
-        >ユーザー登録</router-link>
-        <router-link
-          to="/login"
-        >ログイン</router-link>
-      </span>
-    </template>
-    <template v-if="isAuthenticated">
-      <span>
-        <router-link
-          to="/mypage"
-        >{{ isAuthenticated.name }}</router-link>
-        <router-link
-          to="#"
-          @click.native="logout"
-        >ログアウト</router-link>
-      </span>
-    </template>
-  </nav> -->
   <div>
     <b-navbar
       toggleable="lg"

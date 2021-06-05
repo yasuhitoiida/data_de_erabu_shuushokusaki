@@ -3,11 +3,9 @@
     <div class="col-8 offset-2">
       <h3>STEP4 条件ごとにどちらの就職先が優れているか比較してください</h3>
       <template v-if="errors">
-        <li
-          class="error-message"
-        >
-          未入力の項目があります
-        </li>
+        <ErrorMessage
+          :messages="errors"
+        />
       </template>
       <div
         v-for="(item, index) in getCriteria"
@@ -35,11 +33,13 @@ import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import EvaluationList from './components/EvaluationList.vue'
 import TheButtons from './components/TheButtons.vue'
+import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
   name: 'AlternativeEvaluation',
   components: {
     EvaluationList,
-    TheButtons
+    TheButtons,
+    ErrorMessage
   },
   data() {
     return {
@@ -66,7 +66,7 @@ export default {
         this.setAlternativeEvaluations(array)
         this.$router.push('/analysis/result')
       } else {
-        this.errors = true
+        this.errors = ['未入力の項目があります']
       }
     },
     ...mapActions('analysis', ['setAlternativeEvaluations'])

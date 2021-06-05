@@ -21,7 +21,7 @@ RSpec.describe 'User', type: :system do
       within "#register-form" do
         click_on '登録'
       end
-      expect(page).to have_css('li.error-message'), 'エラーメッセージが表示されていません'
+      expect(page).to have_css('li.alert'), 'エラーメッセージが表示されていません'
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe 'User', type: :system do
       within "#login-form" do
         click_on 'ログイン'
       end
-      expect(page).to have_css('li.error-message'), 'エラーメッセージが表示されていません'
+      expect(page).to have_css('li.alert'), 'エラーメッセージが表示されていません'
     end
   end
 end
