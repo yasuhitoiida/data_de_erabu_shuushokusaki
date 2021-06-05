@@ -1,15 +1,25 @@
 <template>
   <div class="row">
-    <div class="col">
+    <div class="col-2">
       <span>
         {{ combination[0] }}
       </span>
     </div>
-    <div class="col">
-      <span
+      <div class="col-8">
+        <b-form-radio-group
+          :name="name"
+        >
+          <b-form-radio
+            v-for="n in 7"
+            :key="n"
+            :value="n"
+            @change="sendValue(n)"
+          />
+      </b-form-radio-group>
+      <!-- <span
         :class="name"
-      >
-        <input
+      > -->
+        <!-- <input
           v-for="n in 7"
           :id="n-1"
           :key="n"
@@ -17,10 +27,10 @@
           :name="name"
           :value="n"
           @change="sendValue(n)"
-        >
+        > -->
       </span>
     </div>
-    <div class="col">
+    <div class="col-2">
       <span>
         {{ combination[1] }}
       </span>
