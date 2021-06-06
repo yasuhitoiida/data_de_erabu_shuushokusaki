@@ -1,22 +1,24 @@
 <template>
-  <div class="container">
-    <div class="col-8 offset-2">
-      <h3>STEP3 条件の重要性を比較してください</h3>
-      <template v-if="errors">
-        <ErrorMessage
-          :messages="errors"
+  <v-container>
+    <v-row>
+      <v-col cols="12" offset-md="2" md="8">
+        <h3>STEP3 条件の重要性を比較してください</h3>
+        <template v-if="errors">
+          <ErrorMessage
+            :messages="errors"
+          />
+        </template>
+        <EvaluationList
+          :factors="getCriteria"
+          @catch-data="setEvaluationData"
         />
-      </template>
-      <EvaluationList
-        :factors="getCriteria"
-        @catch-data="setEvaluationData"
-      />
-      <TheButtons
-        preview-page-path="/analysis/step2"
-        @ok-button="handleCriterionImportance"
-      />
-    </div>
-  </div>
+        <TheButtons
+          preview-page-path="/analysis/step2"
+          @ok-button="handleCriterionImportance"
+        />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
