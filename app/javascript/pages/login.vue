@@ -24,16 +24,16 @@
           v-model="user.password"
           type="password"
           class="form-control"
-          @input="handleErrors"
+          @focus="handleErrors"
         >
       </div>
-      <button
-        type="button"
-        class="btn btn-success"
+      <v-btn
+        dark
+        color="#6495ed"
         @click="login"
       >
         ログイン
-      </button>
+      </v-btn>
     </div>
   </div>
 </template>

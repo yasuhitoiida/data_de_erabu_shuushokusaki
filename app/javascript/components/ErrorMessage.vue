@@ -1,5 +1,8 @@
 <template>
-  <div class="alert alert-info">
+  <v-alert
+    dark
+    color="#6495ed"
+  >
     <li
       v-for="message in messages"
       :key="message"
@@ -7,7 +10,7 @@
     >
       {{ message }}
     </li>
-  </div>
+  </v-alert>
 </template>
 
 <script>

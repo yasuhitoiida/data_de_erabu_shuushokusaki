@@ -42,13 +42,13 @@
           class="form-control"
         >
       </div>
-      <button
-        type="button"
-        class="btn btn-success"
+      <v-btn
+        dark
+        color="#6495ed"
         @click="register"
       >
         登録
-      </button>
+      </v-btn>
     </div>
   </div>
 </template>
