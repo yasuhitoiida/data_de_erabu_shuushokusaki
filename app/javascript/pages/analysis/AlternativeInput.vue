@@ -3,11 +3,9 @@
     <div class="col-8 offset-2 alternative-forms">
       <h3>STEP1 就職先の選択肢を入力してください</h3>
       <template v-if="errors">
-        <li
-          class="error-message"
-        >
-          就職先は2つ以上選択してください
-        </li>
+        <ErrorMessage
+          :messages="errors"
+        />
       </template>
       <div
         v-for="(item, index) in alternatives"
@@ -38,10 +36,12 @@
 <script>
 import { mapActions } from 'vuex'
 import TheButtons from './components/TheButtons.vue'
+import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
   name: 'AlternativeInput',
   components: {
-    TheButtons
+    TheButtons,
+    ErrorMessage
   },
   data() {
     return {
@@ -59,7 +59,7 @@ export default {
         this.setAlternatives(array)
         this.$router.push('/analysis/step2')
       } else {
-        this.errors = true
+        this.errors = ['就職先を2つ以上入力してください']
       }
     },
     ...mapActions('analysis', ['setAlternatives'])

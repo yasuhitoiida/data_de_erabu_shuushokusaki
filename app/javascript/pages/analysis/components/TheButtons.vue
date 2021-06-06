@@ -1,19 +1,18 @@
 <template>
   <div class="buttons">
-    <router-link
-      type="button"
-      class="btn btn-outline-secondary"
+    <v-btn
       :to="previewPagePath"
     >
       戻る
-    </router-link>
-    <button
-      type="button"
-      class="btn btn-info"
+    </v-btn>
+    <v-btn
+      dark
+      elevation="4"
+      color="#6495ed"
       @click="ok"
     >
       決定
-    </button>
+    </v-btn>
   </div>
 </template>
 

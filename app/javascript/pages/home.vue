@@ -1,12 +1,13 @@
 <template>
   <div class="col-4 offset-4">
     <h1>トップページ</h1>
-    <router-link
+    <v-btn
       to="/analysis/step1"
-      class="btn btn-success"
+      color="#6495ed"
+      dark
     >
       スタート
-    </router-link>
+    </v-btn>
   </div>
 </template>
 

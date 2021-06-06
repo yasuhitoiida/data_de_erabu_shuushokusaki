@@ -3,41 +3,33 @@
     <div class="col-8 offset-2">
       <h3>STEP2 就職先を決める上で考慮する条件を選んでください</h3>
       <template v-if="errors">
-        <li
-          class="error-message"
-        >
-          条件は2つ以上入力してください
-        </li>
+        <ErrorMessage
+          :messages="errors"
+        />
       </template>
       <div
         v-for="(item, index) in criteria"
         :key="item"
       >
-        <input
+        <v-checkbox
+          color="orange"
           :id="'criterion' + index"
           v-model="selectedCriteria"
-          type="checkbox"
           :value="item"
-        ><label :for="'criterion' + index">{{ item }}</label>
+          :label="item"
+        ></v-checkbox>
       </div>
-      <div
-        v-for="n in criterionAdditionNumber"
-        :key="n"
-      >
+      <div class="input-group">
         <input
-          v-model="selectedCriteria"
-          type="checkbox"
-          :value="addedCriteria[n-1]"
+          v-model="addedCriteria"
+          class="form-control"
+          placeholder="追加したい条件を記入"
         >
-        <input v-model="addedCriteria[n-1]">
-      </div>
-      <div>
-        <router-link
-          to="#"
+        <v-btn
           @click.native="addCriterion"
         >
           条件を追加
-        </router-link>
+        </v-btn>
       </div>
       <TheButtons
         preview-page-path="/analysis/step1"
@@ -51,10 +43,12 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import TheButtons from './components/TheButtons.vue'
+import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
   name: 'CriterionSelect',
   components: {
-    TheButtons
+    TheButtons,
+    ErrorMessage
   },
   data() {
     return {
@@ -73,8 +67,7 @@ export default {
         '収入'
       ],
       selectedCriteria: [],
-      addedCriteria: [],
-      criterionAdditionNumber: 0,
+      addedCriteria: null,
       errors: null
     }
   },
@@ -86,15 +79,17 @@ export default {
   },
   methods: {
     addCriterion() {
-      this.criterionAdditionNumber ++
+      this.criteria.push(this.addedCriteria)
+      this.addedCriteria = null
     },
     handleSelectedCriteria() {
       const array = this.selectedCriteria.filter(v => v)
+      console.log(this.addedCriteria)
       if (array.length >= 2) {
         this.setCriteria(array)
         this.$router.push('/analysis/step3')
       } else {
-        this.errors = true
+        this.errors = ['条件を2つ以上選んでください']
       }
     },
     ...mapActions('analysis', ['setCriteria'])
@@ -106,8 +101,8 @@ export default {
 h3 {
   margin: 50px auto;
 }
-input {
-  margin-bottom: 10px;
+.v-input {
+  margin-top: 0;
 }
 .buttons {
   margin-top: 10px;

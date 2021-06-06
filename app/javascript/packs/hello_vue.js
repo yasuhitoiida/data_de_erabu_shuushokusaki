@@ -8,15 +8,17 @@
 import Vue from 'vue'
 import App from '../app.vue'
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import BootstrapVue from 'bootstrap-vue'
 import axios from '../plugins/axios.js'
 import router from '../router/index.js'
 import store from '../store/index.js'
 import calculator from '../plugins/calculator.js'
 import graph from '../plugins/graph.js'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+import '@mdi/font/css/materialdesignicons.css'
 
-Vue.use(BootstrapVue)
+Vue.use(Vuetify)
+const vuetify = new Vuetify();
 Vue.prototype.$axios = axios
 Vue.prototype.$calculator = calculator
 Vue.prototype.$graph = graph
@@ -24,6 +26,7 @@ Vue.prototype.$graph = graph
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     render: h => h(App),
+    vuetify,
     router,
     store
   }).$mount()

@@ -1,77 +1,70 @@
 <template>
-  <!-- <nav class="navbar">
-    <span>データで選ぶ就職先</span>
-    <template v-if="!isAuthenticated">
-      <span>
-        <router-link
-          to="/register"
-        >ユーザー登録</router-link>
-        <router-link
-          to="/login"
-        >ログイン</router-link>
-      </span>
-    </template>
-    <template v-if="isAuthenticated">
-      <span>
-        <router-link
-          to="/mypage"
-        >{{ isAuthenticated.name }}</router-link>
-        <router-link
-          to="#"
-          @click.native="logout"
-        >ログアウト</router-link>
-      </span>
-    </template>
-  </nav> -->
   <div>
-    <b-navbar
-      toggleable="lg"
-      type="dark"
-      variant="info"
+    <v-app-bar
     >
-      <b-navbar-brand href="#">
-        データで選ぶ就職先
-      </b-navbar-brand>
-      <b-navbar-nav class="ml-auto">
-        <b-nav-item
+      <v-toolbar-title>
+        <v-btn
+          @click="topPage"
+        >
+          データで選ぶ就職先
+        </v-btn>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+        <v-toolbar-items
           v-if="isAuthenticated"
-          right
         >
-          <b-nav-item-dropdown>
-            <template #button-content>
-              {{ isAuthenticated.name }}
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="secondary"
+                dark
+                v-bind="attrs"
+                v-on="on"
+              >
+                {{ isAuthenticated.name }}
+                <v-icon>mdi-menu-down</v-icon>
+              </v-btn>
             </template>
-            <b-dropdown-item to="/mypage">
-              マイページ
-            </b-dropdown-item>
-            <b-dropdown-item
-              to="#"
-              @click.native="logout"
-            >
-              ログアウト
-            </b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-nav-item>
-        <b-nav-item
+            <v-list>
+              <v-list-item>
+                <v-btn
+                  text
+                  to="/mypage"
+                >
+                  マイページ
+                </v-btn>
+              </v-list-item>
+              <v-list-item>
+                <v-btn
+                  text
+                  to="#"
+                  @click.native="logout"
+                >
+                  ログアウト
+                </v-btn>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-toolbar-items>
+        <v-toolbar-items
           v-else
-          class="list-inline"
-          right
         >
-          <b-nav-item
+          <v-btn
+            text
             to="/register"
             class="list-inline-item"
           >
             ユーザー登録
-          </b-nav-item>
-          <b-nav-item
+          </v-btn>
+          <v-btn
+            text
             to="/login"
             class="list-inline-item"
           >
             ログイン
-          </b-nav-item>
-        </b-nav-item>
-      </b-navbar-nav>
-    </b-navbar>
+          </v-btn>
+        </v-toolbar-items>
+    </v-app-bar>
   </div>
 </template>
 
@@ -85,7 +78,9 @@ export default {
     }
   },
   methods: {
-    // ...mapActions('users', ['logoutUser']),
+    topPage() {
+      this.$router.push('/')
+    },
     async logout() {
       try {
         await this.$store.dispatch('users/logoutUser')

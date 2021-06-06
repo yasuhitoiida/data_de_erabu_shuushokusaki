@@ -1,33 +1,33 @@
 <template>
-  <div class="container">
-    <div class="col-8 offset-2">
-      <h3>STEP4 条件ごとにどちらの就職先が優れているか比較してください</h3>
-      <template v-if="errors">
-        <li
-          class="error-message"
+  <v-container>
+    <v-row>
+      <v-col cols="12" offset-md="2" md="8">
+        <h3>STEP4 条件ごとにどちらの就職先が優れているか比較してください</h3>
+        <template v-if="errors">
+          <ErrorMessage
+            :messages="errors"
+          />
+        </template>
+        <div
+          v-for="(item, index) in getCriteria"
+          :key="index"
         >
-          未入力の項目があります
-        </li>
-      </template>
-      <div
-        v-for="(item, index) in getCriteria"
-        :key="index"
-      >
-        <div>
-          {{ item }}
+          <div>
+            {{ item }}
+          </div>
+          <EvaluationList
+            :factors="getAlternatives"
+            :list-number="index"
+            @catch-data="setEvaluationDataCollection(item, index, $event)"
+          />
         </div>
-        <EvaluationList
-          :factors="getAlternatives"
-          :list-number="index"
-          @catch-data="setEvaluationDataCollection(item, index, $event)"
+        <TheButtons
+          preview-page-path="/analysis/step3"
+          @ok-button="handleAlternativeEvaluation"
         />
-      </div>
-      <TheButtons
-        preview-page-path="/analysis/step3"
-        @ok-button="handleAlternativeEvaluation"
-      />
-    </div>
-  </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -35,11 +35,13 @@ import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import EvaluationList from './components/EvaluationList.vue'
 import TheButtons from './components/TheButtons.vue'
+import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
   name: 'AlternativeEvaluation',
   components: {
     EvaluationList,
-    TheButtons
+    TheButtons,
+    ErrorMessage
   },
   data() {
     return {
@@ -66,7 +68,7 @@ export default {
         this.setAlternativeEvaluations(array)
         this.$router.push('/analysis/result')
       } else {
-        this.errors = true
+        this.errors = ['未入力の項目があります']
       }
     },
     ...mapActions('analysis', ['setAlternativeEvaluations'])

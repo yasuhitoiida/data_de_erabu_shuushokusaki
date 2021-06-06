@@ -2,13 +2,9 @@
   <div class="col-4 offset-4">
     <h1>ユーザー登録</h1>
     <template v-if="errors">
-      <li
-        v-for="error in errors"
-        :key="error"
-        class="error-message"
-      >
-        {{ error }}
-      </li>
+      <ErrorMessage
+        :messages="errors"
+      />
     </template>
     <div id="register-form">
       <div class="name">
@@ -46,20 +42,24 @@
           class="form-control"
         >
       </div>
-      <button
-        type="button"
-        class="btn btn-success"
+      <v-btn
+        dark
+        color="#6495ed"
         @click="register"
       >
         登録
-      </button>
+      </v-btn>
     </div>
   </div>
 </template>
 
 <script>
+import ErrorMessage from '../components/ErrorMessage.vue'
 export default {
   name: 'Register',
+  components: {
+    ErrorMessage
+  },
   data() {
     return {
       user: {

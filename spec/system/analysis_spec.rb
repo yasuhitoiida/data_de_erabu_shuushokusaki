@@ -8,7 +8,7 @@ RSpec.describe 'Analysis', type: :system do
       visit '/analysis/step1'
       find('#alternative0').set('company0')
       click_on '決定'
-      expect(page).to have_selector('.error-message')
+      expect(page).to have_selector('.alert')
     end
   end
 
@@ -18,7 +18,7 @@ RSpec.describe 'Analysis', type: :system do
       alternative_input(alternative_number)
       check('criterion0')
       click_on '決定'
-      expect(page).to have_selector('.error-message')
+      expect(page).to have_selector('.alert')
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe 'Analysis', type: :system do
       alternative_input(alternative_number)
       criterion_select(criterion_number)
       criterion_importance(criterion_number-1)
-      expect(page).to have_selector('.error-message')
+      expect(page).to have_selector('.alert')
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe 'Analysis', type: :system do
       criterion_select(criterion_number)
       criterion_importance(criterion_number)
       alternative_evaluation(criterion_number, alternative_number-1)
-      expect(page).to have_selector('.error-message')
+      expect(page).to have_selector('.alert')
     end
   end
 end
