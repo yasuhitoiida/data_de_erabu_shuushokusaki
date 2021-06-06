@@ -3,7 +3,8 @@
     <h1>トップページ</h1>
     <v-btn
       to="/analysis/step1"
-      color="info"
+      color="#6495ed"
+      dark
     >
       スタート
     </v-btn>

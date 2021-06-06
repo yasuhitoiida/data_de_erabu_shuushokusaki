@@ -3,7 +3,11 @@
     <v-app-bar
     >
       <v-toolbar-title>
-        データで選ぶ就職先
+        <v-btn
+          @click="topPage"
+        >
+          データで選ぶ就職先
+        </v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
         <v-toolbar-items
@@ -74,7 +78,9 @@ export default {
     }
   },
   methods: {
-    // ...mapActions('users', ['logoutUser']),
+    topPage() {
+      this.$router.push('/')
+    },
     async logout() {
       try {
         await this.$store.dispatch('users/logoutUser')
