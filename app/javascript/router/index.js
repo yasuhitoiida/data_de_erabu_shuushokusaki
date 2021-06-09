@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../pages/Home.vue'
-import Register from '../pages/Register.vue'
-import Login from '../pages/Login.vue'
+import Top from '../pages/TopPage.vue'
+import Register from '../pages/RegisterPage.vue'
+import Login from '../pages/LoginPage.vue'
 import MyPage from '../pages/MyPage.vue'
 import AlternativeInput from '../pages/analysis/AlternativeInput.vue'
 import CriterionSelect from '../pages/analysis/CriterionSelect.vue'
@@ -15,7 +15,7 @@ Vue.use(Router)
 
 const router = new Router({
     mode: "history",
-    routes: [{path: '/', component: Home},
+    routes: [{path: '/', component: Top},
              {path: '/register', component: Register},
              {path: '/login', component: Login},
              {path: '/mypage', component: MyPage, meta: { requiredAuth: true }},

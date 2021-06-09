@@ -1,7 +1,9 @@
 <template>
   <v-app id="app">
     <TheHeader />
-    <router-view />
+    <v-main>
+      <router-view />
+    </v-main>
   </v-app>
 </template>
 
@@ -16,7 +18,7 @@ export default {
 
 <style>
 #app {
-  font-family: sans-serif, Helvetica, Arial;
+  font-family: Avenir, sans-serif, Helvetica, Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
