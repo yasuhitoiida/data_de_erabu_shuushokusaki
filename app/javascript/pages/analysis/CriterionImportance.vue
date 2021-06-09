@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" offset-md="2" md="8">
+      <v-col cols="12" lg="8" class="mx-auto">
         <h3>STEP3 条件の重要性を比較してください</h3>
         <template v-if="errors">
           <ErrorMessage

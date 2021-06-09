@@ -8,18 +8,17 @@
     >
       <div>
         <v-row>
-          <v-col md="3">
-              {{ combination[0] }}
+          <v-col cols="3">
+            {{ combination[0] }}
           </v-col>
-          <v-spacer></v-spacer>
-          <v-col md="3">
-              {{ combination[1] }}
+          <v-col cols="3" class="ml-auto">
+            {{ combination[1] }}
           </v-col>
         </v-row>
       </div>
       <div>
         <v-row>
-          <v-col class="ml-md-auto">
+          <v-col class="ml-auto">
             <v-btn-toggle
               tile
               borderless

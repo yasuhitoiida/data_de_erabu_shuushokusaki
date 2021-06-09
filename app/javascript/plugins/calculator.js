@@ -14,10 +14,10 @@ export default {
     return val < 0 ? -val : val
   },
   geomean(arr) {
-    let n = arr.reduceRight((a,b) => {
+    let n = arr.reduce((a,b) => {
       return a * b
     })
-    return n ** (1 / arr.length)
+    return n ** (1 / (arr.length+1))
   },
   weightCalculation(factors, evalData) {
     let i, j, k, m

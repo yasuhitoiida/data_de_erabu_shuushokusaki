@@ -1,12 +1,13 @@
 <template>
   <div>
-    <v-app-bar
+    <v-app-bar app
     >
       <v-toolbar-title>
         <v-btn
           @click="topPage"
+          id="logo"
         >
-          データで選ぶ就職先
+        Workers<span>-</span>AHP
         </v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -94,4 +95,12 @@ export default {
 </script>
 
 <style scoped>
+#logo {
+  font-family: Avenir;
+  text-transform: none;
+  font-size: 24px;
+}
+#logo span {
+  color: #6495ed;
+}
 </style>
