@@ -35,6 +35,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import TheButtons from './components/TheButtons.vue'
 import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
@@ -48,6 +49,14 @@ export default {
       alternatives: [null, null, null],
       errors: null
     }
+  },
+  created() {
+    if (this.getAlternatives) {
+      this.alternatives = this.getAlternatives
+    }
+  },
+  computed: {
+    ...mapGetters('analysis', ['getAlternatives'])
   },
   methods: {
     addForm() {

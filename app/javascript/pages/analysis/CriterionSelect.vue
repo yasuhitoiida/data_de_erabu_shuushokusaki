@@ -67,24 +67,32 @@ export default {
         '収入'
       ],
       selectedCriteria: [],
+      trueValue: [],
       addedCriteria: null,
       errors: null
+    }
+  },
+  created() {
+    if (this.getCriteria) {
+      this.selectedCriteria = this.getCriteria
+      this.criteria = this.criteria.concat(this.getCriteria.filter(f => !this.criteria.includes(f)))
     }
   },
   computed: {
     fetchAlternative() {
       return this.getAlternatives
     },
-    ...mapGetters('analysis', ['getAlternatives'])
+    ...mapGetters('analysis', ['getAlternatives', 'getCriteria'])
   },
   methods: {
     addCriterion() {
       this.criteria.push(this.addedCriteria)
+      this.selectedCriteria.push(this.addedCriteria)
       this.addedCriteria = null
     },
     handleSelectedCriteria() {
       const array = this.selectedCriteria.filter(v => v)
-      console.log(this.addedCriteria)
+      console.log(array)
       if (array.length >= 2) {
         this.setCriteria(array)
         this.$router.push('/analysis/step3')
