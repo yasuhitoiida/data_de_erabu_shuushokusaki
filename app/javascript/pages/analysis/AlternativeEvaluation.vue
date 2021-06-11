@@ -6,11 +6,11 @@
         lg="8"
         class="mx-auto"
       >
-        <h3>STEP4 どちらの選択肢が優れているか比較してください</h3>
+        <h3>STEP4 条件ごとに会社を評価してください</h3>
         <v-col align="center">
           <p>
-            それぞれの評価基準において、どの選択肢がどの程度優れているかを数値化します。<br>
-            それぞれの評価基準のもとで2つの選択肢を比較し、当てはまる数字を選んでください。<br>
+            あなたが考えている選択肢がどの程度条件を満たしているかを数値化します。<br>
+            それぞれの観点で2つの選択肢同士を比較し、当てはまる数字を選んでください。<br>
           </p>
           <HowToCompare type="evaluation" />
         </v-col>
@@ -25,7 +25,7 @@
           <EvaluationList
             :factors="getAlternatives"
             :list-number="index"
-            @catch-data="setEvaluationDataCollection(item, index, $event)"
+            @catch-data="setEvalDataCollection(item, index, $event)"
           />
         </div>
         <template v-if="errors">
@@ -59,7 +59,8 @@ export default {
   },
   data() {
     return {
-      evaluationDataCollection: [],
+      evalDataCollection: [],
+      rawDataCollection: [],
       errors: null
     }
   },
@@ -67,19 +68,23 @@ export default {
     ...mapGetters('analysis', ['getCriteria', 'getAlternatives'])
   },
   methods: {
-    setEvaluationDataCollection(cri, ind, arr) {
-      this.evaluationDataCollection[ind] = { criterion: cri, data: arr }
+    setEvalDataCollection(cri, ind, arr) {
+      this.rawDataCollection[ind] = [].concat(arr)
+      this.evalDataCollection[ind] = { criterion: cri, data: arr }
     },
     handleAlternativeEvaluation() {
-      const l = this.evaluationDataCollection.filter(v => v).length
+      const l = this.evalDataCollection.filter(v => v).length
       if (l == this.getCriteria.length) {
-        const array = this.evaluationDataCollection.map(f => {
+        const raw = [].concat(this.rawDataCollection)
+        const ev = this.evalDataCollection.map(f => {
           const hash = {}
           hash.data = this.$calculator.weightCalculation(this.getAlternatives, f.data)
           hash.criterion = f.criterion
           return hash
         })
-        this.setAlternativeEvaluations(array)
+        console.log(raw)
+        console.log(ev)
+        this.setAlternativeEvaluations({eval:ev, raw:raw})
         this.$router.push('/analysis/result')
       } else {
         this.errors = ['未入力の項目があります']

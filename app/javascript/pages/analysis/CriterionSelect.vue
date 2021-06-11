@@ -2,7 +2,12 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="8">
-        <h3>STEP2 就職先を決める上での評価基準を選んでください</h3>
+        <h3>STEP2 こだわり条件を教えてください</h3>
+        <v-col align="center">
+          <p>
+            あなたが就職先を決める上で考慮する条件にチェックをつけてください。
+          </p>
+        </v-col>
         <v-checkbox
           v-for="(item, index) in criteria"
           :id="'criterion' + index"
@@ -72,17 +77,14 @@ export default {
       errors: null
     }
   },
+  computed: {
+    ...mapGetters('analysis', ['getAlternatives', 'getCriteria'])
+  },
   created() {
     if (this.getCriteria) {
       this.selectedCriteria = this.getCriteria
       this.criteria = this.criteria.concat(this.getCriteria.filter(f => !this.criteria.includes(f)))
     }
-  },
-  computed: {
-    fetchAlternative() {
-      return this.getAlternatives
-    },
-    ...mapGetters('analysis', ['getAlternatives', 'getCriteria'])
   },
   methods: {
     addCriterion() {

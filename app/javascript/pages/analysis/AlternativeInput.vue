@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <div class="col-8 offset-2 alternative-forms">
-      <h3>STEP1 就職先の選択肢を入力してください</h3>
+      <h3>STEP1 現状の選択肢を教えてください</h3>
+      <v-col align="center">
+        <p>
+          あなたが今考えている会社名や求人などを記入してください。
+        </p>
+      </v-col>
       <div
         v-for="(item, index) in alternatives"
         :key="index"
@@ -50,13 +55,13 @@ export default {
       errors: null
     }
   },
+  computed: {
+    ...mapGetters('analysis', ['getAlternatives'])
+  },
   created() {
     if (this.getAlternatives) {
       this.alternatives = this.getAlternatives
     }
-  },
-  computed: {
-    ...mapGetters('analysis', ['getAlternatives'])
   },
   methods: {
     addForm() {
