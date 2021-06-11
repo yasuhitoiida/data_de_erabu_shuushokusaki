@@ -1,42 +1,42 @@
 <template>
-  <div class="container">
-    <div class="col-8 offset-2">
-      <h3>STEP2 就職先を決める上で考慮する条件を選んでください</h3>
-      <template v-if="errors">
-        <ErrorMessage
-          :messages="errors"
-        />
-      </template>
-      <div
-        v-for="(item, index) in criteria"
-        :key="item"
-      >
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="8">
+        <h3>STEP2 就職先を決める上での評価基準を選んでください</h3>
         <v-checkbox
-          color="orange"
+          v-for="(item, index) in criteria"
           :id="'criterion' + index"
+          :key="item"
           v-model="selectedCriteria"
+          color="orange"
           :value="item"
           :label="item"
-        ></v-checkbox>
-      </div>
-      <div class="input-group">
-        <input
-          v-model="addedCriteria"
-          class="form-control"
-          placeholder="追加したい条件を記入"
-        >
-        <v-btn
-          @click.native="addCriterion"
-        >
-          条件を追加
-        </v-btn>
-      </div>
-      <TheButtons
-        preview-page-path="/analysis/step1"
-        @ok-button="handleSelectedCriteria"
-      />
-    </div>
-  </div>
+          class="mt-0"
+        />
+        <div class="input-group">
+          <input
+            v-model="addedCriteria"
+            class="form-control"
+            placeholder="追加したい条件を記入"
+          >
+          <v-btn
+            @click.native="addCriterion"
+          >
+            条件を追加
+          </v-btn>
+        </div>
+        <template v-if="errors">
+          <ErrorMessage
+            :messages="errors"
+          />
+        </template>
+        <TheButtons
+          preview-page-path="/analysis/step1"
+          @ok-button="handleSelectedCriteria"
+        />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -100,11 +100,5 @@ export default {
 <style scoped>
 h3 {
   margin: 50px auto;
-}
-.v-input {
-  margin-top: 0;
-}
-.buttons {
-  margin-top: 10px;
 }
 </style>

@@ -21,7 +21,7 @@ RSpec.describe 'User', type: :system do
       within "#register-form" do
         click_on '登録'
       end
-      expect(page).to have_css('li.alert'), 'エラーメッセージが表示されていません'
+      expect(page).to have_css('li.error-message'), 'エラーメッセージが表示されていません'
     end
   end
 
@@ -34,14 +34,14 @@ RSpec.describe 'User', type: :system do
 
     it 'ログイン状態によってヘッダーの表示が変わる' do
       visit '/'
-      expect(page).to have_selector('.navbar'), text: 'ログイン'
+      expect(page).to have_content('ログイン')
       visit '/login'
       within "#login-form" do
         fill_in 'メールアドレス', with: user.email
         fill_in 'パスワード', with: password
         click_on 'ログイン'
       end
-      expect(page).to have_selector('.navbar', text: user.name), 'ログインできていません'
+      expect(page).to have_content(user.name), 'ヘッダーの表示が変わっていません'
     end
 
     it 'ログインページで各フィールドに入力し「ログイン」を押すとログインできる' do
@@ -51,7 +51,7 @@ RSpec.describe 'User', type: :system do
         fill_in 'パスワード', with: password
         click_on 'ログイン'
       end
-      expect(page).to have_selector('.navbar', text: user.name), 'ログインできていません'
+      expect(page).to have_content(user.name), 'ログインできていません'
       expect(page).to have_current_path('/'), 'トップページに遷移できていません'
     end
 
@@ -60,7 +60,7 @@ RSpec.describe 'User', type: :system do
       within "#login-form" do
         click_on 'ログイン'
       end
-      expect(page).to have_css('li.alert'), 'エラーメッセージが表示されていません'
+      expect(page).to have_css('li.error-message'), 'エラーメッセージが表示されていません'
     end
   end
 end

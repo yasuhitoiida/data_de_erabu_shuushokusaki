@@ -1,70 +1,72 @@
 <template>
   <div>
-    <v-app-bar app
+    <v-app-bar
+      app
     >
       <v-toolbar-title>
         <v-btn
-          @click="topPage"
           id="logo"
+          @click="topPage"
         >
-        Workers<span>-</span>AHP
+          Workers<span>-</span>AHP
         </v-btn>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-        <v-toolbar-items
-          v-if="isAuthenticated"
-        >
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
+      <v-spacer />
+      <v-toolbar-items
+        v-if="isAuthenticated"
+      >
+        <v-menu offset-y>
+          <template #activator="{ on, attrs }">
+            <v-btn
+              color="secondary"
+              dark
+              v-bind="attrs"
+              v-on="on"
+              style="text-transform: none;"
+            >
+              {{ isAuthenticated.name }}
+              <v-icon>mdi-menu-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item>
               <v-btn
-                color="secondary"
-                dark
-                v-bind="attrs"
-                v-on="on"
+                text
+                to="/mypage"
               >
-                {{ isAuthenticated.name }}
-                <v-icon>mdi-menu-down</v-icon>
+                マイページ
               </v-btn>
-            </template>
-            <v-list>
-              <v-list-item>
-                <v-btn
-                  text
-                  to="/mypage"
-                >
-                  マイページ
-                </v-btn>
-              </v-list-item>
-              <v-list-item>
-                <v-btn
-                  text
-                  to="#"
-                  @click.native="logout"
-                >
-                  ログアウト
-                </v-btn>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-toolbar-items>
-        <v-toolbar-items
-          v-else
+            </v-list-item>
+            <v-list-item>
+              <v-btn
+                text
+                to="#"
+                @click.native="logout"
+              >
+                ログアウト
+              </v-btn>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-toolbar-items>
+      <v-toolbar-items
+        v-else
+      >
+        <v-btn
+          text
+          to="/register"
+          class="list-inline-item"
         >
-          <v-btn
-            text
-            to="/register"
-            class="list-inline-item"
-          >
-            ユーザー登録
-          </v-btn>
-          <v-btn
-            text
-            to="/login"
-            class="list-inline-item"
-          >
-            ログイン
-          </v-btn>
-        </v-toolbar-items>
+          ユーザー登録
+        </v-btn>
+        <v-btn
+          text
+          to="/login"
+          class="list-inline-item"
+        >
+          ログイン
+        </v-btn>
+      </v-toolbar-items>
     </v-app-bar>
   </div>
 </template>

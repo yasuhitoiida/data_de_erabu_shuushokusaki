@@ -1,6 +1,10 @@
 <template>
   <v-container>
-    <v-col cols="12" md="10" class="mx-auto">
+    <v-col
+      cols="12"
+      md="10"
+      class="mx-auto"
+    >
       <h1>Workers<span>-</span>AHP</h1>
       <div class="headings">
         <h3>分かれ道のあなたへ</h3>
@@ -8,23 +12,30 @@
       </div>
       <div style="text-align:center;">
         <v-btn
-        to="/analysis/step1"
-        color="#6495ed"
-        height="70"
-        width="260"
-        id="analysis-btn"
-        dark
-        large
+          id="analysis-btn"
+          to="/analysis/step1"
+          color="#6495ed"
+          height="70"
+          width="260"
+          dark
+          large
         >
-        Start
-      </v-btn>
-    </div>
+          Start
+        </v-btn>
+      </div>
       <div class="contents">
         <v-row>
-          <v-col cols="8" md="4" class="mx-auto">
-            <v-card width="400" height="550">
-              <img src="../../assets/images/undraw_Travel_mode_re_2lxo.svg"/>
-              <v-divider></v-divider>
+          <v-col
+            cols="8"
+            md="4"
+            class="mx-auto"
+          >
+            <v-card
+              width="400"
+              height="550"
+            >
+              <img src="../../assets/images/undraw_Travel_mode_re_2lxo.svg">
+              <v-divider />
               <v-card-title>こんなあなたに</v-card-title>
               <v-card-text>
                 <div>
@@ -33,14 +44,14 @@
                     本当に納得できる就職先を選びたい
                   </span>
                 </div>
-                <p></p>
+                <p />
                 <div>
                   <v-icon>mdi-file-document-multiple-outline</v-icon>
                   <span>
                     エントリー先の優先順位をつけたい
                   </span>
                 </div>
-                <p></p>
+                <p />
                 <div>
                   <v-icon>mdi-bug</v-icon>
                   <span>
@@ -50,20 +61,34 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="8" md="4" class="mx-auto">
-            <v-card width="400" height="550">
-              <img src="../../assets/images/undraw_Metrics_re_6g90.svg"/>
-              <v-divider></v-divider>
+          <v-col
+            cols="8"
+            md="4"
+            class="mx-auto"
+          >
+            <v-card
+              width="400"
+              height="550"
+            >
+              <img src="../../assets/images/undraw_Metrics_re_6g90.svg">
+              <v-divider />
               <v-card-title>志望度を数値化</v-card-title>
               <v-card-text>
-                企業活動や公共事業でも用いられる意思決定法「AHP」により、志望先ごとに志望度を数値化。<br />こだわり条件や求人へのイメージを反映した根拠あるデータで意思決定をサポートします。
+                企業活動や公共事業でも用いられる意思決定法「AHP」により、志望先ごとに志望度を数値化。<br>こだわり条件や求人へのイメージを反映した根拠あるデータで意思決定をサポートします。
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="8" md="4" class="mx-auto">
-            <v-card width="400" height="550">
-              <img src="../../assets/images/undraw_Projections_re_1mrh.svg"/>
-              <v-divider></v-divider>
+          <v-col
+            cols="8"
+            md="4"
+            class="mx-auto"
+          >
+            <v-card
+              width="400"
+              height="550"
+            >
+              <img src="../../assets/images/undraw_Projections_re_1mrh.svg">
+              <v-divider />
               <v-card-title>再利用可能な分析データ</v-card-title>
               <v-card-text>
                 保存した分析履歴を用いて再分析が可能。仕事選びにおける状況の変化に柔軟に対応します。
@@ -72,7 +97,11 @@
           </v-col>
         </v-row>
       </div>
-      <v-col cols="12" md="10" class="mx-auto">
+      <v-col
+        cols="12"
+        md="10"
+        class="mx-auto"
+      >
         <v-expansion-panels>
           <v-expansion-panel depressed>
             <v-expansion-panel-header>
@@ -140,7 +169,7 @@
                   優先度と相対評点を用いて各代替案の総合評点を求め、最も評点の高い代替案を選択する
                 </li>
               </ol>
-              <v-img src="https://i.gyazo.com/1247472500567252cb2c0370609f634c.png"/>
+              <v-img src="https://i.gyazo.com/1247472500567252cb2c0370609f634c.png" />
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
