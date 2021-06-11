@@ -2,6 +2,12 @@
   <div class="container">
     <div class="col-8 offset-2">
       <h3>結果</h3>
+      <v-col align="center">
+        <p>
+          おつかれさまでした！<br>
+          決定ボタンを押して結果を表示してください。
+        </p>
+      </v-col>
       <ResultGraph
         v-if="graph"
         :chart-data="chartData"
@@ -52,11 +58,5 @@ export default {
 <style scoped>
 h3 {
   margin: 50px auto;
-}
-input {
-  margin-bottom: 10px;
-}
-.col {
-  text-align: center;
 }
 </style>

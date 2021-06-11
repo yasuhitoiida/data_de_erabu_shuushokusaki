@@ -2,11 +2,6 @@
   <div class="container">
     <div class="col-8 offset-2 alternative-forms">
       <h3>STEP1 就職先の選択肢を入力してください</h3>
-      <template v-if="errors">
-        <ErrorMessage
-          :messages="errors"
-        />
-      </template>
       <div
         v-for="(item, index) in alternatives"
         :key="index"
@@ -14,7 +9,7 @@
         <input
           :id="'alternative' + index"
           v-model="alternatives[index]"
-          class="form-control"
+          class="form-control mb-3"
         >
       </div>
       <div>
@@ -25,6 +20,11 @@
           記入欄を追加
         </router-link>
       </div>
+      <template v-if="errors">
+        <ErrorMessage
+          :messages="errors"
+        />
+      </template>
       <TheButtons
         preview-page-path="/"
         @ok-button="handleAlternative"
@@ -70,8 +70,5 @@ export default {
 <style scoped>
 h3 {
   margin: 50px auto;
-}
-input {
-  margin-bottom: 10px;
 }
 </style>

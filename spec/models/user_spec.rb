@@ -40,6 +40,6 @@ RSpec.describe User, type: :model do
   it 'パスワードとパスワード（確認）が異なるとき無効' do
     user = build(:user, password_confirmation: '00000000')
     user.valid?
-    expect(user.errors[:password_confirmation]).to include('とPasswordの入力が一致しません')
+    expect(user.errors[:password_confirmation]).to include('とパスワードの入力が一致しません')
   end
 end

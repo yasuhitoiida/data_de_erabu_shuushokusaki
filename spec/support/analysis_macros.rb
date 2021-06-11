@@ -8,7 +8,7 @@ module AnalysisMacros
 
   def criterion_select(number)
     number.times do |n|
-      check("criterion#{n}")
+      check("criterion#{n}", allow_label_click: true)
     end
     click_on '決定'
   end
@@ -19,7 +19,7 @@ module AnalysisMacros
       i += j
     end
     i.times do |n|
-      find("span[class='0-#{n}']").choose("0")
+      find("div[name='0-#{n}']").click
     end
     click_on '決定'
   end
@@ -31,7 +31,7 @@ module AnalysisMacros
     end
     criterion_number.times do |m|
       i.times do |n|
-        find("span[class='#{m}-#{n}']").choose("0")
+        find("div[name='#{m}-#{n}']").click
       end
     end
     click_on '決定'
