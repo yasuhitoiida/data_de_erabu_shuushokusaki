@@ -6,11 +6,11 @@
         lg="8"
         class="mx-auto"
       >
-        <h3>STEP3 評価基準の重要性を比較してください</h3>
+        <h3>STEP3 条件の重要性を比較してください</h3>
         <v-col align="center">
           <p>
-            STEP2で選んだそれぞれの評価基準をあなたがどの程度重要視しているかを数値化します。<br>
-            2つの評価基準の重要度を比較し、当てはまる数字を選んでください。<br>
+            STEP2で選んだそれぞれの条件に対するあなたのこだわりを数値化します。<br>
+            2つの評価基準のどちらをあなたが重要と考えているか比較し、当てはまる数字を選んでください。<br>
           </p>
           <HowToCompare type="importance" />
         </v-col>
@@ -60,10 +60,11 @@ export default {
     setEvaluationData(arr) {
       this.evaluationData = arr
     },
-    handleCriterionImportance() {
+    async handleCriterionImportance() {
       if (this.evaluationData) {
-        const array = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData)
-        this.setCriterionImportances(array)
+        const raw = [].concat(this.evaluationData)
+        const imp = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData)
+        this.setCriterionImportances({imp:imp, raw:raw})
         this.$router.push('/analysis/step4')
       } else {
         this.errors = ['未入力の項目があります']

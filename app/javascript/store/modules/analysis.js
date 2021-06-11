@@ -3,13 +3,17 @@ const state = {
   alternatives: null,
   criteria: null,
   criterionImportances: null,
-  alternativeEvaluations: null
+  impRawData: null,
+  alternativeEvaluations: null,
+  evalRawData: null
 }
 const getters = {
   getAlternatives: state => state.alternatives,
   getCriteria: state => state.criteria,
   getCriterionImportances: state => state.criterionImportances,
-  getAlternativeEvaluations: state => state.alternativeEvaluations
+  getImpRawData: state => state.impRawData,
+  getAlternativeEvaluations: state => state.alternativeEvaluations,
+  getEvalRawData: state => state.evalRawData
 }
 const mutations = {
   setAlternatives(state, array) {
@@ -21,8 +25,14 @@ const mutations = {
   setCriterionImportances(state, array) {
     state.criterionImportances = array
   },
+  setImpRawData(state, array) {
+    state.impRawData = array
+  },
   setAlternativeEvaluations(state, array) {
     state.alternativeEvaluations = array
+  },
+  setEvalRawData(state, array) {
+    state.evalRawData = array
   }
 }
 const actions = {
@@ -32,11 +42,13 @@ const actions = {
   setCriteria({commit}, array) {
     commit('setCriteria', array)
   },
-  setCriterionImportances({commit}, array) {
-    commit('setCriterionImportances', array)
+  setCriterionImportances({commit}, hash) {
+    commit('setCriterionImportances', hash.imp)
+    commit('setImpRawData', hash.raw)
   },
-  setAlternativeEvaluations({commit}, array) {
-    commit('setAlternativeEvaluations', array)
+  setAlternativeEvaluations({commit}, hash) {
+    commit('setAlternativeEvaluations', hash.eval)
+    commit('setEvalRawData', hash.raw)
   }
 }
 

@@ -41,21 +41,21 @@
                 <div>
                   <v-icon>mdi-hexagon-multiple-outline</v-icon>
                   <span>
-                    本当に納得できる就職先を選びたい
+                    複数の求人で迷っている
                   </span>
                 </div>
                 <p />
                 <div>
                   <v-icon>mdi-file-document-multiple-outline</v-icon>
                   <span>
-                    エントリー先の優先順位をつけたい
+                    エントリー先の優先順位を決めたい
                   </span>
                 </div>
                 <p />
                 <div>
                   <v-icon>mdi-bug</v-icon>
                   <span>
-                    迷いを断ち切りたい...
+                    将来への迷いを断ち切りたい...
                   </span>
                 </div>
               </v-card-text>
@@ -72,9 +72,9 @@
             >
               <img src="../../assets/images/undraw_Metrics_re_6g90.svg">
               <v-divider />
-              <v-card-title>志望度を数値化</v-card-title>
+              <v-card-title>あなたの志望度を数値化</v-card-title>
               <v-card-text>
-                企業活動や公共事業でも用いられる意思決定法「AHP」により、志望先ごとに志望度を数値化。<br>こだわり条件や求人へのイメージを反映した根拠あるデータで意思決定をサポートします。
+                企業活動や公共事業でも用いられる意思決定法「AHP」により、志望先ごとに志望度を数値化。<br>あなたの働く上でのこだわり条件や企業イメージを反映した根拠あるデータで意思決定をサポートします。
               </v-card-text>
             </v-card>
           </v-col>
@@ -89,7 +89,7 @@
             >
               <img src="../../assets/images/undraw_Projections_re_1mrh.svg">
               <v-divider />
-              <v-card-title>再利用可能な分析データ</v-card-title>
+              <v-card-title>それでも迷ったら...</v-card-title>
               <v-card-text>
                 保存した分析履歴を用いて再分析が可能。仕事選びにおける状況の変化に柔軟に対応します。
               </v-card-text>
@@ -174,9 +174,6 @@
           </v-expansion-panel>
         </v-expansion-panels>
       </v-col>
-      <!-- <div class="headings">
-        <h6>納得の仕事選びを。</h6>
-      </div> -->
     </v-col>
   </v-container>
 </template>

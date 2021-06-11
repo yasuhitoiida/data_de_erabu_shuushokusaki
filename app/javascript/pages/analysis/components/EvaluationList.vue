@@ -52,6 +52,7 @@ export default {
       this.evalListData[ind] = val
       if (this.isInputDataEnough(this.evalListData)) {
         this.$emit('catch-data', this.evalListData)
+        console.log(this.evalListData)
       }
     }
   }

@@ -21,8 +21,8 @@
               color="secondary"
               dark
               v-bind="attrs"
-              v-on="on"
               style="text-transform: none;"
+              v-on="on"
             >
               {{ isAuthenticated.name }}
               <v-icon>mdi-menu-down</v-icon>

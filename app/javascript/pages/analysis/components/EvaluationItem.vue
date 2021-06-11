@@ -3,8 +3,7 @@
     <v-card
       rounded
       elevation="2"
-      class="text-center"
-      style="margin: 30px auto;"
+      class="text-center my-8"
     >
       <div>
         <v-row>
@@ -31,8 +30,8 @@
             >
               <v-btn
                 v-for="n in 7"
-                :key="n"
                 :id="n"
+                :key="n"
                 :value="n"
                 elevation="4"
                 class="mr-1"
@@ -48,6 +47,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'EvaluationItem',
   props: {
@@ -65,8 +65,20 @@ export default {
       value: null
     }
   },
+  computed: {
+    ...mapGetters('analysis', ['getImpRawData', 'getEvalRawData'])
+  },
   watch: {
     value: 'sendValue'
+  },
+  created() {
+    const m = this.name.substr(0, this.name.indexOf('-'))
+    const n = this.name.substring(this.name.indexOf('-')+1, this.name.length)
+    if (this.getImpRawData && this.$route.path === '/analysis/step3') {
+        this.value = this.getImpRawData[n]
+    } else if ( this.getEvalRawData && this.$route.path === '/analysis/step4') {
+        this.value = this.getEvalRawData[m][n]
+    }
   },
   methods: {
     sendValue() {
