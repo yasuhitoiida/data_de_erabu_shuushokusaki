@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       combinations: null,
-      evaluationListData: []
+      evalListData: []
     }
   },
   created() {
@@ -49,19 +49,10 @@ export default {
       }
     },
     sendData(ind, val) {
-      this.evaluationListData[ind] = val
-      if (this.isInputDataEnough(this.evaluationListData)) {
-        this.$emit('catch-data', this.evaluationListData)
+      this.evalListData[ind] = val
+      if (this.isInputDataEnough(this.evalListData)) {
+        this.$emit('catch-data', this.evalListData)
       }
-
-      // const radioChange = document.querySelectorAll("input");
-    	// for(var elem of radioChange) {
-    	// 	elem.addEventListener('change',function(){
-    	// 		if( this.checked ) {
-    	// 			console.log(this.value);
-    	// 		}
-    	// 	});
-    	// }
     }
   }
 }
