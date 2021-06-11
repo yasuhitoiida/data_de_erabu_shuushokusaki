@@ -23,6 +23,7 @@
         <v-row>
           <v-col class="ml-auto">
             <v-btn-toggle
+              v-model="value"
               tile
               borderless
               color="deep-purple accent-3"
@@ -32,9 +33,9 @@
                 v-for="n in 7"
                 :key="n"
                 :id="n"
+                :value="n"
                 elevation="4"
                 class="mr-1"
-                @click="sendValue(n)"
               >
                 {{ n }}
               </v-btn>
@@ -59,22 +60,17 @@ export default {
       required: true
     }
   },
-  // data() {
-  //   return {
-  //     btnLabel: [
-  //       '≫',
-  //       '>',
-  //       '≥',
-  //       '=',
-  //       '≤',
-  //       '<',
-  //       '≪'
-  //     ]
-  //   }
-  // },
+  data() {
+    return {
+      value: null
+    }
+  },
+  watch: {
+    value: 'sendValue'
+  },
   methods: {
-    sendValue(val) {
-      this.$emit('catch-value', val)
+    sendValue() {
+      this.$emit('catch-value', this.value)
     }
   }
 }
