@@ -52,8 +52,8 @@ export default {
     const array = altEval.map(f => {
       const w = criImp.find(g => g.name === f.criterion).weight
       const d = f.data.map(h => {
-        const score = h.weight * w
-        return { name: h.name, score: score }
+        const overall = h.weight * w
+        return { name: h.name, overall: overall }
       })
       return { criterion: f.criterion, data: d }
     })

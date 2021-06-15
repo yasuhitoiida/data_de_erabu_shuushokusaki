@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
     "chart.js": "^2.9.4",
+    "chartjs-plugin-datalabels": "^1.0.0",
     "google-palette": "^1.1.0",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.12",
