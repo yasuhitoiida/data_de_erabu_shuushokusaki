@@ -64,8 +64,8 @@ export default {
       const cri = this.getCriterionImportances
       const alt = this.getAlternativeEvaluations
       const array = this.$calculator.resultCalculation(cri, alt)
-      this.barChartData = this.$graph.createBarChartData(array)
-      this.doughnutChartData = this.$graph.createDoughnutChartData(cri)
+      this.barChartData = this.$chart.createBarChartData(array)
+      this.doughnutChartData = this.$chart.createDoughnutChartData(cri)
       this.graph = true
       console.log(cri)
       console.log(alt)
