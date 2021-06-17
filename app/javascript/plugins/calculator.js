@@ -20,9 +20,13 @@ export default {
     return n ** (1 / (arr.length+1))
   },
   weightCalculation(factors, evalData) {
-    let i, j, k, m
+    let h, i, j, k, m
     const array = factors.map(f => {
-      return { name: f, score: [], geomean: null, weight: null }
+      const scoreString = {}
+      for (h = 0; h < factors.length; h++) {
+        scoreString[factors[h]] = '1'
+      }
+      return { name: f, scoreString: scoreString, score: [], geomean: null, weight: null}
     })
     for(i = 0; i < factors.length-1; i++) {
       const a = evalData.splice(0, factors.length-1-i)
@@ -33,9 +37,18 @@ export default {
         if (value < 4) {
           array[i].score.push(score)
           array[i+j+1].score.push(1 / score)
+          array[i].scoreString[array[i+j+1].name] = `${score}`
+          array[i+j+1].scoreString[array[i].name] = `1/${score}`
+        } else if (value == 4) {
+          array[i+j+1].score.push(score)
+          array[i].score.push(score)
+          array[i].scoreString[array[i+j+1].name] = `${score}`
+          array[i+j+1].scoreString[array[i].name] = `${score}`
         } else {
           array[i+j+1].score.push(score)
           array[i].score.push(1 / score)
+          array[i].scoreString[array[i+j+1].name] = `1/${score}`
+          array[i+j+1].scoreString[array[i].name] = `${score}`
         }
       }
     }

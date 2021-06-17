@@ -14,18 +14,28 @@
         <v-row>
           <v-col cols="12" lg="8">
             <BarGraph
-              v-if="graph"
+              v-if="chart"
               :chart-data="barChartData"
               title="総合評点"
             />
           </v-col>
           <v-col cols="12" lg="4" class="ml-auto my-auto">
             <DoughnutGraph
-              v-if="graph"
+              v-if="chart"
               :chart-data="doughnutChartData"
               title="あなたのこだわり条件"
             />
           </v-col>
+          <v-card
+            class="overflow-x-auto"
+            max-width="100%"
+          >
+            <v-data-table
+              :headers="tableData.headers"
+              :items="tableData.items"
+              v-if="chart"
+            ></v-data-table>
+          </v-card>
         </v-row>
         <TheButtons
           preview-page-path="/analysis/step4"
@@ -53,7 +63,11 @@ export default {
     return {
       barChartData: null,
       doughnutChartData: null,
-      graph: false
+      tableData: {
+        headers: null,
+        items: null
+      },
+      chart: false
     }
   },
   computed: {
@@ -66,7 +80,9 @@ export default {
       const array = this.$calculator.resultCalculation(cri, alt)
       this.barChartData = this.$chart.createBarChartData(array)
       this.doughnutChartData = this.$chart.createDoughnutChartData(cri)
-      this.graph = true
+      this.tableData.headers = this.$chart.createTableHeaders(cri[0])
+      this.tableData.items = cri
+      this.chart = true
       console.log(cri)
       console.log(alt)
       console.log(array)
