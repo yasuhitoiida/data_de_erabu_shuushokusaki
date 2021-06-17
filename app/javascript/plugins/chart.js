@@ -28,7 +28,7 @@ export default {
   },
   createTableHeaders(hash) {
     const array = Object.keys(hash.scoreString).map(key => {
-      return {text: `'${key}'に対するスコア`, value: `scoreString.${key}`, width: '150px', align: 'center'}
+      return {text: `'${key}'に対するスコア`, value: `scoreString.${key}`, width: '120px', align: 'center'}
     })
     array.unshift({ text: '要素名', value: 'name', width: '150px'})
     array.push(

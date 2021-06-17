@@ -26,16 +26,30 @@
               title="あなたのこだわり条件"
             />
           </v-col>
-          <v-card
-            class="overflow-x-auto"
-            max-width="100%"
+          <v-row
+            v-if="chart"
           >
-            <v-data-table
-              :headers="tableData.headers"
-              :items="tableData.items"
-              v-if="chart"
-            ></v-data-table>
-          </v-card>
+            <p>
+              条件の重要度
+            </p>
+            <DataTable
+              :headers="tableDataCri.headers"
+              :items="tableDataCri.items"
+            ></DataTable>
+          </v-row>
+          <v-row
+            v-for="(item, index) in tableDataAlt.items"
+            :key="index"
+            v-if="chart"
+          >
+            <p>
+              {{ item.criterion }}
+            </p>
+            <DataTable
+              :headers="tableDataAlt.headers"
+              :items="item.data"
+            ></DataTable>
+          </v-row>
         </v-row>
         <TheButtons
           preview-page-path="/analysis/step4"
@@ -52,18 +66,24 @@ import { mapGetters } from 'vuex'
 import BarGraph from '../../components/BarGraph.vue'
 import DoughnutGraph from '../../components/DoughnutGraph.vue'
 import TheButtons from './components/TheButtons.vue'
+import DataTable from './components/DataTable.vue'
 export default {
   name: 'Result',
   components: {
     BarGraph,
     DoughnutGraph,
-    TheButtons
+    TheButtons,
+    DataTable
   },
   data() {
     return {
       barChartData: null,
       doughnutChartData: null,
-      tableData: {
+      tableDataCri: {
+        headers: null,
+        items: null
+      },
+      tableDataAlt: {
         headers: null,
         items: null
       },
@@ -80,8 +100,10 @@ export default {
       const array = this.$calculator.resultCalculation(cri, alt)
       this.barChartData = this.$chart.createBarChartData(array)
       this.doughnutChartData = this.$chart.createDoughnutChartData(cri)
-      this.tableData.headers = this.$chart.createTableHeaders(cri[0])
-      this.tableData.items = cri
+      this.tableDataCri.headers = this.$chart.createTableHeaders(cri[0])
+      this.tableDataCri.items = cri
+      this.tableDataAlt.headers = this.$chart.createTableHeaders(alt[0].data[0])
+      this.tableDataAlt.items = alt
       this.chart = true
       console.log(cri)
       console.log(alt)
