@@ -3,6 +3,9 @@
     class="overflow-x-auto mb-5"
     max-width="100%"
   >
+    <div>
+      {{ title }}
+    </div>
     <v-data-table
       :headers="headers"
       :items="items"
@@ -14,6 +17,10 @@
 export default {
   name: 'DataTable',
   props: {
+    title: {
+      type: String,
+      required: true
+    },
     headers: {
       type: Array,
       required: true

@@ -62,14 +62,19 @@ export default {
     return array
   },
   resultCalculation(criImp, altEval) {
-    const array = altEval.map(f => {
-      const w = criImp.find(g => g.name === f.criterion).weight
-      const d = f.data.map(h => {
-        const overall = h.weight * w
-        return { name: h.name, overall: overall }
-      })
-      return { criterion: f.criterion, data: d }
+    let i, j
+    const array = altEval[0].data.map(alt => {
+      return { name: alt.name, result:{}, total: 0 }
     })
+    for (i = 0; i < altEval.length; i++) {
+      const criweight = criImp.find(cri => cri.name === altEval[i].criterion).weight
+      const d = altEval[i].data
+      for (j = 0; j < d.length; j++) {
+        const a = array.find(arr => arr.name === d[j].name)
+        a.result[altEval[i].criterion] = d[j].weight * criweight
+        a.total += d[j].weight * criweight
+      }
+    }
     return array
   },
   totalCalculation(result, alt) {

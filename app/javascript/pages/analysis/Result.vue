@@ -29,25 +29,22 @@
           <v-row
             v-if="chart"
           >
-            <p>
-              条件の重要度
-            </p>
+            <DataTable
+              :headers="tableDataResult.headers"
+              :items="tableDataResult.items"
+              title="総合評点"
+            ></DataTable>
             <DataTable
               :headers="tableDataCri.headers"
               :items="tableDataCri.items"
+              title="条件の重要度"
             ></DataTable>
-          </v-row>
-          <v-row
-            v-for="(item, index) in tableDataAlt.items"
-            :key="index"
-            v-if="chart"
-          >
-            <p>
-              {{ item.criterion }}
-            </p>
             <DataTable
+              v-for="(item, index) in tableDataAlt.items"
+              :key="index"
               :headers="tableDataAlt.headers"
               :items="item.data"
+              :title="item.criterion"
             ></DataTable>
           </v-row>
         </v-row>
@@ -87,6 +84,10 @@ export default {
         headers: null,
         items: null
       },
+      tableDataResult: {
+        headers: null,
+        items: null
+      },
       chart: false
     }
   },
@@ -97,17 +98,19 @@ export default {
     handleResult() {
       const cri = this.getCriterionImportances
       const alt = this.getAlternativeEvaluations
-      const array = this.$calculator.resultCalculation(cri, alt)
-      this.barChartData = this.$chart.createBarChartData(array)
+      const result = this.$calculator.resultCalculation(cri, alt)
+      this.barChartData = this.$chart.createBarChartData(result)
       this.doughnutChartData = this.$chart.createDoughnutChartData(cri)
-      this.tableDataCri.headers = this.$chart.createTableHeaders(cri[0])
+      this.tableDataCri.headers = this.$chart.createTableHeaderWeight(cri[0])
       this.tableDataCri.items = cri
-      this.tableDataAlt.headers = this.$chart.createTableHeaders(alt[0].data[0])
+      this.tableDataAlt.headers = this.$chart.createTableHeaderWeight(alt[0].data[0])
       this.tableDataAlt.items = alt
+      this.tableDataResult.headers = this.$chart.createTableHeaderResult(result[0])
+      this.tableDataResult.items = result
       this.chart = true
       console.log(cri)
       console.log(alt)
-      console.log(array)
+      console.log(this.barChartData)
     },
   }
 }
