@@ -2,18 +2,32 @@
 import { Bar } from 'vue-chartjs';
 
 export default {
-  name: 'Chart',
+  name: 'BarGraph',
   extends: Bar,
   props: {
     chartData: {
       type: Object,
       default: null
+    },
+    title: {
+      type: String,
+      required: false
     }
   },
   data () {
     return {
       data: this.chartData,
       options: {
+        title: {
+          display: true,
+          text: this.title
+        },
+        legend: {
+          position: 'bottom',
+          labels: {
+            fontSize: 12
+          }
+        },
         scales: {
           xAxes: [{
             stacked: true

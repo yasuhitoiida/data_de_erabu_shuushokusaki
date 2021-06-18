@@ -14,16 +14,23 @@ import store from '../store/index.js'
 Vue.use(Router)
 
 const router = new Router({
-    mode: "history",
-    routes: [{path: '/', component: Top},
-             {path: '/register', component: Register},
-             {path: '/login', component: Login},
-             {path: '/mypage', component: MyPage, meta: { requiredAuth: true }},
-             {path: '/analysis/step1', component: AlternativeInput},
-             {path: '/analysis/step2', component: CriterionSelect},
-             {path: '/analysis/step3', component: CriterionImportance},
-             {path: '/analysis/step4', component: AlternativeEvaluation},
-             {path: '/analysis/result', component: Result}]
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  },
+  mode: "history",
+  routes: [{path: '/', component: Top},
+           {path: '/register', component: Register},
+           {path: '/login', component: Login},
+           {path: '/mypage', component: MyPage, meta: { requiredAuth: true }},
+           {path: '/analysis/step1', component: AlternativeInput},
+           {path: '/analysis/step2', component: CriterionSelect},
+           {path: '/analysis/step3', component: CriterionImportance},
+           {path: '/analysis/step4', component: AlternativeEvaluation},
+           {path: '/analysis/result', component: Result}]
 })
 
 router.beforeEach((to, from, next) => {
@@ -35,5 +42,4 @@ router.beforeEach((to, from, next) => {
     }
   })
 })
-
 export default router;

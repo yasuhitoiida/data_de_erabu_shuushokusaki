@@ -12,7 +12,7 @@ import axios from '../plugins/axios.js'
 import router from '../router/index.js'
 import store from '../store/index.js'
 import calculator from '../plugins/calculator.js'
-import graph from '../plugins/graph.js'
+import chart from '../plugins/chart.js'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
@@ -21,7 +21,7 @@ Vue.use(Vuetify)
 const vuetify = new Vuetify();
 Vue.prototype.$axios = axios
 Vue.prototype.$calculator = calculator
-Vue.prototype.$graph = graph
+Vue.prototype.$chart = chart
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

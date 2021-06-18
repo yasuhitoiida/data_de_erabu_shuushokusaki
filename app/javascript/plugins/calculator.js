@@ -20,9 +20,13 @@ export default {
     return n ** (1 / (arr.length+1))
   },
   weightCalculation(factors, evalData) {
-    let i, j, k, m
+    let h, i, j, k, m
     const array = factors.map(f => {
-      return { name: f, score: [], geomean: null, weight: null }
+      const scoreString = {}
+      for (h = 0; h < factors.length; h++) {
+        scoreString[factors[h]] = '1'
+      }
+      return { name: f, scoreString: scoreString, score: [], geomean: null, weight: null}
     })
     for(i = 0; i < factors.length-1; i++) {
       const a = evalData.splice(0, factors.length-1-i)
@@ -33,9 +37,18 @@ export default {
         if (value < 4) {
           array[i].score.push(score)
           array[i+j+1].score.push(1 / score)
+          array[i].scoreString[array[i+j+1].name] = `${score}`
+          array[i+j+1].scoreString[array[i].name] = `1/${score}`
+        } else if (value == 4) {
+          array[i+j+1].score.push(score)
+          array[i].score.push(score)
+          array[i].scoreString[array[i+j+1].name] = `${score}`
+          array[i+j+1].scoreString[array[i].name] = `${score}`
         } else {
           array[i+j+1].score.push(score)
           array[i].score.push(1 / score)
+          array[i].scoreString[array[i+j+1].name] = `1/${score}`
+          array[i+j+1].scoreString[array[i].name] = `${score}`
         }
       }
     }
@@ -49,14 +62,19 @@ export default {
     return array
   },
   resultCalculation(criImp, altEval) {
-    const array = altEval.map(f => {
-      const w = criImp.find(g => g.name === f.criterion).weight
-      const d = f.data.map(h => {
-        const score = h.weight * w
-        return { name: h.name, score: score }
-      })
-      return { criterion: f.criterion, data: d }
+    let i, j
+    const array = altEval[0].data.map(alt => {
+      return { name: alt.name, result:{}, total: 0 }
     })
+    for (i = 0; i < altEval.length; i++) {
+      const criweight = criImp.find(cri => cri.name === altEval[i].criterion).weight
+      const d = altEval[i].data
+      for (j = 0; j < d.length; j++) {
+        const a = array.find(arr => arr.name === d[j].name)
+        a.result[altEval[i].criterion] = d[j].weight * criweight
+        a.total += d[j].weight * criweight
+      }
+    }
     return array
   },
   totalCalculation(result, alt) {
