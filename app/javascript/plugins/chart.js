@@ -43,7 +43,7 @@ export default {
     })
     array.unshift({ text: '要素名', value: 'name', width: '150px'})
     array.push(
-      { text: '総合評点', value: 'total', width: '150px'}
+      { text: '総合評点', value: 'total', width: '150px', align: 'center'}
     )
     return array
   },

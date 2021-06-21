@@ -71,8 +71,9 @@ export default {
       const d = altEval[i].data
       for (j = 0; j < d.length; j++) {
         const a = array.find(arr => arr.name === d[j].name)
-        a.result[altEval[i].criterion] = d[j].weight * criweight
-        a.total += d[j].weight * criweight
+        const weight = parseFloat((d[j].weight * criweight).toFixed(3))
+        a.result[altEval[i].criterion] = weight
+        a.total += weight
       }
     }
     return array

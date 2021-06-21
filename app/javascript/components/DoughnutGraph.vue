@@ -25,9 +25,10 @@ export default {
               weight: 'bold',
               size: 12,
             },
+            textAlign: 'center',
             formatter: (value, ctx) => {
               const label = ctx.chart.data.labels[ctx.dataIndex]
-              return `${label}\n${value * 100 + '%'}`
+              return `${label}\n${(value * 100).toFixed(1) + '%'}`
             }
           }
         },
