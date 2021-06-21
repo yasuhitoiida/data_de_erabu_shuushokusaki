@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" lg="8" class="mx-auto">
+      <v-col cols="12">
         <h3>結果</h3>
         <v-row>
           <v-col align="center">
@@ -12,14 +12,14 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" lg="8">
+          <v-col cols="12" md="8">
             <BarGraph
               v-if="chart"
               :chart-data="barChartData"
               title="総合評点"
             />
           </v-col>
-          <v-col cols="12" lg="4" class="ml-auto my-auto">
+          <v-col cols="8" md="4" class="ml-auto my-auto">
             <DoughnutGraph
               v-if="chart"
               :chart-data="doughnutChartData"
