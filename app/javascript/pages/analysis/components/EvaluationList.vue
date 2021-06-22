@@ -6,7 +6,8 @@
     >
       <EvaluationItem
         :combination="item"
-        :name="listNumber + '-' + index"
+        :list-number="listNumber"
+        :item-number="index"
         @catch-value="sendData(index, $event)"
       />
     </div>

@@ -1,7 +1,10 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="8" class="mx-auto alternative-forms">
+      <v-col
+        cols="8"
+        class="mx-auto alternative-forms"
+      >
         <h3>STEP1 現状の選択肢を教えてください</h3>
         <v-col align="center">
           <p>
