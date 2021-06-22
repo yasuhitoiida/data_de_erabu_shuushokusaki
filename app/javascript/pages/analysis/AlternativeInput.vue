@@ -1,41 +1,43 @@
 <template>
-  <div class="container">
-    <div class="col-8 offset-2 alternative-forms">
-      <h3>STEP1 現状の選択肢を教えてください</h3>
-      <v-col align="center">
-        <p>
-          あなたが今考えている会社名や求人などを記入してください。
-        </p>
-      </v-col>
-      <div
-        v-for="(item, index) in alternatives"
-        :key="index"
-      >
-        <input
-          :id="'alternative' + index"
-          v-model="alternatives[index]"
-          class="form-control mb-3"
+  <v-container>
+    <v-row>
+      <v-col cols="8" class="mx-auto alternative-forms">
+        <h3>STEP1 現状の選択肢を教えてください</h3>
+        <v-col align="center">
+          <p>
+            あなたが今考えている会社名や求人などを記入してください。
+          </p>
+        </v-col>
+        <div
+          v-for="(item, index) in alternatives"
+          :key="index"
         >
-      </div>
-      <div>
-        <router-link
-          to="#"
-          @click.native="addForm"
-        >
-          記入欄を追加
-        </router-link>
-      </div>
-      <template v-if="errors">
-        <ErrorMessage
-          :messages="errors"
+          <input
+            :id="'alternative' + index"
+            v-model="alternatives[index]"
+            class="form-control mb-3"
+          >
+        </div>
+        <div>
+          <router-link
+            to="#"
+            @click.native="addForm"
+          >
+            記入欄を追加
+          </router-link>
+        </div>
+        <template v-if="errors">
+          <ErrorMessage
+            :messages="errors"
+          />
+        </template>
+        <TheButtons
+          preview-page-path="/"
+          @ok-button="handleAlternative"
         />
-      </template>
-      <TheButtons
-        preview-page-path="/"
-        @ok-button="handleAlternative"
-      />
-    </div>
-  </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
