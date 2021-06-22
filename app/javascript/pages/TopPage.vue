@@ -5,10 +5,9 @@
       md="10"
       class="mx-auto"
     >
-      <h1>Workers<span>-</span>AHP</h1>
+      <h1>JobHunter<span>'</span>s Choice</h1>
       <div class="headings">
-        <h3>分かれ道のあなたへ</h3>
-        <h5>Workers-AHPはデータであなたの決断を後押しします。</h5>
+        <h5>お仕事選びをデータで後押し</h5>
       </div>
       <div style="text-align:center;">
         <v-btn
@@ -27,7 +26,7 @@
         <v-row>
           <v-col
             cols="8"
-            md="4"
+            lg="4"
             class="mx-auto"
           >
             <v-card
@@ -63,7 +62,7 @@
           </v-col>
           <v-col
             cols="8"
-            md="4"
+            lg="4"
             class="mx-auto"
           >
             <v-card
@@ -74,13 +73,13 @@
               <v-divider />
               <v-card-title>あなたの志望度を数値化</v-card-title>
               <v-card-text>
-                企業活動や公共事業でも用いられる意思決定法「AHP」により、志望先ごとに志望度を数値化。<br>あなたの働く上でのこだわり条件や企業イメージを反映した根拠あるデータで意思決定をサポートします。
+                企業活動や公共事業でも用いられる意思決定法「AHP」により、志望先ごとに志望度を数値化。<br>あなたの企業研究を元にした根拠あるデータで意思決定をサポートします。
               </v-card-text>
             </v-card>
           </v-col>
           <v-col
             cols="8"
-            md="4"
+            lg="4"
             class="mx-auto"
           >
             <v-card
@@ -89,9 +88,11 @@
             >
               <img src="../../assets/images/undraw_Projections_re_1mrh.svg">
               <v-divider />
-              <v-card-title>それでも迷ったら...</v-card-title>
+              <v-card-title center>
+                簡単に、スピーディーに
+              </v-card-title>
               <v-card-text>
-                保存した分析履歴を用いて再分析が可能。仕事選びにおける状況の変化に柔軟に対応します。
+                分析にかかわる煩雑なデータ処理はすべてアプリにおまかせ。最小限の作業で分析結果が取得できます。
               </v-card-text>
             </v-card>
           </v-col>
@@ -187,7 +188,7 @@ export default {
 <style scoped>
 h1 {
   margin: 50px auto;
-  font-size: 80px;
+  font-size: 70px;
   text-align: center;
 }
 h1 span {

@@ -8,7 +8,7 @@
           id="logo"
           @click="topPage"
         >
-          Workers<span>-</span>AHP
+          JobHunter<span>'</span>s&nbsp;Choice
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
@@ -100,7 +100,7 @@ export default {
 #logo {
   font-family: Avenir;
   text-transform: none;
-  font-size: 24px;
+  font-size: 18px;
 }
 #logo span {
   color: #6495ed;

@@ -9,17 +9,28 @@
               おつかれさまでした！<br>
               決定ボタンを押して結果を表示してください。
             </p>
+            <TheButtons
+              preview-page-path="/analysis/step4"
+              @ok-button="handleResult"
+            />
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" md="8">
+          <v-col
+            cols="12"
+            md="8"
+          >
             <BarGraph
               v-if="chart"
               :chart-data="barChartData"
               title="総合評点"
             />
           </v-col>
-          <v-col cols="8" md="4" class="ml-auto my-auto">
+          <v-col
+            cols="8"
+            md="4"
+            class="mx-auto my-auto"
+          >
             <DoughnutGraph
               v-if="chart"
               :chart-data="doughnutChartData"
@@ -33,25 +44,21 @@
               :headers="tableDataResult.headers"
               :items="tableDataResult.items"
               title="総合評点"
-            ></DataTable>
+            />
             <DataTable
               :headers="tableDataCri.headers"
               :items="tableDataCri.items"
               title="条件の重要度"
-            ></DataTable>
+            />
             <DataTable
               v-for="(item, index) in tableDataAlt.items"
               :key="index"
               :headers="tableDataAlt.headers"
               :items="item.data"
               :title="item.criterion"
-            ></DataTable>
+            />
           </v-row>
         </v-row>
-        <TheButtons
-          preview-page-path="/analysis/step4"
-          @ok-button="handleResult"
-        />
       </v-col>
     </v-row>
   </v-container>

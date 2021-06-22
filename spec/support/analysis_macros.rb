@@ -19,7 +19,8 @@ module AnalysisMacros
       i += j
     end
     i.times do |n|
-      find("div[name='0-#{n}']").click
+      find("div[id='0-#{n}']").click
+      sleep 0.5
     end
     click_on '決定'
   end
@@ -31,7 +32,8 @@ module AnalysisMacros
     end
     criterion_number.times do |m|
       i.times do |n|
-        find("div[name='#{m}-#{n}']").click
+        find("div[id='#{m}-#{n}']").click
+        sleep 0.5
       end
     end
     click_on '決定'

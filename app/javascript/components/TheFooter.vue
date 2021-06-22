@@ -1,6 +1,8 @@
 <template>
   <v-footer>
-    <v-col align="center">© 2021 Workers-AHP</v-col>
+    <v-col align="center">
+      © 2021 JobHunters' Choice
+    </v-col>
   </v-footer>
 </template>
 

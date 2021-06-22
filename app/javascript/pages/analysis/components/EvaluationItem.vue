@@ -7,11 +7,13 @@
     >
       <div>
         <v-row>
-          <v-col cols="3">
+          <v-col
+            cols="4"
+          >
             {{ combination[0] }}
           </v-col>
           <v-col
-            cols="3"
+            cols="4"
             class="ml-auto"
           >
             {{ combination[1] }}
@@ -22,15 +24,15 @@
         <v-row>
           <v-col class="ml-auto">
             <v-btn-toggle
+              :id="listNumber + '-' + itemNumber"
               v-model="value"
               tile
               borderless
               color="deep-purple accent-3"
-              :name="name"
+              @change="autoScroll"
             >
               <v-btn
                 v-for="n in 7"
-                :id="n"
                 :key="n"
                 :value="n"
                 elevation="4"
@@ -55,8 +57,12 @@ export default {
       type: Array,
       required: true
     },
-    name: {
-      type: String,
+    listNumber: {
+      type: Number,
+      required: true
+    },
+    itemNumber: {
+      type: Number,
       required: true
     }
   },
@@ -72,8 +78,8 @@ export default {
     value: 'sendValue'
   },
   created() {
-    const m = this.name.substr(0, this.name.indexOf('-'))
-    const n = this.name.substring(this.name.indexOf('-')+1, this.name.length)
+    const m = this.listNumber
+    const n = this.itemNumber
     if (this.getImpRawData && this.$route.path === '/analysis/step3') {
         this.value = this.getImpRawData[n]
     } else if ( this.getEvalRawData && this.$route.path === '/analysis/step4') {
@@ -83,6 +89,21 @@ export default {
   methods: {
     sendValue() {
       this.$emit('catch-value', this.value)
+    },
+    autoScroll() {
+      const m = this.listNumber
+      const n = this.itemNumber
+      const cur = event.currentTarget.getBoundingClientRect().top
+      const nxtItem = document.getElementById(`${m}-${Number(n)+1}`)
+      const nxtList = document.getElementById(`${Number(m)+1}-0`)
+      if (nxtItem) {
+        var nxt = nxtItem.getBoundingClientRect().top
+      } else if (nxtList) {
+        var nxt = nxtList.getBoundingClientRect().top
+      } else {
+        var nxt = cur
+      }
+      window.scrollBy(0, nxt-cur)
     }
   }
 }

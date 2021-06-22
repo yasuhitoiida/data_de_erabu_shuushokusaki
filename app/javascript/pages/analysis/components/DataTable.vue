@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="overflow-x-auto mb-5"
+    class="overflow-x-auto my-5 pt-4"
     max-width="100%"
   >
     <div>
@@ -9,7 +9,7 @@
     <v-data-table
       :headers="headers"
       :items="items"
-    ></v-data-table>
+    />
   </v-card>
 </template>
 
