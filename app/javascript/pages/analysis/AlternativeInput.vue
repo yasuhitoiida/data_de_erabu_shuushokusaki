@@ -67,6 +67,9 @@ export default {
     if (this.getAlternatives) {
       this.alternatives = this.getAlternatives
     }
+    this.$watch('alternatives', function() {
+      this.setAlternativeEvaluations({eval: null, raw: null})
+    })
   },
   methods: {
     addForm() {
@@ -81,7 +84,7 @@ export default {
         this.errors = ['就職先を2つ以上入力してください']
       }
     },
-    ...mapActions('analysis', ['setAlternatives'])
+    ...mapActions('analysis', ['setAlternatives', 'setAlternativeEvaluations'])
   }
 }
 </script>

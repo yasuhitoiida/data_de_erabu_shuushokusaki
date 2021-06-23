@@ -85,6 +85,10 @@ export default {
       this.selectedCriteria = this.getCriteria
       this.criteria = this.criteria.concat(this.getCriteria.filter(f => !this.criteria.includes(f)))
     }
+    this.$watch('selectedCriteria', function() {
+      this.setCriterionImportances({eval: null, raw: null})
+      this.setAlternativeEvaluations({eval: null, raw: null})
+    })
   },
   methods: {
     addCriterion() {
@@ -102,7 +106,7 @@ export default {
         this.errors = ['条件を2つ以上選んでください']
       }
     },
-    ...mapActions('analysis', ['setCriteria'])
+    ...mapActions('analysis', ['setCriteria', 'setCriterionImportances', 'setAlternativeEvaluations'])
   }
 }
 </script>
