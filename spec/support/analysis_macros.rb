@@ -19,7 +19,9 @@ module AnalysisMacros
       i += j
     end
     i.times do |n|
-      find("div[id='0-#{n}']").click
+      within "div[id='0-#{n}']" do
+        find_button('1').click
+      end
       sleep 0.5
     end
     click_on '決定'
@@ -32,7 +34,9 @@ module AnalysisMacros
     end
     criterion_number.times do |m|
       i.times do |n|
-        find("div[id='#{m}-#{n}']").click
+        within "div[id='#{m}-#{n}']" do
+          find_button('1').click
+        end
         sleep 0.5
       end
     end

@@ -64,7 +64,7 @@ export default {
       if (this.evaluationData) {
         const raw = [].concat(this.evaluationData)
         const imp = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData)
-        this.setCriterionImportances({imp:imp, raw:raw})
+        this.setCriterionImportances({imp: imp, raw: raw})
         this.$router.push('/analysis/step4')
       } else {
         this.errors = ['未入力の項目があります']

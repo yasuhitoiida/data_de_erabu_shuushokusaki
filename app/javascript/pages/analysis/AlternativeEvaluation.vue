@@ -84,7 +84,7 @@ export default {
         })
         console.log(raw)
         console.log(ev)
-        this.setAlternativeEvaluations({eval:ev, raw:raw})
+        this.setAlternativeEvaluations({eval: ev, raw: raw})
         this.$router.push('/analysis/result')
       } else {
         this.errors = ['未入力の項目があります']
