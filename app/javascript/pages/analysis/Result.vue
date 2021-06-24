@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" lg="10" class="mx-auto">
         <h3>結果</h3>
         <v-row>
           <v-col align="center">
@@ -50,13 +50,20 @@
               :items="tableDataCri.items"
               title="条件の重要度"
             />
-            <DataTable
-              v-for="(item, index) in tableDataAlt.items"
-              :key="index"
-              :headers="tableDataAlt.headers"
-              :items="item.data"
-              :title="item.criterion"
-            />
+            <v-expansion-panels class="mb-6">
+              <v-expansion-panel>
+                <v-expansion-panel-header>分析結果詳細</v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <DataTable
+                    v-for="(item, index) in tableDataAlt.items"
+                    :key="index"
+                    :headers="tableDataAlt.headers"
+                    :items="item.data"
+                    :title="item.criterion"
+                  />
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
           </v-row>
         </v-row>
       </v-col>
