@@ -77,9 +77,12 @@ export default {
     },
     handleAlternative() {
       const array = this.alternatives.filter(v => v)
-      if (array.length >= 2 ) {
+      const s = new Set(array)
+      if (array.length >= 2 && s.size == array.length ) {
         this.setAlternatives(array)
         this.$router.push('/analysis/step2')
+      } else if (array.length >= 2) {
+        this.errors = ['入力内容に重複があります']
       } else {
         this.errors = ['就職先を2つ以上入力してください']
       }

@@ -22,7 +22,9 @@
           <input
             v-model="addedCriteria"
             class="form-control"
+            id="addedCriteria"
             placeholder="追加したい条件を記入"
+            @focus="errors = null"
           >
           <v-btn
             @click.native="addCriterion"
@@ -72,7 +74,6 @@ export default {
         '収入'
       ],
       selectedCriteria: [],
-      trueValue: [],
       addedCriteria: null,
       errors: null
     }
@@ -93,7 +94,13 @@ export default {
   methods: {
     addCriterion() {
       this.criteria.push(this.addedCriteria)
-      this.selectedCriteria.push(this.addedCriteria)
+      const s = new Set(this.criteria)
+      if (s.size == this.criteria.length) {
+        this.selectedCriteria.push(this.addedCriteria)
+      } else {
+        this.errors = ['入力内容に重複があります']
+        this.criteria.pop()
+      }
       this.addedCriteria = null
     },
     handleSelectedCriteria() {

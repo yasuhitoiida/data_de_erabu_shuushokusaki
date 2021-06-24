@@ -5,23 +5,30 @@ RSpec.describe 'Analysis', type: :system do
   let(:alternative_number) { 3 }
   describe 'STEP1' do
     before { visit '/analysis/step1' }
-    it '入力された就職先が2つ以上のとき次ページに遷移する' do
+    it '入力された選択肢が2つ以上のとき次ページに遷移する' do
       alternative_input(2)
       expect(page).to have_current_path('/analysis/step2'), '次ページに遷移していません'
     end
 
-    it '入力された就職先が2つ未満のときエラーメッセージが表示される' do
+    it '入力された選択肢が2つ未満のときエラーメッセージが表示される' do
       alternative_input(1)
       expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
     end
 
+    it '入力値が重複しているときエラーメッセージが表示される' do
+      find('#alternative0').set('foobar')
+      find('#alternative1').set('foobar')
+      click_on '決定'
+      expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
+    end
+
     it '前のページから戻ったとき以前の入力値が保持されている' do
-      find('#alternative0').set('company0')
-      find('#alternative1').set('company1')
+      find('#alternative0').set('foobar')
+      find('#alternative1').set('foobuzz')
       click_on '決定'
       click_on '戻る'
-      expect(page).to have_field('alternative0', with: 'company0'), '以前の入力値が保持されていません'
-      expect(page).to have_field('alternative1', with: 'company1'), '以前の入力値が保持されていません'
+      expect(page).to have_field('alternative0', with: 'foobar'), '以前の入力値が保持されていません'
+      expect(page).to have_field('alternative1', with: 'foobuzz'), '以前の入力値が保持されていません'
     end
   end
 
@@ -37,6 +44,12 @@ RSpec.describe 'Analysis', type: :system do
 
     it '条件が2つ以上選択されていないときエラーメッセージが表示される' do
       criterion_select(1)
+      expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
+    end
+
+    it '追加した条件が他の条件と重複しているときエラーメッセージが表示される' do
+      find('#addedCriteria').set(find('#criterion0', visible: false).value)
+      click_on '条件を追加'
       expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
     end
 

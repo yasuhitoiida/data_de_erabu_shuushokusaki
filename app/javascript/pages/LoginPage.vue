@@ -1,41 +1,45 @@
 <template>
-  <div class="col-4 offset-4">
-    <h1>ログイン</h1>
-    <template v-if="errors">
-      <ErrorMessage
-        :messages="errors"
-      />
-    </template>
-    <div id="login-form">
-      <div class="email-form">
-        <label for="email_form">メールアドレス</label>
-        <input
-          id="email_form"
-          v-model="user.email"
-          type="email"
-          class="form-control"
-          @input="handleErrors"
-        >
-      </div>
-      <div class="password-form">
-        <label for="password_form">パスワード</label>
-        <input
-          id="password_form"
-          v-model="user.password"
-          type="password"
-          class="form-control"
-          @focus="handleErrors"
-        >
-      </div>
-      <v-btn
-        dark
-        color="#6495ed"
-        @click="login"
-      >
-        ログイン
-      </v-btn>
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col cols="10" md="6" class="mx-auto">
+        <h1>ログイン</h1>
+        <div id="login-form">
+          <div class="email-form">
+            <label for="email_form">メールアドレス</label>
+            <input
+            id="email_form"
+            v-model="user.email"
+            type="email"
+            class="form-control"
+            @focus="errors=null"
+            >
+          </div>
+          <div class="password-form">
+            <label for="password_form">パスワード</label>
+            <input
+            id="password_form"
+            v-model="user.password"
+            type="password"
+            class="form-control"
+            @focus="errors=null"
+            >
+          </div>
+          <template v-if="errors">
+            <ErrorMessage
+            :messages="errors"
+            />
+          </template>
+          <v-btn
+            dark
+            color="#6495ed"
+            @click="login"
+            >
+            ログイン
+          </v-btn>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -56,9 +60,6 @@ export default {
     }
   },
   methods: {
-    handleErrors() {
-      this.errors = null
-    },
     async login() {
       try {
         await this.loginUser(this.user)
