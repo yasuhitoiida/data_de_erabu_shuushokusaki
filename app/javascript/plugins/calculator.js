@@ -62,7 +62,7 @@ export default {
     return array
   },
   resultCalculation(criImp, altEval) {
-    let i, j
+    let i, j, k
     const array = altEval[0].data.map(alt => {
       return { name: alt.name, result:{}, total: 0 }
     })
@@ -70,11 +70,14 @@ export default {
       const criweight = criImp.find(cri => cri.name === altEval[i].criterion).weight
       const d = altEval[i].data
       for (j = 0; j < d.length; j++) {
-        const a = array.find(arr => arr.name === d[j].name)
+        const a = array.find(alt => alt.name === d[j].name)
         const weight = parseFloat((d[j].weight * criweight).toFixed(3))
         a.result[altEval[i].criterion] = weight
         a.total += weight
       }
+    }
+    for (k = 0; k < array.length; k++) {
+      array[k].total = parseFloat(array[k].total.toFixed(3))
     }
     return array
   },

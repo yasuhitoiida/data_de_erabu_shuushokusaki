@@ -113,8 +113,10 @@ export default {
       const cri = this.getCriterionImportances
       const alt = this.getAlternativeEvaluations
       const result = this.$calculator.resultCalculation(cri, alt)
+
       this.barChartData = this.$chart.createBarChartData(result)
       this.doughnutChartData = this.$chart.createDoughnutChartData(cri)
+
       this.tableDataCri.headers = this.$chart.createTableHeaderWeight(cri[0])
       this.tableDataCri.items = cri
       this.tableDataAlt.headers = this.$chart.createTableHeaderWeight(alt[0].data[0])
@@ -122,9 +124,6 @@ export default {
       this.tableDataResult.headers = this.$chart.createTableHeaderResult(result[0])
       this.tableDataResult.items = result
       this.chart = true
-      console.log(cri)
-      console.log(alt)
-      console.log(this.barChartData)
     },
   }
 }
