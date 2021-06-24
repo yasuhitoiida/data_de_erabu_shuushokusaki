@@ -1,7 +1,7 @@
 <template>
   <v-footer>
     <v-col align="center">
-      © 2021 JobHunters' Choice
+      © 2021 JobHunter's Choice
     </v-col>
   </v-footer>
 </template>

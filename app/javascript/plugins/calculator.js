@@ -17,16 +17,16 @@ export default {
     let n = arr.reduce((a,b) => {
       return a * b
     })
-    return n ** (1 / (arr.length+1))
+    return n ** (1 / (arr.length))
   },
   weightCalculation(factors, evalData) {
-    let h, i, j, k, m
+    let h, i, j, k, l
     const array = factors.map(f => {
       const scoreString = {}
       for (h = 0; h < factors.length; h++) {
         scoreString[factors[h]] = '1'
       }
-      return { name: f, scoreString: scoreString, score: [], geomean: null, weight: null}
+      return { name: f, scoreString: scoreString, score: [1], geomean: null, weight: null}
     })
     for(i = 0; i < factors.length-1; i++) {
       const a = evalData.splice(0, factors.length-1-i)
@@ -55,14 +55,14 @@ export default {
     for(k = 0; k < array.length; k++) {
       array[k].geomean = this.geomean(array[k].score)
     }
-    for(m = 0; m < array.length; m++) {
+    for(l = 0; l < array.length; l++) {
       let geomeanTotal = array.reduce((sum, f) => sum + f.geomean, 0)
-      array[m].weight = array[m].geomean / geomeanTotal
+      array[l].weight = array[l].geomean / geomeanTotal
     }
     return array
   },
   resultCalculation(criImp, altEval) {
-    let i, j
+    let i, j, k
     const array = altEval[0].data.map(alt => {
       return { name: alt.name, result:{}, total: 0 }
     })
@@ -70,22 +70,28 @@ export default {
       const criweight = criImp.find(cri => cri.name === altEval[i].criterion).weight
       const d = altEval[i].data
       for (j = 0; j < d.length; j++) {
-        const a = array.find(arr => arr.name === d[j].name)
+        const a = array.find(alt => alt.name === d[j].name)
         const weight = parseFloat((d[j].weight * criweight).toFixed(3))
         a.result[altEval[i].criterion] = weight
         a.total += weight
       }
     }
-    return array
-  },
-  totalCalculation(result, alt) {
-    for(let i = 0; i < result.length; i++) {
-      const a = result[i].data.map(f => {
-        return f.find(g => g.name === alt[i])
-      })
-      const score = a.reduce((sum, f) => sum + f.score, 0)
-      array.push({ alternative: alt[i], score: score })
+    for (k = 0; k < array.length; k++) {
+      array[k].total = parseFloat(array[k].total.toFixed(3))
     }
     return array
+  },
+  bestChoice(result) {
+    var best = [result[0]]
+    for (let i = 1; i < result.length; i++) {
+      if (best[0].total < result[i].total) {
+        best = [result[i]]
+      } else if (best[0].total == result[i].total) {
+        best.push(result[i])
+      } else {
+        ;
+      }
+    }
+    return best.map(f => f.name)
   }
 }
