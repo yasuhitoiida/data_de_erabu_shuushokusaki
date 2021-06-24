@@ -17,16 +17,16 @@ export default {
     let n = arr.reduce((a,b) => {
       return a * b
     })
-    return n ** (1 / (arr.length+1))
+    return n ** (1 / (arr.length))
   },
   weightCalculation(factors, evalData) {
-    let h, i, j, k, m
+    let h, i, j, k, l
     const array = factors.map(f => {
       const scoreString = {}
       for (h = 0; h < factors.length; h++) {
         scoreString[factors[h]] = '1'
       }
-      return { name: f, scoreString: scoreString, score: [], geomean: null, weight: null}
+      return { name: f, scoreString: scoreString, score: [1], geomean: null, weight: null}
     })
     for(i = 0; i < factors.length-1; i++) {
       const a = evalData.splice(0, factors.length-1-i)
@@ -55,9 +55,9 @@ export default {
     for(k = 0; k < array.length; k++) {
       array[k].geomean = this.geomean(array[k].score)
     }
-    for(m = 0; m < array.length; m++) {
+    for(l = 0; l < array.length; l++) {
       let geomeanTotal = array.reduce((sum, f) => sum + f.geomean, 0)
-      array[m].weight = array[m].geomean / geomeanTotal
+      array[l].weight = array[l].geomean / geomeanTotal
     }
     return array
   },
@@ -81,14 +81,17 @@ export default {
     }
     return array
   },
-  totalCalculation(result, alt) {
-    for(let i = 0; i < result.length; i++) {
-      const a = result[i].data.map(f => {
-        return f.find(g => g.name === alt[i])
-      })
-      const score = a.reduce((sum, f) => sum + f.score, 0)
-      array.push({ alternative: alt[i], score: score })
+  bestChoice(result) {
+    var best = [result[0]]
+    for (let i = 1; i < result.length; i++) {
+      if (best[0].total < result[i].total) {
+        best = [result[i]]
+      } else if (best[0].total == result[i].total) {
+        best.push(result[i])
+      } else {
+        ;
+      }
     }
-    return array
+    return best.map(f => f.name)
   }
 }

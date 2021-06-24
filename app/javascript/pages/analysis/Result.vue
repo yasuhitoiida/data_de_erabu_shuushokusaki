@@ -15,13 +15,20 @@
             />
           </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="chart">
+          <v-col cols="12" align="center">
+            <h3>
+              <div class="mb-2">
+                あなたのベストな選択肢：
+              </div>
+              <span class="mx-2" v-for="item in bestChoice" :key="item">{{ item }}</span>
+            </h3>
+          </v-col>
           <v-col
             cols="12"
             md="8"
           >
             <BarGraph
-              v-if="chart"
               :chart-data="barChartData"
               title="総合評点"
             />
@@ -32,14 +39,11 @@
             class="mx-auto my-auto"
           >
             <DoughnutGraph
-              v-if="chart"
               :chart-data="doughnutChartData"
               title="あなたのこだわり条件"
             />
           </v-col>
-          <v-row
-            v-if="chart"
-          >
+          <v-row>
             <DataTable
               :headers="tableDataResult.headers"
               :items="tableDataResult.items"
@@ -146,6 +150,7 @@ export default {
         headers: null,
         items: null
       },
+      bestChoice: null,
       chart: false
     }
   },
@@ -167,6 +172,8 @@ export default {
       this.tableDataAlt.items = alt
       this.tableDataResult.headers = this.$chart.createTableHeaderResult(result[0])
       this.tableDataResult.items = result
+
+      this.bestChoice = this.$calculator.bestChoice(result)
       this.chart = true
     },
   }
