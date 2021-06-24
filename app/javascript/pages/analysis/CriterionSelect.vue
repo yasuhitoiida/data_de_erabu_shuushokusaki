@@ -22,6 +22,7 @@
           <input
             v-model="addedCriteria"
             class="form-control"
+            id="addedCriteria"
             placeholder="追加したい条件を記入"
             @focus="errors = null"
           >

@@ -1,7 +1,7 @@
 module AnalysisMacros
   def alternative_input(number)
     number.times do |n|
-      find("#alternative#{n}").set("company#{n}")
+      find("#alternative#{n}").set("alternative#{n}")
     end
     click_on '決定'
   end
