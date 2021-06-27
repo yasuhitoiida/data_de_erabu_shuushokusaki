@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     topPage() {
-      this.$router.push('/')
+      location.href = '/'
     },
     async logout() {
       try {
