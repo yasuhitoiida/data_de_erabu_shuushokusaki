@@ -1,16 +1,17 @@
 <template>
   <v-container>
+    <TheSteppers :value="3"></TheSteppers>
     <v-row>
       <v-col
         cols="12"
         lg="8"
         class="mx-auto"
       >
-        <h3>STEP3 条件の重要度を比較してください</h3>
+        <h3>STEP3 評価基準の重要度評価</h3>
         <v-col align="center">
           <p>
             STEP2で選んだ条件に対するあなたのこだわりを数値化します。<br>
-            2つの条件のどちらをあなたが重要と考えているか比較し、当てはまる数字を選んでください。<br>
+            左右2つの条件のうちどちらを重要と考えているか比較し、当てはまる数字を選んでください。<br>
           </p>
           <HowToCompare type="importance" />
         </v-col>
@@ -38,6 +39,7 @@ import { mapGetters } from 'vuex'
 import EvaluationList from './components/EvaluationList.vue'
 import HowToCompare from './components/HowToCompare.vue'
 import TheButtons from './components/TheButtons.vue'
+import TheSteppers from './components/TheSteppers.vue'
 import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
   name: 'CriterionImportance',
@@ -45,6 +47,7 @@ export default {
     EvaluationList,
     HowToCompare,
     TheButtons,
+    TheSteppers,
     ErrorMessage
   },
   data() {

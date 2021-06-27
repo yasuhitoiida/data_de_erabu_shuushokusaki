@@ -1,8 +1,9 @@
 <template>
   <v-container>
+    <TheSteppers :value="2"></TheSteppers>
     <v-row justify="center">
       <v-col cols="8">
-        <h3>STEP2 こだわり条件を教えてください</h3>
+        <h3>STEP2 評価基準の選択</h3>
         <v-col align="center">
           <p>
             あなたが就職先を決める上で考慮する条件にチェックをつけてください。
@@ -50,11 +51,13 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import TheButtons from './components/TheButtons.vue'
+import TheSteppers from './components/TheSteppers.vue'
 import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
   name: 'CriterionSelect',
   components: {
     TheButtons,
+    TheSteppers,
     ErrorMessage
   },
   data() {

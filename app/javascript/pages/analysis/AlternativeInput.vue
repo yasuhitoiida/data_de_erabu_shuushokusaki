@@ -1,11 +1,12 @@
 <template>
   <v-container>
+    <TheSteppers :value="1"></TheSteppers>
     <v-row>
       <v-col
         cols="8"
         class="mx-auto alternative-forms"
       >
-        <h3>STEP1 現状の選択肢を教えてください</h3>
+        <h3>STEP1 選択肢の記入</h3>
         <v-col align="center">
           <p>
             あなたが今考えている会社名や求人などを記入してください。
@@ -47,11 +48,13 @@
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import TheButtons from './components/TheButtons.vue'
+import TheSteppers from './components/TheSteppers.vue'
 import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
   name: 'AlternativeInput',
   components: {
     TheButtons,
+    TheSteppers,
     ErrorMessage
   },
   data() {
