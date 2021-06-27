@@ -11,7 +11,7 @@
         <v-col align="center">
           <p>
             あなたが考えている選択肢がどの程度条件を満たしているかを数値化します。<br>
-            それぞれの観点で2つの選択肢同士を比較し、当てはまる数字を選んでください。<br>
+            それぞれの評価基準で2つの選択肢同士を比較し、当てはまる数字を選んでください。<br>
           </p>
           <HowToCompare type="evaluation" />
         </v-col>
@@ -101,9 +101,5 @@ export default {
 <style scoped>
 h3 {
   margin: 50px auto;
-}
-.number-rule {
-  text-align: center;
-  margin-top: 40px;
 }
 </style>

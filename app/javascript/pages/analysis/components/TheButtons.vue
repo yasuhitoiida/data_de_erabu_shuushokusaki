@@ -1,5 +1,5 @@
 <template>
-  <div class="buttons">
+  <v-col class="mt-3">
     <v-btn
       :to="previewPagePath"
     >
@@ -13,7 +13,7 @@
     >
       決定
     </v-btn>
-  </div>
+  </v-col>
 </template>
 
 <script>
@@ -34,7 +34,4 @@ export default {
 </script>
 
 <style scoped>
-.buttons {
-  margin-top: 10px;
-}
 </style>

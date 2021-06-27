@@ -3,8 +3,8 @@
     <v-row>
       <v-col cols="12" lg="10" class="mx-auto">
         <h3>結果</h3>
-        <v-row>
-          <v-col align="center">
+        <v-row v-if="!chart">
+          <v-col align="center" class="mt-12">
             <p>
               おつかれさまでした！<br>
               決定ボタンを押して結果を表示してください。
@@ -114,6 +114,9 @@
             </v-expansion-panels>
           </v-row>
         </v-row>
+        <v-col align="center">
+          <v-btn @click="topPage">トップページ</v-btn>
+        </v-col>
       </v-col>
     </v-row>
   </v-container>
@@ -158,6 +161,9 @@ export default {
     ...mapGetters('analysis', ['getCriterionImportances', 'getAlternativeEvaluations'])
   },
   methods: {
+    topPage() {
+      location.href = '/'
+    },
     handleResult() {
       const cri = this.getCriterionImportances
       const alt = this.getAlternativeEvaluations

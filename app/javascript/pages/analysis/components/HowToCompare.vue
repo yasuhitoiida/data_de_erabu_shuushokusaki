@@ -56,7 +56,7 @@
     <template #activator="{ on, attrs }">
       <v-btn
         color="red lighten-2"
-        dark
+        outlined
         v-bind="attrs"
         v-on="on"
       >
@@ -128,7 +128,4 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 50px auto;
-}
 </style>
