@@ -1,12 +1,13 @@
 <template>
   <v-container>
+    <TheSteppers :value="4"></TheSteppers>
     <v-row>
       <v-col
         cols="12"
         lg="8"
         class="mx-auto"
       >
-        <h3>STEP4 条件ごとに会社を評価してください</h3>
+        <h3>STEP4 選択肢の評価</h3>
         <v-col align="center">
           <p>
             あなたが考えている選択肢がどの程度条件を満たしているかを数値化します。<br>
@@ -48,6 +49,7 @@ import { mapGetters } from 'vuex'
 import EvaluationList from './components/EvaluationList.vue'
 import HowToCompare from './components/HowToCompare.vue'
 import TheButtons from './components/TheButtons.vue'
+import TheSteppers from './components/TheSteppers.vue'
 import ErrorMessage from '../../components/ErrorMessage.vue'
 export default {
   name: 'AlternativeEvaluation',
@@ -55,6 +57,7 @@ export default {
     EvaluationList,
     HowToCompare,
     TheButtons,
+    TheSteppers,
     ErrorMessage
   },
   data() {

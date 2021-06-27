@@ -40,7 +40,7 @@
           >
             <DoughnutGraph
               :chart-data="doughnutChartData"
-              title="あなたのこだわり条件"
+              title="条件の重要度"
             />
           </v-col>
           <v-row>
@@ -52,7 +52,7 @@
             <DataTable
               :headers="tableDataCri.headers"
               :items="tableDataCri.items"
-              title="こだわり条件（条件の重要度）"
+              title="条件の重要度"
             />
             <v-expansion-panels class="mb-6">
               <v-expansion-panel>
