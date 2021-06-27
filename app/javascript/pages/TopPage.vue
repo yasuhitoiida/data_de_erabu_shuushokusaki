@@ -54,7 +54,7 @@
                 <div>
                   <v-icon>mdi-bug</v-icon>
                   <span>
-                    将来への迷いを断ち切りたい...
+                    将来への迷いを断ち切りたい
                   </span>
                 </div>
               </v-card-text>
@@ -170,7 +170,7 @@
                   優先度と相対評点を用いて各代替案の総合評点を求め、最も評点の高い代替案を選択する
                 </li>
               </ol>
-              <v-img src="https://i.gyazo.com/1247472500567252cb2c0370609f634c.png" />
+              <img src="../../assets/images/1247472500567252cb2c0370609f634c.png" style="height:auto;"/>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
