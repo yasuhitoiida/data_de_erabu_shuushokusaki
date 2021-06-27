@@ -31,7 +31,7 @@
             </template>
             {{ tooltip[n-1] }}
           </v-tooltip>
-          <v-tooltip bottom>
+          <v-tooltip bottom max-width="80%">
             <template #activator="{ on, attrs }">
               <v-icon
                 class="ml-3"
@@ -46,7 +46,7 @@
                 <p>
                   {{ tooltipDescription }}
                 </p>
-                <v-img :src="tooltipImg" />
+                <img :src="require(`../../../../assets/images/${tooltipImg}`)" style="width:100%" />
               </v-col>
             </v-card>
           </v-tooltip>
@@ -95,10 +95,10 @@ export default {
         '右側が優れている',
         '右側がとても優れている'
       ],
-      tooltipImgImp: 'https://i.gyazo.com/b245b040c198967969f8819e201edc3f.png',
-      tooltipImgEval: 'https://i.gyazo.com/6df413eb6a048f8dca2df5b18d6241b2.png',
+      tooltipImgImp: 'b245b040c198967969f8819e201edc3f.png',
+      tooltipImgEval: '6df413eb6a048f8dca2df5b18d6241b2.png',
       tooltipDescriptionImp: '労働時間が通勤時間よりやや重要であるとき',
-      tooltipDescriptionEval: '労働時間においてA社がB社より優れているとき'
+      tooltipDescriptionEval: '労働時間においてA社がB社よりとても優れているとき'
     }
   },
   computed: {
