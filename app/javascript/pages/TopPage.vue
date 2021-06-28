@@ -74,9 +74,9 @@
           >
             <img src="../../assets/images/undraw_Metrics_re_6g90.svg">
             <v-divider />
-            <v-card-title>あなたの志望度を数値化</v-card-title>
+            <v-card-title>ベストな選択肢を提案</v-card-title>
             <v-card-text>
-              企業活動や公共事業でも用いられる意思決定法「AHP」により、志望先ごとにメリットを数値化しベストな選択肢を提案。<br>あなたの企業研究の成果を元に、根拠あるデータで意思決定をサポートします。
+              企業活動や公共事業でも用いられる意思決定法「AHP」により、複数の志望先からベストな選択肢を提案。<br>あなたの企業研究の成果を元に、根拠あるデータで意思決定をサポートします。
             </v-card-text>
           </v-card>
         </v-col>
