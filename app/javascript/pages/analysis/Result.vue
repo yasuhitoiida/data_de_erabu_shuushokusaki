@@ -181,6 +181,7 @@ export default {
       // ベストチョイス
       this.bestChoice = this.$calculator.bestChoice(result)
       this.chart = true //グラフ等々を表示
+      console.log(result)
     },
   }
 }

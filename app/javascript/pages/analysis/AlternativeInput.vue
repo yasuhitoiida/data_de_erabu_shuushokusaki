@@ -81,18 +81,24 @@ export default {
       // 入力フォームを追加
       this.alternatives.push(null)
     },
+    isUnique(arr) {
+      const s = new Set(arr) //一意性の検証　Setには重複値は入らない
+      return s.size == arr.length ? true : false
+    },
+    isEnough(arr) {
+      return arr.length >= 2 ? true : false
+    },
     handleAlternative() {
       // バリデーションした上で入力値をストアに保存
-      const array = this.alternatives.filter(v => v) //空要素を除去
-      const s = new Set(array) //一意性の検証　Setには重複値は入らない
-      if (array.length >= 2 && s.size == array.length ) {
-        this.setAlternatives(array)
+      const alt = this.alternatives.filter(v => v) //空要素を除去
+      if (this.isEnough(alt) && this.isUnique(alt)) {
+        this.setAlternatives(alt)
         this.$router.push('/analysis/step2')
-        console.log(array)
-      } else if (array.length >= 2) {
+        console.log(alt)
+      } else if (this.isEnough(alt)) {
         this.errors = ['入力内容に重複があります']
       } else {
-        this.errors = ['就職先を2つ以上入力してください']
+        this.errors = ['選択肢を2つ以上入力してください']
       }
     },
     ...mapActions('analysis', ['setAlternatives', 'setAlternativeEvaluations'])

@@ -98,22 +98,26 @@ export default {
     })
   },
   methods: {
+    isUnique(arr) {
+      const s = new Set(arr) //一意性の検証　Setには重複値は入らない
+      return s.size == arr.length ? true : false
+    },
     addCriterion() {
+      if (!this.addedCriteria) { return }
       // 評価基準の追加
-      // 入力値を一旦criteriaに入れた上で一意性を検証し、クリアすればselectedCriteriaに追加
-      this.criteria.push(this.addedCriteria)
-      const s = new Set(this.criteria) //一意性の検証　Setには重複値は入らない
-      if (s.size == this.criteria.length) {
+      // 入力値がcriteriaの要素と重複していないが検証し、クリアすればselectedCriteriaに追加
+      const cri = this.criteria.concat(this.addedCriteria)
+      if (this.isUnique(cri)) {
+        this.criteria.push(this.addedCriteria)
         this.selectedCriteria.push(this.addedCriteria)
       } else {
         this.errors = ['入力内容に重複があります']
-        this.criteria.pop() //一旦criteriaに入れていた入力値を削除
       }
       this.addedCriteria = null
     },
     handleSelectedCriteria() {
-      // バリデーションした上でス入力値をトアに保存
-      const array = this.selectedCriteria.filter(v => v) //空要素を除去
+      // バリデーションした上で選択した条件をストアに保存
+      const array = this.selectedCriteria
       if (array.length >= 2) {
         this.setCriteria(array)
         this.$router.push('/analysis/step3')
