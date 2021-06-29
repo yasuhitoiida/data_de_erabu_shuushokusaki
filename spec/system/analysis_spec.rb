@@ -83,12 +83,15 @@ RSpec.describe 'Analysis', type: :system do
       within "div[id='0-0']" do
         find_button('1').click
       end
+      sleep 0.5
       within "div[id='0-1']" do
         find_button('2').click
       end
+      sleep 0.5
       within "div[id='0-2']" do
         find_button('3').click
       end
+      sleep 0.5
       click_on '決定'
       click_on '戻る'
       expect(find("div[id='0-0']")).to have_selector('.v-btn--active', text: '1'), '以前の入力値が保持されていません'
@@ -119,12 +122,15 @@ RSpec.describe 'Analysis', type: :system do
         within "div[id='#{n}-0']" do
           find_button('1').click
         end
+        sleep 0.5
         within "div[id='#{n}-1']" do
           find_button('2').click
         end
+        sleep 0.5
         within "div[id='#{n}-2']" do
           find_button('3').click
         end
+        sleep 0.5
       end
       click_on '決定'
       click_on '戻る'
