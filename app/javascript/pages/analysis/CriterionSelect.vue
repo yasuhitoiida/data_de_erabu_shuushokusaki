@@ -85,10 +85,13 @@ export default {
     ...mapGetters('analysis', ['getAlternatives', 'getCriteria'])
   },
   created() {
+    // 他ページから移動してきたとき入力値が残ってるように
     if (this.getCriteria) {
       this.selectedCriteria = this.getCriteria
+      // ユーザーが追加した分を表示できるように
       this.criteria = this.criteria.concat(this.getCriteria.filter(f => !this.criteria.includes(f)))
     }
+    // 評価基準が変わるとそれまでの評点は意味を成さないのでいっそのこと消去
     this.$watch('selectedCriteria', function() {
       this.setCriterionImportances({eval: null, raw: null})
       this.setAlternativeEvaluations({eval: null, raw: null})
@@ -96,22 +99,25 @@ export default {
   },
   methods: {
     addCriterion() {
+      // 評価基準の追加
+      // 入力値を一旦criteriaに入れた上で一意性を検証し、クリアすればselectedCriteriaに追加
       this.criteria.push(this.addedCriteria)
-      const s = new Set(this.criteria)
+      const s = new Set(this.criteria) //一意性の検証　Setには重複値は入らない
       if (s.size == this.criteria.length) {
         this.selectedCriteria.push(this.addedCriteria)
       } else {
         this.errors = ['入力内容に重複があります']
-        this.criteria.pop()
+        this.criteria.pop() //一旦criteriaに入れていた入力値を削除
       }
       this.addedCriteria = null
     },
     handleSelectedCriteria() {
-      const array = this.selectedCriteria.filter(v => v)
-      console.log(array)
+      // バリデーションした上でス入力値をトアに保存
+      const array = this.selectedCriteria.filter(v => v) //空要素を除去
       if (array.length >= 2) {
         this.setCriteria(array)
         this.$router.push('/analysis/step3')
+        console.log(array)
       } else {
         this.errors = ['条件を2つ以上選んでください']
       }

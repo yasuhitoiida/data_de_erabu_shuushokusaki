@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      alternatives: [null, null, null],
+      alternatives: [null, null, null], //要素の数だけフォームが表示される
       errors: null
     }
   },
@@ -67,23 +67,28 @@ export default {
     ...mapGetters('analysis', ['getAlternatives'])
   },
   created() {
+    // 次ページから戻ってきたときに入力値が残ってるように
     if (this.getAlternatives) {
       this.alternatives = this.getAlternatives
     }
+    // 選択肢が変わればそれまでの評点は意味を成さないのでいっそのこと消去
     this.$watch('alternatives', function() {
       this.setAlternativeEvaluations({eval: null, raw: null})
     })
   },
   methods: {
     addForm() {
+      // 入力フォームを追加
       this.alternatives.push(null)
     },
     handleAlternative() {
-      const array = this.alternatives.filter(v => v)
-      const s = new Set(array)
+      // バリデーションした上で入力値をストアに保存
+      const array = this.alternatives.filter(v => v) //空要素を除去
+      const s = new Set(array) //一意性の検証　Setには重複値は入らない
       if (array.length >= 2 && s.size == array.length ) {
         this.setAlternatives(array)
         this.$router.push('/analysis/step2')
+        console.log(array)
       } else if (array.length >= 2) {
         this.errors = ['入力内容に重複があります']
       } else {

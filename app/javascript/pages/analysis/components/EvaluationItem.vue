@@ -78,12 +78,14 @@ export default {
     value: 'sendValue'
   },
   created() {
+    // 他ページから移動してきたとき入力値が残ってるように
     const m = this.listNumber
     const n = this.itemNumber
+    // ストアに保存した評点の配列から、自身と対応する評点を取得する
     if (this.getImpRawData && this.$route.path === '/analysis/step3') {
-        this.value = this.getImpRawData[n]
+        this.value = this.getImpRawData[n] //評価基準の重要度の評点配列から評点を取得
     } else if ( this.getEvalRawData && this.$route.path === '/analysis/step4') {
-        this.value = this.getEvalRawData[m][n]
+        this.value = this.getEvalRawData[m][n] //選択肢の評価データから該当する評点配列を取得し、その中から評点を取得
     }
   },
   methods: {
@@ -91,19 +93,20 @@ export default {
       this.$emit('catch-value', this.value)
     },
     autoScroll() {
+      // ボタンを押したら次のEvaluationItemへと自動スクロール
       const m = this.listNumber
       const n = this.itemNumber
-      const cur = event.currentTarget.getBoundingClientRect().top
-      const nxtItem = document.getElementById(`${m}-${Number(n)+1}`)
-      const nxtList = document.getElementById(`${Number(m)+1}-0`)
-      if (nxtItem) {
+      const cur = event.currentTarget.getBoundingClientRect().top //自身
+      const nxtItem = document.getElementById(`${m}-${Number(n)+1}`) //自身の次のItem
+      const nxtList = document.getElementById(`${Number(m)+1}-0`) //次のListの最初のItem
+      if (nxtItem) { //List内に次のItemがあるとき、次のItemがターゲット
         var nxt = nxtItem.getBoundingClientRect().top
-      } else if (nxtList) {
+      } else if (nxtList) { //List内の最後のItemであり、かつ次のListがあるとき、次のListの最初のItemがターゲット
         var nxt = nxtList.getBoundingClientRect().top
-      } else {
+      } else { //最後のListの最後のItemであるとき、スクロールしない
         var nxt = cur
       }
-      window.scrollBy(0, nxt-cur)
+      window.scrollBy(0, nxt-cur) //ターゲットと自身のy座標の差分だけスクロール
     }
   }
 }

@@ -38,9 +38,11 @@ export default {
     }
   },
   created() {
+    // 要素のペアを作成　ペアの数だけEvaluationItemが表示される
     this.combinations = this.$calculator.makePairs(this.factors)
   },
   methods: {
+    // すべてのEvaluationItemが入力されたかを検証するメソッド
     isInputDataEnough(arr) {
       const l = arr.filter(v => v).length
       if (l == this.combinations.length) {
@@ -50,6 +52,7 @@ export default {
       }
     },
     sendData(ind, val) {
+      // EvaluationItemからの評点を配列に格納し、全部揃い次第親クラスに配列を送る
       this.evalListData[ind] = val
       if (this.isInputDataEnough(this.evalListData)) {
         this.$emit('catch-data', this.evalListData)

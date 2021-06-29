@@ -128,7 +128,7 @@ import { mapGetters } from 'vuex'
 import BarGraph from '../../components/BarGraph.vue'
 import DoughnutGraph from '../../components/DoughnutGraph.vue'
 import TheButtons from './components/TheButtons.vue'
-import DataTable from './components/DataTable.vue'
+import DataTable from '../../components/DataTable.vue'
 export default {
   name: 'Result',
   components: {
@@ -165,22 +165,22 @@ export default {
       location.href = '/'
     },
     handleResult() {
-      const cri = this.getCriterionImportances
-      const alt = this.getAlternativeEvaluations
-      const result = this.$calculator.resultCalculation(cri, alt)
-
+      const cri = this.getCriterionImportances //評価基準の重要度
+      const alt = this.getAlternativeEvaluations //選択肢の評価値
+      const result = this.$calculator.resultCalculation(cri, alt) //総合評点
+      // 総合評点の棒グラフ用データと評価基準重要度の円グラフ用データを作成
       this.barChartData = this.$chart.createBarChartData(result)
       this.doughnutChartData = this.$chart.createDoughnutChartData(cri)
-
+      // データテーブル用のヘッダーとアイテムを作成
       this.tableDataCri.headers = this.$chart.createTableHeaderWeight(cri[0])
       this.tableDataCri.items = cri
       this.tableDataAlt.headers = this.$chart.createTableHeaderWeight(alt[0].data[0])
       this.tableDataAlt.items = alt
       this.tableDataResult.headers = this.$chart.createTableHeaderResult(result[0])
       this.tableDataResult.items = result
-
+      // ベストチョイス
       this.bestChoice = this.$calculator.bestChoice(result)
-      this.chart = true
+      this.chart = true //グラフ等々を表示
     },
   }
 }

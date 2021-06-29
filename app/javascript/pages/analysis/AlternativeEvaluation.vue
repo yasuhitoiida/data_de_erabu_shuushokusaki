@@ -72,23 +72,24 @@ export default {
   },
   methods: {
     setEvalDataCollection(cri, ind, arr) {
-      this.rawDataCollection[ind] = [].concat(arr)
-      this.evalDataCollection[ind] = { criterion: cri, data: arr }
+      // 複数のEvaluationListから送られてきた評点配列たちを表示順通りに配列に格納
+      this.rawDataCollection[ind] = [].concat(arr) //素点
+      this.evalDataCollection[ind] = { criterion: cri, data: arr } //評価基準と素点
     },
     handleAlternativeEvaluation() {
-      const l = this.evalDataCollection.filter(v => v).length
-      if (l == this.getCriteria.length) {
-        const raw = [].concat(this.rawDataCollection)
-        const ev = this.evalDataCollection.map(f => {
-          const hash = {}
-          hash.data = this.$calculator.weightCalculation(this.getAlternatives, f.data)
-          hash.criterion = f.criterion
-          return hash
+      // バリデーションした上で素点と重要度をストアに保存
+      const l = this.evalDataCollection.filter(v => v).length //空要素を除去
+      if (l == this.getCriteria.length) {　//評価基準の数と評点配列の数が異なるということは未入力のEvaluationItemがあるということ
+        const raw = [].concat(this.rawDataCollection) //素点
+        const ev = this.evalDataCollection.map(f => { //評価値　評価基準ごとに選択肢の評価値を算出している
+          const h = {}
+          h.data = this.$calculator.weightCalculation(this.getAlternatives, f.data)
+          h.criterion = f.criterion
+          return h
         })
-        console.log(raw)
-        console.log(ev)
         this.setAlternativeEvaluations({eval: ev, raw: raw})
         this.$router.push('/analysis/result')
+        console.log(ev)
       } else {
         this.errors = ['未入力の項目があります']
       }

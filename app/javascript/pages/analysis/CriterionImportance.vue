@@ -61,14 +61,17 @@ export default {
   },
   methods: {
     setEvaluationData(arr) {
+      // EvaluationListから送られてきた評点配列を受け取る
       this.evaluationData = arr
     },
     async handleCriterionImportance() {
-      if (this.evaluationData) {
-        const raw = [].concat(this.evaluationData)
-        const imp = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData)
+      // バリデーションした上で素点と重要度をストアに保存
+      if (this.evaluationData) { // これがないということは未入力のEvaluationItemがあるということ
+        const raw = [].concat(this.evaluationData) //素点
+        const imp = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData) //重要度
         this.setCriterionImportances({imp: imp, raw: raw})
         this.$router.push('/analysis/step4')
+        console.log(imp)
       } else {
         this.errors = ['未入力の項目があります']
       }
