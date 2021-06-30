@@ -49,21 +49,21 @@
               :items="tableDataResult.items"
               title="総合評点"
             />
-            <DataTable
-              :headers="tableDataCri.headers"
-              :items="tableDataCri.items"
-              title="条件の重要度"
-            />
             <v-expansion-panels class="mb-6">
               <v-expansion-panel>
-                <v-expansion-panel-header>その他のデータ</v-expansion-panel-header>
+                <v-expansion-panel-header>分析結果詳細</v-expansion-panel-header>
                 <v-expansion-panel-content>
+                  <DataTable
+                    :headers="tableDataCri.headers"
+                    :items="tableDataCri.items"
+                    title="条件の重要度"
+                  />
                   <DataTable
                     v-for="(item, index) in tableDataAlt.items"
                     :key="index"
                     :headers="tableDataAlt.headers"
                     :items="item.data"
-                    :title="item.criterion"
+                    :title="item.criterion + 'に関する評価'"
                   />
                 </v-expansion-panel-content>
               </v-expansion-panel>
