@@ -67,18 +67,16 @@
                   />
                 </v-expansion-panel-content>
               </v-expansion-panel>
+              <v-expansion-panel>
+                <v-expansion-panel-header>各パラメータの算出方法</v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <AboutAnalisysMethod></AboutAnalisysMethod>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
             </v-expansion-panels>
           </v-row>
         </v-row>
-        <v-col>
-          <v-expansion-panels>
-            <v-expansion-panel>
-              <v-expansion-panel-header>各パラメータの算出方法</v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <AboutAnalisysMethod></AboutAnalisysMethod>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+        <v-col align="center">
           <v-btn @click="topPage">トップページ</v-btn>
         </v-col>
       </v-col>
