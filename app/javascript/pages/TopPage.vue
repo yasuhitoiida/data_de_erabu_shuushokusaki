@@ -7,7 +7,7 @@
     >
       <h1>JobHunter<span>'</span>s Choice</h1>
       <v-row>
-        <v-col align="center" class="my-10">
+        <v-col align="center" class="mt-10">
           <h5>お仕事選びをデータで後押し</h5>
         </v-col>
       </v-row>

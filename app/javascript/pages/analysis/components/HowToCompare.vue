@@ -46,7 +46,7 @@
                 <p>
                   {{ tooltipDescription }}
                 </p>
-                <img :src="require(`../../../../assets/images/${tooltipImg}`)" style="width:100%" />
+                <img :src="require(`../../../../assets/images/${tooltipImage}`)" style="width:100%" />
               </v-col>
             </v-card>
           </v-tooltip>
@@ -68,7 +68,7 @@
 
 <script>
 export default {
-  name: 'HowToEvaluation',
+  name: 'HowToCompare',
   props: {
     type: {
       type: String,
@@ -95,33 +95,21 @@ export default {
         '右側が優れている',
         '右側がとても優れている'
       ],
-      tooltipImgImp: 'b245b040c198967969f8819e201edc3f.png',
-      tooltipImgEval: '6df413eb6a048f8dca2df5b18d6241b2.png',
+      tooltipImageImp: 'b245b040c198967969f8819e201edc3f.png',
+      tooltipImageEval: '6df413eb6a048f8dca2df5b18d6241b2.png',
       tooltipDescriptionImp: '労働時間が通勤時間よりやや重要であるとき',
       tooltipDescriptionEval: '労働時間においてA社がB社よりとても優れているとき'
     }
   },
   computed: {
     tooltip() {
-      if (this.type === 'importance') {
-        return this.tooltipImp
-      } else {
-        return this.tooltipEval
-      }
+      return this.type === 'importance' ? this.tooltipImp : this.tooltipEval
     },
-    tooltipImg() {
-      if (this.type === 'importance') {
-        return this.tooltipImgImp
-      } else {
-        return this.tooltipImgEval
-      }
+    tooltipImage() {
+      return this.type === 'importance' ? this.tooltipImageImp : this.tooltipImageEval
     },
     tooltipDescription() {
-      if (this.type === 'importance') {
-        return this.tooltipDescriptionImp
-      } else {
-        return this.tooltipDescriptionEval
-      }
+      return this.type === 'importance' ? this.tooltipDescriptionImp : this.tooltipDescriptionEval
     }
   }
 }
