@@ -6,23 +6,26 @@
         <div id="login-form">
           <div class="email-form">
             <label for="email_form">メールアドレス</label>
-            <input
+            <v-text-field
+            outlined
+            dense
             id="email_form"
             v-model="user.email"
             type="email"
-            class="form-control"
             @focus="errors=null"
-            >
+            />
           </div>
           <div class="password-form">
             <label for="password_form">パスワード</label>
-            <input
+            <v-text-field
+            outlined
+            dense
             id="password_form"
             v-model="user.password"
             type="password"
             class="form-control"
             @focus="errors=null"
-            >
+            />
           </div>
           <template v-if="errors">
             <ErrorMessage

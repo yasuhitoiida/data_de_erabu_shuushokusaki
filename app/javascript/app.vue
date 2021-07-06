@@ -29,4 +29,7 @@ export default {
 #app a {
   text-decoration: none;
 }
+#app fieldset {
+  border: 1px solid #cccccc;
+}
 </style>

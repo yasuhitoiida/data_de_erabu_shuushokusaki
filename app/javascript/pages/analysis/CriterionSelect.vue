@@ -3,7 +3,7 @@
     <TheSteppers :value="2"></TheSteppers>
     <v-row justify="center">
       <v-col cols="8">
-        <h3>STEP2 評価基準の選択</h3>
+        <h2>STEP2 評価基準の選択</h2>
         <v-col align="center">
           <p>
             あなたが就職先を決める上で考慮する条件にチェックをつけてください。
@@ -19,20 +19,22 @@
           :label="item"
           class="mt-0"
         />
-        <div class="input-group">
-          <input
-            v-model="addedCriteria"
-            class="form-control"
-            id="addedCriteria"
-            placeholder="追加したい条件を記入"
-            @focus="errors = null"
-          >
-          <v-btn
-            @click.native="addCriterion"
-          >
-            条件を追加
-          </v-btn>
-        </div>
+        <v-text-field
+          outlined
+          dense
+          v-model="addedCriteria"
+          style="display:inline-block;"
+          id="addedCriteria"
+          placeholder="追加したい条件を記入"
+          @focus="errors = null"
+        />
+        <v-btn
+          style="display:inline-block;"
+          @click.native="addCriterion"
+          class="ml-1"
+        >
+          条件を追加
+        </v-btn>
         <template v-if="errors">
           <ErrorMessage
             :messages="errors"
@@ -132,7 +134,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
+h2 {
   margin: 50px auto;
 }
 </style>

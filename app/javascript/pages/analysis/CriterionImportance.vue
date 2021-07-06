@@ -7,7 +7,7 @@
         lg="8"
         class="mx-auto"
       >
-        <h3>STEP3 評価基準の重要度評価</h3>
+        <h2>STEP3 評価基準の重要度評価</h2>
         <v-col align="center">
           <p>
             STEP2で選んだ条件に対するあなたのこだわりを数値化します。<br>
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
+h2 {
   margin: 50px auto;
 }
 </style>

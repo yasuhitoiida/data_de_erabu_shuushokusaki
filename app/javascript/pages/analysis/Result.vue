@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" lg="10" class="mx-auto">
-        <h3>結果</h3>
+        <h2>結果</h2>
         <v-row v-if="!chart">
           <v-col align="center" class="mt-12">
             <p>
@@ -17,12 +17,12 @@
         </v-row>
         <v-row v-if="chart">
           <v-col cols="12" align="center">
-            <h3>
+            <h2>
               <div class="mb-2">
                 あなたのベストな選択肢：
               </div>
               <span class="mx-2" v-for="item in bestChoice" :key="item">{{ item }}</span>
-            </h3>
+            </h2>
           </v-col>
           <v-col
             cols="12"
@@ -152,7 +152,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
+h2 {
   margin: 50px auto;
 }
 </style>

@@ -6,7 +6,7 @@
         cols="8"
         class="mx-auto alternative-forms"
       >
-        <h3>STEP1 選択肢の記入</h3>
+        <h2>STEP1 選択肢の記入</h2>
         <v-col align="center">
           <p>
             あなたが今考えている会社名や求人などを記入してください。
@@ -16,11 +16,12 @@
           v-for="(item, index) in alternatives"
           :key="index"
         >
-          <input
+          <v-text-field
+            outlined
+            dense
             :id="'alternative' + index"
             v-model="alternatives[index]"
-            class="form-control mb-3"
-          >
+          />
         </div>
         <div>
           <router-link
@@ -107,7 +108,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
+h2 {
   margin: 50px auto;
 }
 </style>

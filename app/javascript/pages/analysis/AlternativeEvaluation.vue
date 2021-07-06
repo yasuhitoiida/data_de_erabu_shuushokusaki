@@ -7,7 +7,7 @@
         lg="8"
         class="mx-auto"
       >
-        <h3>STEP4 選択肢の評価</h3>
+        <h2>STEP4 選択肢の評価</h2>
         <v-col align="center">
           <p>
             あなたが考えている選択肢がどの程度条件を満たしているかを数値化します。<br>
@@ -20,9 +20,9 @@
           :key="index"
           class="mb-15"
         >
-          <h3>
+          <h2>
             {{ item }}
-          </h3>
+          </h2>
           <EvaluationList
             :factors="getAlternatives"
             :list-number="index"
@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
+h2 {
   margin: 50px auto;
 }
 </style>

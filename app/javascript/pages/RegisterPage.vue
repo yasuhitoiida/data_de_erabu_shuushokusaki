@@ -11,38 +11,42 @@
         <div id="register-form">
           <div class="name">
             <label for="name_form">ユーザー名</label>
-            <input
+            <v-text-field
+              outlined
+              dense
               id="name_form"
               v-model="user.name"
-              class="form-control"
-            >
+            />
           </div>
           <div class="email-form">
             <label for="email_form">メールアドレス</label>
-            <input
+            <v-text-field
+              outlined
+              dense
               id="email_form"
               v-model="user.email"
               type="email"
-              class="form-control"
-            >
+            />
           </div>
           <div class="password-form">
             <label for="password_form">パスワード</label>
-            <input
+            <v-text-field
+              outlined
+              dense
               id="password_form"
               v-model="user.password"
               type="password"
-              class="form-control"
-            >
+            />
           </div>
           <div class="password-confirmation-form">
             <label for="password_confirmation-form">パスワード（確認）</label>
-            <input
+            <v-text-field
+              outlined
+              dense
               id="password_confirmation-form"
               v-model="user.password_confirmation"
               type="password"
-              class="form-control"
-            >
+            />
           </div>
           <v-btn
             dark
