@@ -1,10 +1,17 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" lg="10" class="mx-auto">
-        <h2>結果</h2>
+      <v-col
+        cols="12"
+        lg="10"
+        class="mx-auto"
+      >
+        <h3>結果</h3>
         <v-row v-if="!chart">
-          <v-col align="center" class="mt-12">
+          <v-col
+            align="center"
+            class="mt-12"
+          >
             <p>
               おつかれさまでした！<br>
               決定ボタンを押して結果を表示してください。
@@ -16,13 +23,20 @@
           </v-col>
         </v-row>
         <v-row v-if="chart">
-          <v-col cols="12" align="center">
-            <h2>
+          <v-col
+            cols="12"
+            align="center"
+          >
+            <h3>
               <div class="mb-2">
                 あなたのベストな選択肢：
               </div>
-              <span class="mx-2" v-for="item in bestChoice" :key="item">{{ item }}</span>
-            </h2>
+              <span
+                v-for="item in bestChoice"
+                :key="item"
+                class="mx-2"
+              >{{ item }}</span>
+            </h3>
           </v-col>
           <v-col
             cols="12"
@@ -70,14 +84,16 @@
               <v-expansion-panel>
                 <v-expansion-panel-header>各パラメータの算出方法</v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  <AboutAnalisysMethod></AboutAnalisysMethod>
+                  <AboutAnalisysMethod />
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
           </v-row>
         </v-row>
         <v-col align="center">
-          <v-btn @click="topPage">トップページ</v-btn>
+          <v-btn @click="topPage">
+            トップページ
+          </v-btn>
         </v-col>
       </v-col>
     </v-row>
@@ -152,7 +168,7 @@ export default {
 </script>
 
 <style scoped>
-h2 {
+h3 {
   margin: 50px auto;
 }
 </style>

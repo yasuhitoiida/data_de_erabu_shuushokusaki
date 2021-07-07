@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <TheSteppers :value="3"></TheSteppers>
+    <TheSteppers :value="3" />
     <v-row>
       <v-col
         cols="12"
         lg="8"
         class="mx-auto"
       >
-        <h2>STEP3 評価基準の重要度評価</h2>
+        <h3>STEP3 評価基準の重要度評価</h3>
         <v-col align="center">
           <p>
             STEP2で選んだ条件に対するあなたのこだわりを数値化します。<br>
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style scoped>
-h2 {
+h3 {
   margin: 50px auto;
 }
 </style>

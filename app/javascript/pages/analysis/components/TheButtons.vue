@@ -1,5 +1,5 @@
 <template>
-  <v-col class="mt-3">
+  <v-col class="mt-3 px-0">
     <v-btn
       :to="previewPagePath"
     >

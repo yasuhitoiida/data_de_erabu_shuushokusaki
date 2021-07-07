@@ -1,42 +1,42 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="10" md="6" class="mx-auto">
+      <v-col
+        cols="10"
+        md="6"
+        class="mx-auto"
+      >
         <h1>ログイン</h1>
         <div id="login-form">
           <div class="email-form">
             <label for="email_form">メールアドレス</label>
-            <v-text-field
-            outlined
-            dense
-            id="email_form"
-            v-model="user.email"
-            type="email"
-            @focus="errors=null"
+            <input
+              id="email_form"
+              v-model="user.email"
+              type="email"
+              @focus="errors=null"
             />
           </div>
           <div class="password-form">
             <label for="password_form">パスワード</label>
-            <v-text-field
-            outlined
-            dense
-            id="password_form"
-            v-model="user.password"
-            type="password"
-            class="form-control"
-            @focus="errors=null"
+            <input
+              id="password_form"
+              v-model="user.password"
+              type="password"
+              class="form-control"
+              @focus="errors=null"
             />
           </div>
           <template v-if="errors">
             <ErrorMessage
-            :messages="errors"
+              :messages="errors"
             />
           </template>
           <v-btn
             dark
             color="#6495ed"
             @click="login"
-            >
+          >
             ログイン
           </v-btn>
         </div>

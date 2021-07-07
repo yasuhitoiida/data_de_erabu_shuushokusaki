@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <TheSteppers :value="1"></TheSteppers>
+    <TheSteppers :value="1" />
     <v-row>
       <v-col
         cols="8"
         class="mx-auto alternative-forms"
       >
-        <h2>STEP1 選択肢の記入</h2>
+        <h3>STEP1 選択肢の記入</h3>
         <v-col align="center">
           <p>
             あなたが今考えている会社名や求人などを記入してください。
@@ -16,11 +16,10 @@
           v-for="(item, index) in alternatives"
           :key="index"
         >
-          <v-text-field
-            outlined
-            dense
+          <input
             :id="'alternative' + index"
             v-model="alternatives[index]"
+            class="form-control mb-3"
           />
         </div>
         <div>
@@ -108,7 +107,7 @@ export default {
 </script>
 
 <style scoped>
-h2 {
+h3 {
   margin: 50px auto;
 }
 </style>

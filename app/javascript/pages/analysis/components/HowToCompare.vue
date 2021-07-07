@@ -31,7 +31,10 @@
             </template>
             {{ tooltip[n-1] }}
           </v-tooltip>
-          <v-tooltip bottom max-width="80%">
+          <v-tooltip
+            bottom
+            max-width="80%"
+          >
             <template #activator="{ on, attrs }">
               <v-icon
                 class="ml-3"
@@ -46,7 +49,10 @@
                 <p>
                   {{ tooltipDescription }}
                 </p>
-                <img :src="require(`../../../../assets/images/${tooltipImage}`)" style="width:100%" />
+                <img
+                  :src="require(`../../../../assets/images/${tooltipImage}`)"
+                  style="width:100%"
+                >
               </v-col>
             </v-card>
           </v-tooltip>

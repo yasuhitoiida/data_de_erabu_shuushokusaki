@@ -8,7 +8,7 @@
       <h2>JobHunter<span>'</span>s Choice</h2>
       <v-row>
         <v-col align="center">
-          <h4>お仕事選びをデータで後押し</h4>
+          <h5>お仕事選びをデータで後押し</h5>
         </v-col>
       </v-row>
       <v-row>
@@ -21,7 +21,7 @@
             width="260"
             dark
             large
-            >
+          >
             Start
           </v-btn>
         </v-col>
@@ -38,7 +38,7 @@
           >
             <img src="../../assets/images/undraw_Travel_mode_re_2lxo.svg">
             <v-divider />
-            <v-card-title><h4>こんなあなたに</h4></v-card-title>
+            <v-card-title><h5>こんなあなたに</h5></v-card-title>
             <v-card-text align="left">
               <div>
                 <v-icon>mdi-hexagon-multiple-outline</v-icon>
@@ -74,7 +74,7 @@
           >
             <img src="../../assets/images/undraw_Metrics_re_6g90.svg">
             <v-divider />
-            <v-card-title><h4>ベストな選択肢を提案</h4></v-card-title>
+            <v-card-title><h5>ベストな選択肢を提案</h5></v-card-title>
             <v-card-text align="left">
               企業活動や公共事業でも用いられる意思決定法「AHP」により、複数の志望先からベストな選択肢を提案。<br>あなたの企業研究の成果を元に、根拠あるデータで意思決定をサポートします。
             </v-card-text>
@@ -92,7 +92,7 @@
             <img src="../../assets/images/undraw_Projections_re_1mrh.svg">
             <v-divider />
             <v-card-title center>
-              <h4>簡単に、スピーディーに</h4>
+              <h5>簡単に、スピーディーに</h5>
             </v-card-title>
             <v-card-text align="left">
               分析にかかわる煩雑なデータ処理はすべてアプリにおまかせ。最小限の作業で分析結果が取得できます。
@@ -111,7 +111,7 @@
               AHP（階層分析法）とは？
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-              <AboutAHP></AboutAHP>
+              <AboutAHP />
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>

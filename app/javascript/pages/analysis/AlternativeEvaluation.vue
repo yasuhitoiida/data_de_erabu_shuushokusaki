@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <TheSteppers :value="4"></TheSteppers>
+    <TheSteppers :value="4" />
     <v-row>
       <v-col
         cols="12"
         lg="8"
         class="mx-auto"
       >
-        <h2>STEP4 選択肢の評価</h2>
+        <h3>STEP4 選択肢の評価</h3>
         <v-col align="center">
           <p>
             あなたが考えている選択肢がどの程度条件を満たしているかを数値化します。<br>
@@ -20,9 +20,9 @@
           :key="index"
           class="mb-15"
         >
-          <h2>
+          <h3>
             {{ item }}
-          </h2>
+          </h3>
           <EvaluationList
             :factors="getAlternatives"
             :list-number="index"
@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style scoped>
-h2 {
+h3 {
   margin: 50px auto;
 }
 </style>

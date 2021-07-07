@@ -1,7 +1,11 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="10" md="6" class="mx-auto">
+      <v-col
+        cols="10"
+        md="6"
+        class="mx-auto"
+      >
         <h1>ユーザー登録</h1>
         <template v-if="errors">
           <ErrorMessage
@@ -11,18 +15,14 @@
         <div id="register-form">
           <div class="name">
             <label for="name_form">ユーザー名</label>
-            <v-text-field
-              outlined
-              dense
+            <input
               id="name_form"
               v-model="user.name"
             />
           </div>
           <div class="email-form">
             <label for="email_form">メールアドレス</label>
-            <v-text-field
-              outlined
-              dense
+            <input
               id="email_form"
               v-model="user.email"
               type="email"
@@ -30,9 +30,7 @@
           </div>
           <div class="password-form">
             <label for="password_form">パスワード</label>
-            <v-text-field
-              outlined
-              dense
+            <input
               id="password_form"
               v-model="user.password"
               type="password"
@@ -40,9 +38,7 @@
           </div>
           <div class="password-confirmation-form">
             <label for="password_confirmation-form">パスワード（確認）</label>
-            <v-text-field
-              outlined
-              dense
+            <input
               id="password_confirmation-form"
               v-model="user.password_confirmation"
               type="password"
