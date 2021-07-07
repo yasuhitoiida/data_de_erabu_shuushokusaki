@@ -9,7 +9,7 @@ export default {
     })
   },
   createBarChartData(array) {
-    // array == [
+    // array: [
     //   {name:選択肢α, multipledWeight:{評価基準A:重要度の積（A,α）, 評価基準B:重要度の積（B,α）}, total:総合評点},
     //   {name:選択肢β, multipledWeight:{評価基準A:重要度の積（A,β）, 評価基準B:重要度の積（B,β）}, total:総合評点},
     // ]
@@ -19,7 +19,7 @@ export default {
       const data = array.map(arr => { return arr.multipledWeight[key] })
       return { label: key, data: data }
     })
-    // datasets == [
+    // datasets: [
     //   { label:評価基準A, data:[重要度の積（A,α）,重要度の積（A,β）]}
     //   { label:評価基準B, data:[重要度の積（B,α）,重要度の積（B,β）]}
     // ]
@@ -29,14 +29,14 @@ export default {
       datasets[i].backgroundColor = bgColors[i]
     }
     return { labels: labels, datasets: datasets }
-    // datasets == [
+    // datasets: [
     //   { label:評価基準A, data:[重要度の積（A,α）,重要度の積（A,β）], backgroundColor:#xxx}
     //   { label:評価基準B, data:[重要度の積（B,α）,重要度の積（B,β）], backgroundColor:#yyy}
     // ]
-    // labels == [選択肢α,選択肢β]
+    // labels: [選択肢α,選択肢β]
   },
   createDoughnutChartData(array) {
-    // array == [
+    // array: [
     //   {name:評価基準A, weight:評価基準Aの重要度}, // geomeanなどは省略
     //   {name:評価基準B, weight:評価基準Bの重要度}
     // ]
@@ -45,14 +45,14 @@ export default {
     const bgColors = this.backgroundColor(array.length)
     const datasets = [{ data: data, backgroundColor: bgColors }]
     return { labels: labels, datasets: datasets }
-    // labels == [評価基準A,評価基準B]
-    // datasets == [{
+    // labels: [評価基準A,評価基準B]
+    // datasets: [{
     //   data:[評価基準Aの重要度,評価基準Bの重要度],
     //   backgroundColor:[#xxx,#yyy]
     // }]
   },
   createTableHeaderWeight(hash) {
-    // hash == {
+    // hash: {
     //   scoreString:{要素a:要素aに対するスコア, 要素b:要素bに対するスコア} // geomeanなどは省略
     // }
 
@@ -66,7 +66,7 @@ export default {
       { text: '重要度', value: 'weight', width: '150px'}  // 最後のカラム
     )
     return array
-    // array == [
+    // array: [
     //   { text: '要素名', value: 'name', width: '150px'},
     //   { text: '要素A'に対するスコア, value: `scoreString.要素A`, width: '120px', align: 'center'}
     //   { text: '要素B'に対するスコア, value: `scoreString.要素B`, width: '120px', align: 'center'}
@@ -75,7 +75,7 @@ export default {
     // ]
   },
   createTableHeaderResult(hash) {
-    // hash == {name:選択肢α, multipledWeight:{評価基準A:..., 評価基準B:...}, total:総合評点}
+    // hash: {name:選択肢α, multipledWeight:{評価基準A:..., 評価基準B:...}, total:総合評点}
     const array = Object.keys(hash.multipledWeight).map(key => {
       return {text: key, value: `multipledWeight.${key}`, width: '120px', align: 'center'}
     })
@@ -84,7 +84,7 @@ export default {
       { text: '総合評点', value: 'total', width: '150px', align: 'center'}
     )
     return array
-    // array == [
+    // array: [
     //   { text: '要素名', value: 'name', width: '150px'},
     //   { text: '評価基準A', value: `multipledWeight.評価基準A`, width: '120px', align: 'center'},
     //   { text: '評価基準B', value: `multipledWeight.評価基準B`, width: '120px', align: 'center'},
