@@ -5,6 +5,28 @@
       <router-view />
     </v-main>
     <TheFooter />
+    <v-dialog
+      v-model="dialog"
+      persistent
+      width="360"
+    >
+      <v-card
+        align="center"
+      >
+        <v-card-title>
+          最初からやり直してください
+        </v-card-title>
+        <v-card-text>
+          不正な操作により入力データが破損しています。
+        </v-card-text>
+        <v-btn
+          @click="retry"
+          outlined
+          color="red lighten-2"
+          class="mb-3"
+        >OK</v-btn>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -16,6 +38,20 @@ export default {
     TheHeader,
     TheFooter
   },
+  data() {
+    return {
+      dialog: false,
+    }
+  },
+  errorCaptured() {
+    this.dialog = true
+  },
+  methods: {
+    retry() {
+      this.dialog = false
+      location.href = 'step1'
+    }
+  }
 }
 </script>
 
@@ -29,7 +65,4 @@ export default {
 #app a {
   text-decoration: none;
 }
-/* #app fieldset {
-  border: 1px solid #cccccc;
-} */
 </style>

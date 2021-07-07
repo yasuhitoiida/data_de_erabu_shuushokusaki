@@ -1,6 +1,6 @@
 export default {
   makePairs(arr) {
-    // arr == [a,b,c,d]
+    // arr: [a,b,c,d]
     const newArray = []
     let i, j
     for(i = 1; i < arr.length; i++){
@@ -10,7 +10,7 @@ export default {
       }
     }
     return newArray
-    //newArray == [[a,b],[a,c],[a,d],[b,c],[b,d],[c,d]]
+    //newArray: [[a,b],[a,c],[a,d],[b,c],[b,d],[c,d]]
   },
   abs(val) {
     // 絶対値を返す
@@ -18,7 +18,7 @@ export default {
   },
   geomean(arr) {
     // 幾何平均を返す
-    // arr == [a,b,c]
+    // arr: [a,b,c]
     let n = arr.reduce((a,b) => {
       return a * b
     })
@@ -26,8 +26,8 @@ export default {
     // a*b*cの3乗根（幾何平均）
   },
   weightCalculation(factors, evalData) {
-    // factors == [a,b,c]
-    // evalData == [a対bの評点,a対cの評点,b対cの評点]
+    // factors: [a,b,c]
+    // evalData: [a対bの評点,a対cの評点,b対cの評点]
     let h, i, j, k, l
     // 要素ごとにデータを格納するためのハッシュを用意する
     const array = factors.map(f => {
@@ -85,7 +85,7 @@ export default {
       array[l].weight = array[l].geomean / geomeanTotal
     }
     return array
-    // array == [
+    // array: [
     //   { name:a,
     //     scoreString:{a:aに対するスコア, b:bに対するスコア, c:cに対するスコア},
     //     score:[aに対するスコア, bに対するスコア, cに対するスコア],
@@ -107,11 +107,11 @@ export default {
     // ]
   },
   resultCalculation(criImp, altEval) {
-    // criImp == [
+    // criImp: [
     //   {name:評価基準A, weight:評価基準Aの重要度}, // geomeanなどは省略
     //   {name:評価基準B, weight:評価基準Bの重要度}
     // ]
-    // altEval == [
+    // altEval: [
     //   { criterion:評価基準A,
     //     data:[
     //       {name:選択肢α, weight:選択肢αの重要度}, // geomeanなどは省略
@@ -147,13 +147,13 @@ export default {
       array[k].total = Number(array[k].total.toFixed(3))
     }
     return array
-    // array == [
+    // array: [
     //   {name:選択肢α, multipledWeight:{評価基準A:重要度の積（A,α）, 評価基準B:重要度の積（B,α）}, total:総合評点},
     //   {name:選択肢β, multipledWeight:{評価基準A:重要度の積（A,β）, 評価基準B:重要度の積（B,β）}, total:総合評点},
     // ]
   },
   bestChoice(result) {
-    // result == [
+    // result: [
     //   {name:選択肢α, total:総合評点}, // multipledWeightは省略
     //   {name:選択肢β, total:総合評点}
     // ]
