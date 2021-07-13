@@ -139,7 +139,8 @@ export default {
         items: null
       },
       bestChoice: null,
-      chart: false
+      chart: false,
+      result: null
     }
   },
   computed: {
@@ -166,11 +167,13 @@ export default {
       // ベストチョイス
       this.bestChoice = this.$calculator.bestChoice(result)
       this.chart = true //グラフ等々を表示
+      this.result = result
       console.log(result)
     },
     saveResult() {
       const hash = {
-        criterion_importance: this.getCriterionImportances
+        criterion_importance: this.getCriterionImportances,
+        alternative_result: this.result
       }
       this.$axios.post('../../api/analyses', { analysis: hash })
       .then(res => {

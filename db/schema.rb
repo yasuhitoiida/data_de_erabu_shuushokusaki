@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_11_063303) do
+ActiveRecord::Schema.define(version: 2021_07_13_210908) do
+
+  create_table "alternative_results", force: :cascade do |t|
+    t.string "alternative_name"
+    t.float "total"
+    t.integer "analysis_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["analysis_id"], name: "index_alternative_results_on_analysis_id"
+  end
 
   create_table "analyses", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -47,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_07_11_063303) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "alternative_results", "analyses"
   add_foreign_key "analyses", "users"
   add_foreign_key "criterion_importances", "analyses"
   add_foreign_key "taxonomies", "users"
