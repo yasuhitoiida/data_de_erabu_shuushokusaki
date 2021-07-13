@@ -6,7 +6,7 @@
         md="6"
         class="mx-auto"
       >
-        <h1>ログイン</h1>
+        <h3>ログイン</h3>
         <div id="login-form">
           <div class="email-form">
             <label for="email_form">メールアドレス</label>
@@ -15,6 +15,7 @@
               v-model="user.email"
               type="email"
               @focus="errors=null"
+              class="form-control mb-4"
             />
           </div>
           <div class="password-form">
@@ -23,8 +24,8 @@
               id="password_form"
               v-model="user.password"
               type="password"
-              class="form-control"
               @focus="errors=null"
+              class="form-control mb-4"
             />
           </div>
           <template v-if="errors">
@@ -69,7 +70,7 @@ export default {
         this.$router.push('/')
       } catch(err) {
         console.log(err)
-        this.errors = ['パスワードが一致しません']
+        this.errors = ['メールアドレス、パスワードのどちらかに誤りがあります']
         this.user.password = null
       }
     },
@@ -79,7 +80,7 @@ export default {
 </script>
 
 <style scoped>
-input {
-  margin-bottom: 10px;
+h3 {
+  margin: 50px auto;
 }
 </style>

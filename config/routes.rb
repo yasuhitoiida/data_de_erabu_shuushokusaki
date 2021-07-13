@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         get 'me'
       end
     end
+    resources :analyses, only: %i[index create]
   end
   get '*path', to: 'home#index'
   root 'home#index'

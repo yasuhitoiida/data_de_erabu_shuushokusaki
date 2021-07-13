@@ -6,7 +6,7 @@
         md="6"
         class="mx-auto"
       >
-        <h1>ユーザー登録</h1>
+        <h3>ユーザー登録</h3>
         <template v-if="errors">
           <ErrorMessage
             :messages="errors"
@@ -18,6 +18,7 @@
             <input
               id="name_form"
               v-model="user.name"
+              class="form-control mb-4"
             />
           </div>
           <div class="email-form">
@@ -26,6 +27,7 @@
               id="email_form"
               v-model="user.email"
               type="email"
+              class="form-control mb-4"
             />
           </div>
           <div class="password-form">
@@ -34,6 +36,7 @@
               id="password_form"
               v-model="user.password"
               type="password"
+              class="form-control mb-4"
             />
           </div>
           <div class="password-confirmation-form">
@@ -42,6 +45,7 @@
               id="password_confirmation-form"
               v-model="user.password_confirmation"
               type="password"
+              class="form-control mb-4"
             />
           </div>
           <v-btn
@@ -92,7 +96,7 @@ export default {
 </script>
 
 <style scoped>
-input {
-  margin-bottom: 10px;
+h3 {
+  margin: 50px auto;
 }
 </style>

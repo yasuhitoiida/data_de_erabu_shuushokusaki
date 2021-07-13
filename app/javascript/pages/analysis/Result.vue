@@ -18,7 +18,7 @@
             </p>
             <TheButtons
               preview-page-path="/analysis/step4"
-              @ok-button="handleResult"
+              @ok-button="displayResult"
             />
           </v-col>
         </v-row>
@@ -57,6 +57,11 @@
               title="条件の重要度"
             />
           </v-col>
+          <v-row>
+            <v-col align="center">
+              <v-btn @click="saveResult">結果を保存</v-btn>
+            </v-col>
+          </v-row>
           <v-row>
             <DataTable
               :headers="tableDataResult.headers"
@@ -138,13 +143,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('analysis', ['getCriterionImportances', 'getAlternativeEvaluations'])
+    ...mapGetters('analysis', ['getAlternatives','getCriterionImportances', 'getAlternativeEvaluations'])
   },
   methods: {
     topPage() {
       location.href = '/'
     },
-    handleResult() {
+    displayResult() {
       const cri = this.getCriterionImportances //評価基準の重要度
       const alt = this.getAlternativeEvaluations //選択肢の評価値
       const result = this.$calculator.resultCalculation(cri, alt) //総合評点
@@ -163,6 +168,19 @@ export default {
       this.chart = true //グラフ等々を表示
       console.log(result)
     },
+    saveResult() {
+      const hash = {
+        criterion_importance: this.getCriterionImportances
+      }
+      this.$axios.post('../../api/analyses', { analysis: hash })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      }
+      )
+    }
   }
 }
 </script>
