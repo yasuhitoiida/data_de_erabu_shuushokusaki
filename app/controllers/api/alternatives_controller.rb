@@ -3,7 +3,7 @@ class Api::AlternativesController < ApplicationController
 
   def create
     alternatives = @current_user.alternatives.build(alternative_params)
-    
+
     if alternatives.save
       render json: alternatives
     else

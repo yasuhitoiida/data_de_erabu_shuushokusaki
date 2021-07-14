@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :alternative_result do
-    alternative_name { "MyString" }
+    sequence(:alternative_name) {|n| "alternative#{n}" }
     total { 1.5 }
-    analysis { nil }
+    association :analysis
   end
 end

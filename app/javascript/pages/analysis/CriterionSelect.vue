@@ -25,6 +25,7 @@
             v-model="addedCriteria"
             placeholder="追加したい条件を記入"
             class="form-control"
+            maxlength="50"
             @focus="errors = null"
           >
           <v-btn
