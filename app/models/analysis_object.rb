@@ -15,7 +15,10 @@ class AnalysisObject < ApplicationController
     end
 
     self.alternative_result.each do |alt|
-      analysis.alternative_results.create(alternative_name: alt[:name], total: alt[:total])
+      alternative = analysis.alternative_results.create(alternative_name: alt[:name], total: alt[:total])
+      alt[:multipledWeight].each do |arr|
+        alternative.multipled_weights.create(criterion_name: arr[:criterion], value: arr[:value])
+      end
     end
   end
 end

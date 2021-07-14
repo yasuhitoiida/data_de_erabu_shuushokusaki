@@ -10,15 +10,26 @@ export default {
   },
   createBarChartData(array) {
     // array: [
-    //   {name:選択肢α, multipledWeight:{評価基準A:重要度の積（A,α）, 評価基準B:重要度の積（B,α）}, total:総合評点},
-    //   {name:選択肢β, multipledWeight:{評価基準A:重要度の積（A,β）, 評価基準B:重要度の積（B,β）}, total:総合評点},
+    //   { name:選択肢α,
+    //     multipledWeight:[
+    //       {criterion:評価基準A, value:重要度の積（A,α）},{criterion:評価基準B, value:重要度の積（B,α）}
+    //     ],
+    //     total:総合評点
+    //   },
+    //   { name:選択肢β,
+    //     multipledWeight:[
+    //       {criterion:評価基準A, value:重要度の積（A,β）},{criterion:評価基準B, value:重要度の積（B,β）}
+    //     ],
+    //     total:総合評点
+    //   },
     // ]
     const labels = array.map(f => { return f.name })
     // 評価基準ごとに各選択肢のmultipledWeightをまとめる
-    const datasets = Object.keys(array[0].multipledWeight).map(key => {
-      const data = array.map(arr => { return arr.multipledWeight[key] })
-      return { label: key, data: data }
+    const datasets = array[0].multipledWeight.map((f,index) => {
+      const data = array.map(a => { return a.multipledWeight[index].value })
+      return { label:f.criterion, data:data }
     })
+
     // datasets: [
     //   { label:評価基準A, data:[重要度の積（A,α）,重要度の積（A,β）]}
     //   { label:評価基準B, data:[重要度の積（B,α）,重要度の積（B,β）]}
@@ -75,9 +86,9 @@ export default {
     // ]
   },
   createTableHeaderResult(hash) {
-    // hash: {name:選択肢α, multipledWeight:{評価基準A:..., 評価基準B:...}, total:総合評点}
-    const array = Object.keys(hash.multipledWeight).map(key => {
-      return {text: key, value: `multipledWeight.${key}`, width: '120px', align: 'center'}
+    // hash: {name:選択肢α, multipledWeight:[{criterion:評価基準A,value:値}, {criterion:評価基準B,value:値}], total:総合評点}
+    const array = hash.multipledWeight.map((f,index) => {
+      return {text: f.criterion, value: `multipledWeight[${index}].value`, width: '120px', align: 'center'}
     })
     array.unshift({ text: '要素名', value: 'name', width: '150px'})
     array.push(
@@ -86,8 +97,8 @@ export default {
     return array
     // array: [
     //   { text: '要素名', value: 'name', width: '150px'},
-    //   { text: '評価基準A', value: `multipledWeight.評価基準A`, width: '120px', align: 'center'},
-    //   { text: '評価基準B', value: `multipledWeight.評価基準B`, width: '120px', align: 'center'},
+    //   { text: '評価基準A', value: `multipledWeight[0][1]`, width: '120px', align: 'center'},
+    //   { text: '評価基準B', value: `multipledWeight[1][1]`, width: '120px', align: 'center'},
     //   { text: '総合評点', value: 'total', width: '150px', align: 'center'}
     // ]
   }

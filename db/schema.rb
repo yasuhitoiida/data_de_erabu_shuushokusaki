@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_210908) do
+ActiveRecord::Schema.define(version: 2021_07_13_214124) do
 
   create_table "alternative_results", force: :cascade do |t|
     t.string "alternative_name"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2021_07_13_210908) do
     t.index ["analysis_id"], name: "index_criterion_importances_on_analysis_id"
   end
 
+  create_table "multipled_weights", force: :cascade do |t|
+    t.string "criterion_name"
+    t.float "value"
+    t.integer "alternative_result_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["alternative_result_id"], name: "index_multipled_weights_on_alternative_result_id"
+  end
+
   create_table "taxonomies", force: :cascade do |t|
     t.string "name"
     t.string "type"
@@ -59,5 +68,6 @@ ActiveRecord::Schema.define(version: 2021_07_13_210908) do
   add_foreign_key "alternative_results", "analyses"
   add_foreign_key "analyses", "users"
   add_foreign_key "criterion_importances", "analyses"
+  add_foreign_key "multipled_weights", "alternative_results"
   add_foreign_key "taxonomies", "users"
 end

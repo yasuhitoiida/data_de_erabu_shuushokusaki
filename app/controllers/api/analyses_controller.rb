@@ -14,6 +14,6 @@ class Api::AnalysesController < ApplicationController
   private
 
   def analysis_params
-    params.require(:analysis).permit(criterion_importance: [:name, :weight], alternative_result: [:name, :total])
+    params.require(:analysis).permit(criterion_importance: [:name, :weight], alternative_result: [:name, :total, multipledWeight:[:criterion, :value]])
   end
 end

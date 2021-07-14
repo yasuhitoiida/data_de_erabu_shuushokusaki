@@ -128,7 +128,7 @@ export default {
     let i, j, k
     // 選択肢ごとにデータを格納するためのハッシュを用意する
     const array = altEval[0].data.map(alt => {
-      return { name: alt.name, multipledWeight:{}, total: 0 }
+      return { name: alt.name, multipledWeight:[], total: 0 }
     })
     // 選択肢ごとに総合評点を算出
     for (i = 0; i < altEval.length; i++) {
@@ -138,7 +138,7 @@ export default {
         const a = array.find(alt => alt.name === d[j].name)　// 選択肢名で格納用ハッシュを検索
         // 重要度の積と総合評点を算出
         const weight = Number((d[j].weight * criweight).toFixed(3))　// 小数点3桁に整形
-        a.multipledWeight[altEval[i].criterion] = weight // 評価基準名をキーとしてmultipledWeightに格納
+        a.multipledWeight.push({criterion:altEval[i].criterion, value:weight}) // 評価基準名と重要度の積をmultipledWeightに格納
         a.total += weight // 総合評点として加算していく
       }
     }
@@ -148,8 +148,18 @@ export default {
     }
     return array
     // array: [
-    //   {name:選択肢α, multipledWeight:{評価基準A:重要度の積（A,α）, 評価基準B:重要度の積（B,α）}, total:総合評点},
-    //   {name:選択肢β, multipledWeight:{評価基準A:重要度の積（A,β）, 評価基準B:重要度の積（B,β）}, total:総合評点},
+    //   { name:選択肢α,
+    //     multipledWeight:[
+    //       {criterion:評価基準A, value:重要度の積（A,α）},{criterion:評価基準B, value:重要度の積（B,α）}
+    //     ],
+    //     total:総合評点
+    //   },
+    //   { name:選択肢β,
+    //     multipledWeight:[
+    //       {criterion:評価基準A, value:重要度の積（A,β）},{criterion:評価基準B, value:重要度の積（B,β）}
+    //     ],
+    //     total:総合評点
+    //   },
     // ]
   },
   bestChoice(result) {
