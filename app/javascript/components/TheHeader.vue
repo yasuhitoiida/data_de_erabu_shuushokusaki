@@ -12,7 +12,7 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
-      <!-- <v-toolbar-items
+      <v-toolbar-items
         v-if="isAuthenticated"
       >
         <v-menu offset-y>
@@ -66,7 +66,7 @@
         >
           ログイン
         </v-btn>
-      </v-toolbar-items> -->
+      </v-toolbar-items>
     </v-app-bar>
   </div>
 </template>

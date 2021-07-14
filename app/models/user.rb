@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  include JwtToken
+  has_many :analyses
+  has_many :alternatives
+
   validates :name,              presence: true, length: { maximum: 255 }
   validates :email,             presence: true, uniqueness: true
   validates :password,          length: { minimum: 8 },

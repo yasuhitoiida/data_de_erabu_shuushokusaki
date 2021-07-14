@@ -90,7 +90,7 @@ export default {
     },
     handleAlternative() {
       // バリデーションした上で入力値をストアに保存
-      const alt = this.alternatives.filter(v => v) //空要素を除去
+      const alt = this.alternatives.filter(v => v && v.match(/\S/g)) // blankを除去
       if (this.isEnough(alt) && this.isUnique(alt)) {
         this.setAlternatives(alt)
         this.$router.push('/analysis/step2')
