@@ -11,13 +11,13 @@ class AnalysisObject < ApplicationController
     analysis.save
 
     criterion_importance.each do |cri|
-      analysis.criterion_importances.create(criterion_name: cri[:name], weight: cri[:weight])
+      analysis.criterion_importances.create(name: cri[:name], weight: cri[:weight])
     end
 
     alternative_result.each do |alt|
-      alternative = analysis.alternative_results.create(alternative_name: alt[:name], total: alt[:total])
+      alternative = analysis.alternative_results.create(name: alt[:name], total: alt[:total])
       alt[:multipledWeight].each do |arr|
-        alternative.multipled_weights.create(criterion_name: arr[:criterion], value: arr[:value])
+        alternative.multipled_weights.create(criterion: arr[:criterion], value: arr[:value])
       end
     end
   end

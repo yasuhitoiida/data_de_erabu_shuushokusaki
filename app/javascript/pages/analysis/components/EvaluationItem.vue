@@ -72,7 +72,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('analysis', ['getImpRawData', 'getEvalRawData'])
+    ...mapGetters('analyses', ['getImpRawData', 'getEvalRawData'])
   },
   watch: {
     value: 'sendValue'

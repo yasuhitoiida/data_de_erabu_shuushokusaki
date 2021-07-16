@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_07_13_214124) do
 
   create_table "alternative_results", force: :cascade do |t|
-    t.string "alternative_name"
+    t.string "name"
     t.float "total"
     t.integer "analysis_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_214124) do
 
   create_table "criterion_importances", force: :cascade do |t|
     t.integer "analysis_id", null: false
-    t.string "criterion_name"
+    t.string "name"
     t.float "weight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_214124) do
   end
 
   create_table "multipled_weights", force: :cascade do |t|
-    t.string "criterion_name"
+    t.string "criterion"
     t.float "value"
     t.integer "alternative_result_id", null: false
     t.datetime "created_at", precision: 6, null: false

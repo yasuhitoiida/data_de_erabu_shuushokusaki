@@ -57,7 +57,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('analysis', ['getCriteria'])
+    ...mapGetters('analyses', ['getCriteria'])
   },
   methods: {
     setEvaluationData(arr) {
@@ -69,14 +69,15 @@ export default {
       if (this.evaluationData) { // これがないということは未入力のEvaluationItemがあるということ
         const raw = [].concat(this.evaluationData) //素点
         const imp = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData) //重要度
-        this.setCriterionImportances({imp: imp, raw: raw})
+        this.setCriterionImportances(imp)
+        this.setImpRawData(raw)
         this.$router.push('/analysis/step4')
         console.log(imp)
       } else {
         this.errors = ['未入力の項目があります']
       }
     },
-    ...mapActions('analysis', ['setCriterionImportances'])
+    ...mapActions('analyses', ['setCriterionImportances', 'setImpRawData'])
   }
 }
 </script>

@@ -68,7 +68,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('analysis', ['getCriteria', 'getAlternatives'])
+    ...mapGetters('analyses', ['getCriteria', 'getAlternatives'])
   },
   methods: {
     setEvalDataCollection(cri, ind, arr) {
@@ -87,14 +87,15 @@ export default {
           h.criterion = f.criterion
           return h
         })
-        this.setAlternativeEvaluations({eval: ev, raw: raw})
+        this.setAlternativeEvaluations(ev)
+        this.setEvalRawData(raw)
         this.$router.push('/analysis/result')
         console.log(ev)
       } else {
         this.errors = ['未入力の項目があります']
       }
     },
-    ...mapActions('analysis', ['setAlternativeEvaluations'])
+    ...mapActions('analyses', ['setAlternativeEvaluations', 'setEvalRawData'])
   }
 }
 </script>

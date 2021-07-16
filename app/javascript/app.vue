@@ -45,7 +45,7 @@ export default {
       dialog: false,
     }
   },
-  errorCaptured() {
+  errorCaptured(e, vm, info) {
     this.dialog = true
   },
   methods: {
