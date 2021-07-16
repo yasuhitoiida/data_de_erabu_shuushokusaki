@@ -20,7 +20,8 @@
             :id="'alternative' + index"
             v-model="alternatives[index]"
             class="form-control mb-3"
-          />
+            maxlength="50"
+          >
         </div>
         <div>
           <router-link

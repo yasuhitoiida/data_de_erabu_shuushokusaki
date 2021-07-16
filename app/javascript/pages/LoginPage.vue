@@ -14,9 +14,9 @@
               id="email_form"
               v-model="user.email"
               type="email"
-              @focus="errors=null"
               class="form-control mb-4"
-            />
+              @focus="errors=null"
+            >
           </div>
           <div class="password-form">
             <label for="password_form">パスワード</label>
@@ -24,9 +24,9 @@
               id="password_form"
               v-model="user.password"
               type="password"
-              @focus="errors=null"
               class="form-control mb-4"
-            />
+              @focus="errors=null"
+            >
           </div>
           <template v-if="errors">
             <ErrorMessage

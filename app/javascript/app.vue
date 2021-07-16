@@ -20,11 +20,13 @@
           不正な操作により入力データが破損しています。
         </v-card-text>
         <v-btn
-          @click="retry"
           outlined
           color="red lighten-2"
           class="mb-3"
-        >OK</v-btn>
+          @click="retry"
+        >
+          OK
+        </v-btn>
       </v-card>
     </v-dialog>
   </v-app>

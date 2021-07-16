@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :multipled_weight do
-    criterion_name { "MyString" }
+    sequence(:criterion_name) {|n| "criterion#{n}" }
     value { 1.5 }
-    alternative_result { nil }
+    association :alternative_result
   end
 end

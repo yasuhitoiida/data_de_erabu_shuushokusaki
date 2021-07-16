@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :analysis do
-    user { nil }
+    association :user
   end
 end

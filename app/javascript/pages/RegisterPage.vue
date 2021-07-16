@@ -19,7 +19,7 @@
               id="name_form"
               v-model="user.name"
               class="form-control mb-4"
-            />
+            >
           </div>
           <div class="email-form">
             <label for="email_form">メールアドレス</label>
@@ -28,7 +28,7 @@
               v-model="user.email"
               type="email"
               class="form-control mb-4"
-            />
+            >
           </div>
           <div class="password-form">
             <label for="password_form">パスワード</label>
@@ -37,7 +37,7 @@
               v-model="user.password"
               type="password"
               class="form-control mb-4"
-            />
+            >
           </div>
           <div class="password-confirmation-form">
             <label for="password_confirmation-form">パスワード（確認）</label>
@@ -46,7 +46,7 @@
               v-model="user.password_confirmation"
               type="password"
               class="form-control mb-4"
-            />
+            >
           </div>
           <v-btn
             dark
