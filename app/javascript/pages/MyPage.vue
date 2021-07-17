@@ -40,7 +40,7 @@
                 :key="index"
               >
                 <v-list-item-content @click="showAnalysis(item.id)">
-                  <v-list-item-title>{{ item.created_at }}</v-list-item-title>
+                  <v-list-item-title>{{ timeFormat(item.created_at) }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-list-item-group>
@@ -88,6 +88,11 @@ export default {
     }
   },
   methods: {
+    timeFormat(t) {
+      const month = t.substr(5, 2)
+      const date = t.substr(8, 2)
+      return Number(month) + '/' + date
+    },
     showAnalysis(id) {
       this.chart = false
       this.$axios.get(`../../api/analyses/${id}`)
