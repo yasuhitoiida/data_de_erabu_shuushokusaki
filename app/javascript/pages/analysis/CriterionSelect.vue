@@ -40,7 +40,7 @@
           />
         </template>
         <TheButtons
-          preview-page-path="/analysis/step1"
+          preview-page-path="/step1"
           @ok-button="handleSelectedCriteria"
         />
       </v-col>
@@ -121,7 +121,7 @@ export default {
       const array = this.selectedCriteria
       if (array.length >= 2) {
         this.setCriteria(array)
-        this.$router.push('/analysis/step3')
+        this.$router.push('/step3')
         console.log(array)
       } else {
         this.errors = ['条件を2つ以上選んでください']
@@ -135,5 +135,6 @@ export default {
 <style scoped>
 h3 {
   margin: 50px auto;
+  text-align: center;
 }
 </style>

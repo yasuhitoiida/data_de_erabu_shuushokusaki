@@ -20,9 +20,9 @@
           :key="index"
           class="mb-15"
         >
-          <h3>
+          <h4>
             {{ item }}
-          </h3>
+          </h4>
           <EvaluationList
             :factors="getAlternatives"
             :list-number="index"
@@ -35,7 +35,7 @@
           />
         </template>
         <TheButtons
-          preview-page-path="/analysis/step3"
+          preview-page-path="/step3"
           @ok-button="handleAlternativeEvaluation"
         />
       </v-col>
@@ -89,7 +89,7 @@ export default {
         })
         this.setAlternativeEvaluations(ev)
         this.setEvalRawData(raw)
-        this.$router.push('/analysis/result')
+        this.$router.push('/result')
         console.log(ev)
       } else {
         this.errors = ['未入力の項目があります']
@@ -102,6 +102,10 @@ export default {
 
 <style scoped>
 h3 {
+  margin: 50px auto;
+  text-align: center;
+}
+h4 {
   margin: 50px auto;
 }
 </style>

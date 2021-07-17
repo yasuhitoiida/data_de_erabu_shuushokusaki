@@ -94,7 +94,7 @@ export default {
       const alt = this.alternatives.filter(v => v && v.match(/\S/g)) // blankを除去
       if (this.isEnough(alt) && this.isUnique(alt)) {
         this.setAlternatives(alt)
-        this.$router.push('/analysis/step2')
+        this.$router.push('/step2')
         console.log(alt)
       } else if (this.isEnough(alt)) {
         this.errors = ['入力内容に重複があります']
@@ -110,5 +110,6 @@ export default {
 <style scoped>
 h3 {
   margin: 50px auto;
+  text-align: center;
 }
 </style>
