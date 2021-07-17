@@ -17,7 +17,7 @@
               決定ボタンを押して結果を表示してください。
             </p>
             <TheButtons
-              preview-page-path="/analysis/step4"
+              preview-page-path="/step4"
               @ok-button="displayResult"
             />
           </v-col>
@@ -209,7 +209,7 @@ export default {
         criterion_importance: this.criImp,
         alternative_result: this.result
       }
-      this.$axios.post('../../api/analyses', { analysis: hash })
+      this.$axios.post('analyses', { analysis: hash })
       .then(res => {
         this.alertSuccess = true
         this.saveButton = false

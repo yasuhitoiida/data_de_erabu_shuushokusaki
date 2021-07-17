@@ -4,10 +4,10 @@ RSpec.describe 'Analysis', type: :system do
   let(:criterion_number) { 3 }
   let(:alternative_number) { 3 }
   describe 'STEP1' do
-    before { visit '/analysis/step1' }
+    before { visit '/step1' }
   xit '入力された選択肢が2つ以上のとき次ページに遷移する' do
       alternative_input(2)
-      expect(page).to have_current_path('/analysis/step2'), '次ページに遷移していません'
+      expect(page).to have_current_path('/step2'), '次ページに遷移していません'
     end
 
   xit '入力された選択肢が2つ未満のときエラーメッセージが表示される' do
@@ -34,12 +34,12 @@ RSpec.describe 'Analysis', type: :system do
 
   describe 'STEP2' do
     before do
-      visit '/analysis/step1'
+      visit '/step1'
       alternative_input(alternative_number)
     end
   xit '条件が2つ以上選択されているとき次ページに遷移する' do
       criterion_select(2)
-      expect(page).to have_current_path('/analysis/step3'), '次ページに遷移していません'
+      expect(page).to have_current_path('/step3'), '次ページに遷移していません'
     end
 
   xit '条件が2つ以上選択されていないときエラーメッセージが表示される' do
@@ -65,13 +65,13 @@ RSpec.describe 'Analysis', type: :system do
 
   describe 'STEP3' do
     before do
-      visit '/analysis/step1'
+      visit '/step1'
       alternative_input(alternative_number)
       criterion_select(criterion_number)
     end
   xit 'ラジオボタンがすべて押されているとき次ページに遷移する' do
       criterion_importance(criterion_number)
-      expect(page).to have_current_path('/analysis/step4'), '次ページに遷移していません'
+      expect(page).to have_current_path('/step4'), '次ページに遷移していません'
     end
 
   xit 'ラジオボタンがすべて押されていないときエラーメッセージが表示される' do
@@ -102,14 +102,14 @@ RSpec.describe 'Analysis', type: :system do
 
   describe 'STEP4' do
     before do
-      visit '/analysis/step1'
+      visit '/step1'
       alternative_input(alternative_number)
       criterion_select(criterion_number)
       criterion_importance(criterion_number)
     end
   xit "ラジオボタンがすべて押されているとき次ページに遷移する" do
       alternative_evaluation(criterion_number, alternative_number)
-      expect(page).to have_current_path('/analysis/result'), '次ページに遷移していません'
+      expect(page).to have_current_path('/result'), '次ページに遷移していません'
     end
 
   xit "ラジオボタンがすべて押されていないときエラーメッセージが出る" do
@@ -148,7 +148,7 @@ RSpec.describe 'Analysis', type: :system do
 
   describe '結果' do
     before do
-      visit '/analysis/step1'
+      visit '/step1'
       analysis(criterion_number, alternative_number)
     end
   xit '決定ボタンを押すと結果が表示される' do
@@ -175,7 +175,7 @@ RSpec.describe 'Analysis', type: :system do
     end
 
    xit '非ログインで保存ボタンを押すと保存に失敗する' do
-      visit '/analysis/step1'
+      visit '/step1'
       analysis(criterion_number, alternative_number)
       click_on '決定'
       sleep 2
@@ -187,7 +187,7 @@ RSpec.describe 'Analysis', type: :system do
   describe 'マイページ' do
     it '分析結果を表示できる' do
       login(create(:user))
-      visit '/analysis/step1'
+      visit '/step1'
       analysis(criterion_number, alternative_number)
       click_on '決定'
       sleep 2

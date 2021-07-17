@@ -125,7 +125,7 @@ export default {
       })
       .catch(err => {
         console.log(err);
-        // this.errors = err.response.data;
+        this.errors = err.response.data;
       })
     },
     async login() {

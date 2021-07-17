@@ -25,7 +25,7 @@
           />
         </template>
         <TheButtons
-          preview-page-path="/analysis/step2"
+          preview-page-path="/step2"
           @ok-button="handleCriterionImportance"
         />
       </v-col>
@@ -71,7 +71,7 @@ export default {
         const imp = this.$calculator.weightCalculation(this.getCriteria, this.evaluationData) //重要度
         this.setCriterionImportances(imp)
         this.setImpRawData(raw)
-        this.$router.push('/analysis/step4')
+        this.$router.push('/step4')
         console.log(imp)
       } else {
         this.errors = ['未入力の項目があります']

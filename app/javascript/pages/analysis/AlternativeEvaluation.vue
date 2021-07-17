@@ -35,7 +35,7 @@
           />
         </template>
         <TheButtons
-          preview-page-path="/analysis/step3"
+          preview-page-path="/step3"
           @ok-button="handleAlternativeEvaluation"
         />
       </v-col>
@@ -89,7 +89,7 @@ export default {
         })
         this.setAlternativeEvaluations(ev)
         this.setEvalRawData(raw)
-        this.$router.push('/analysis/result')
+        this.$router.push('/result')
         console.log(ev)
       } else {
         this.errors = ['未入力の項目があります']
