@@ -57,7 +57,7 @@
               title="条件の重要度"
             />
           </v-col>
-          <v-row>
+          <v-row justify="center">
             <v-col
               cols="12"
               md="8"
@@ -67,6 +67,7 @@
                 v-if="saveButton"
                 @click="saveResult"
                 class="mb-2"
+                block
               >
                 結果を保存
               </v-btn>
