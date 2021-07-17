@@ -10,13 +10,14 @@
         <v-row v-if="!chart">
           <v-col
             align="center"
+            class="mt-12"
           >
             <p>
               おつかれさまでした！<br>
               決定ボタンを押して結果を表示してください。
             </p>
             <TheButtons
-              preview-page-path="/step4"
+              preview-page-path="/analysis/step4"
               @ok-button="displayResult"
             />
           </v-col>
@@ -28,7 +29,7 @@
           >
             <h3>
               <div class="mb-2">
-                あなたのベストな選択肢
+                あなたのベストな選択肢：
               </div>
               <span
                 v-for="item in bestChoice"
@@ -116,8 +117,7 @@
     </v-row>
     <UserModal
       :display="userModal"
-      @close-modal="closeModal"
-      @authenticated="saveResultAfterAuthentication"
+      @close-modal="userModal=false"
     ></UserModal>
   </v-container>
 </template>
@@ -201,9 +201,6 @@ export default {
     topPage() {
       location.href = '/'
     },
-    closeModal() {
-      this.userModal = false
-    },
     displayResult() {
       this.chart = true
     },
@@ -212,7 +209,7 @@ export default {
         criterion_importance: this.criImp,
         alternative_result: this.result
       }
-      this.$axios.post('analyses', { analysis: hash })
+      this.$axios.post('../../api/analyses', { analysis: hash })
       .then(res => {
         this.alertSuccess = true
         this.saveButton = false
@@ -224,12 +221,12 @@ export default {
       }
       )
     },
-    saveResultAfterAuthentication() {
-      this.closeModal()
-      this.saveResult()
-    },
     handleResult() {
-      this.getLoginUser ? this.saveResult() : this.userModal = true
+      if (this.getLoginUser) {
+        this.saveResult
+      } else {
+        this.userModal = true
+      }
     }
   }
 }
@@ -238,6 +235,5 @@ export default {
 <style scoped>
 h3 {
   margin: 50px auto;
-  text-align: center;
 }
 </style>

@@ -26,11 +26,11 @@ const router = new Router({
            {path: '/register', component: Register},
            {path: '/login', component: Login},
            {path: '/mypage', component: MyPage, meta: { requiredAuth: true }},
-           {path: '/step1', component: AlternativeInput},
-           {path: '/step2', component: CriterionSelect},
-           {path: '/step3', component: CriterionImportance},
-           {path: '/step4', component: AlternativeEvaluation},
-           {path: '/result', component: Result}]
+           {path: '/analysis/step1', component: AlternativeInput},
+           {path: '/analysis/step2', component: CriterionSelect},
+           {path: '/analysis/step3', component: CriterionImportance},
+           {path: '/analysis/step4', component: AlternativeEvaluation},
+           {path: '/analysis/result', component: Result}]
 })
 
 router.beforeEach((to, from, next) => {

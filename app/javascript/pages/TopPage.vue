@@ -15,7 +15,7 @@
         <v-col align="center">
           <v-btn
             id="analysis-btn"
-            to="/step1"
+            to="/analysis/step1"
             color="#6495ed"
             height="70"
             width="260"

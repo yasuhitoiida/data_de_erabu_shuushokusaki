@@ -98,6 +98,5 @@ export default {
 <style scoped>
 h3 {
   margin: 50px auto;
-  text-align: center;
 }
 </style>
