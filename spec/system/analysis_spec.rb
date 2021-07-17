@@ -160,32 +160,55 @@ RSpec.describe 'Analysis', type: :system do
 
   describe '保存' do
     let(:user) { create(:user) }
-   xit 'ログイン状態で保存ボタンを押すと結果が保存できる' do
-      login(user)
-      click_on 'Start'
-      analysis(criterion_number, alternative_number)
-      click_on '決定'
-      sleep 2
-      click_on '結果を保存'
-      visit current_path
-      expect(Analysis.count).to eq(1), '結果が保存されていません'
-      expect(CriterionImportance.count).to eq(criterion_number), '結果が保存されていません'
-      expect(AlternativeResult.count).to eq(alternative_number), '結果が保存されていません'
-      expect(MultipledWeight.count).to eq(alternative_number * criterion_number), '結果が保存されていません'
+    context 'ログイン状態のとき' do
+      xit '保存ボタンを押すと結果が保存できる' do
+        login(user)
+        click_on 'Start'
+        analysis(criterion_number, alternative_number)
+        click_on '決定'
+        sleep 2
+        click_on '結果を保存'
+        visit current_path
+        expect(Analysis.count).to eq(1), '結果が保存されていません'
+        expect(CriterionImportance.count).to eq(criterion_number), '結果が保存されていません'
+        expect(AlternativeResult.count).to eq(alternative_number), '結果が保存されていません'
+        expect(MultipledWeight.count).to eq(alternative_number * criterion_number), '結果が保存されていません'
+      end
     end
 
-   xit '非ログインで保存ボタンを押すと保存に失敗する' do
-      visit '/step1'
-      analysis(criterion_number, alternative_number)
-      click_on '決定'
-      sleep 2
-      click_on '結果を保存'
-      expect(page).to have_content('分析結果を保存できませんでした'), 'アラートが表示されていません'
+    context '未ログイン状態のとき' do
+      before do
+        visit '/step1'
+        analysis(criterion_number, alternative_number)
+        click_on '決定'
+        sleep 2
+        click_on '結果を保存'
+      end
+      it 'ログインに成功すると保存できる' do
+        within '#user-modal' do
+          within '#login-form' do
+            fill_in 'メールアドレス', with: user.email
+            fill_in 'パスワード', with: '12345678'
+          end
+          click_on 'ログイン'
+        end
+        expect(page).to_not have_css('.v-dialog'), 'モーダルが消えていません'
+        expect(Analysis.count).to eq(1), '結果が保存されていません'
+      end
+
+      it 'ログインに失敗すると保存できない' do
+        within '#user-modal' do
+          click_on 'ログイン'
+        end
+        expect(page).to have_css('.v-dialog'), 'モーダルが閉じられています'
+        expect(Analysis.count).to eq(0), '結果が保存されています'
+      end
+
     end
   end
 
   describe 'マイページ' do
-    it '分析結果を表示できる' do
+    xit '分析結果を表示できる' do
       login(create(:user))
       visit '/step1'
       analysis(criterion_number, alternative_number)
