@@ -142,12 +142,12 @@ export default {
     register() {
       this.$axios.post('users', { user: this.userRegister })
       .then(res => {
-        this.$router.push('/login');
-        console.log(res);
+        this.errors = ['登録が完了しました','ログインをお願いします']
+        console.log(res)
       })
       .catch(err => {
         this.errors = err.response.data;
-        console.log(err);
+        console.log(err)
       })
     },
     async login() {

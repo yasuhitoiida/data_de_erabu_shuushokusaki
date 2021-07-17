@@ -28,7 +28,7 @@
           >
             <h3>
               <div class="mb-2">
-                あなたのベストな選択肢：
+                あなたのベストな選択肢
               </div>
               <span
                 v-for="item in bestChoice"
