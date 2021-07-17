@@ -58,10 +58,20 @@
             />
           </v-col>
           <v-row>
-            <v-col align="center">
-              <v-btn @click="saveResult">
+            <v-col
+              cols="12"
+              md="8"
+              align="center"
+            >
+              <v-btn
+                v-if="saveButton"
+                @click="saveResult"
+                class="mb-2"
+              >
                 結果を保存
               </v-btn>
+              <v-alert type="success" color="#6495ed" v-if="alertSuccess">分析結果を保存しました</v-alert>
+              <v-alert type="error" v-if="alertError">分析結果を保存できませんでした</v-alert>
             </v-col>
           </v-row>
           <v-row>
@@ -127,6 +137,9 @@ export default {
   data() {
     return {
       chart: false,
+      alertSuccess: false,
+      alertError: false,
+      saveButton: true
     }
   },
   computed: {
@@ -180,9 +193,12 @@ export default {
       }
       this.$axios.post('../../api/analyses', { analysis: hash })
       .then(res => {
+        this.alertSuccess = true
+        this.saveButton = false
         console.log(res)
       })
       .catch(err => {
+        this.alertError = true
         console.error(err)
       }
       )
