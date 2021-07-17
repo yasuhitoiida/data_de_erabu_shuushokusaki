@@ -20,9 +20,9 @@
           :key="index"
           class="mb-15"
         >
-          <h3>
+          <h4>
             {{ item }}
-          </h3>
+          </h4>
           <EvaluationList
             :factors="getAlternatives"
             :list-number="index"
@@ -102,6 +102,10 @@ export default {
 
 <style scoped>
 h3 {
+  margin: 50px auto;
+  text-align: center;
+}
+h4 {
   margin: 50px auto;
 }
 </style>

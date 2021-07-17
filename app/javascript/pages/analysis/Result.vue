@@ -10,7 +10,6 @@
         <v-row v-if="!chart">
           <v-col
             align="center"
-            class="mt-12"
           >
             <p>
               おつかれさまでした！<br>
@@ -117,7 +116,8 @@
     </v-row>
     <UserModal
       :display="userModal"
-      @close-modal="userModal=false"
+      @close-modal="closeModal"
+      @authenticated="saveResultAfterAuthentication"
     ></UserModal>
   </v-container>
 </template>
@@ -201,6 +201,9 @@ export default {
     topPage() {
       location.href = '/'
     },
+    closeModal() {
+      this.userModal = false
+    },
     displayResult() {
       this.chart = true
     },
@@ -221,12 +224,12 @@ export default {
       }
       )
     },
+    saveResultAfterAuthentication() {
+      this.closeModal()
+      this.saveResult()
+    },
     handleResult() {
-      if (this.getLoginUser) {
-        this.saveResult
-      } else {
-        this.userModal = true
-      }
+      this.getLoginUser ? this.saveResult() : this.userModal = true
     }
   }
 }
@@ -235,5 +238,6 @@ export default {
 <style scoped>
 h3 {
   margin: 50px auto;
+  text-align: center;
 }
 </style>
