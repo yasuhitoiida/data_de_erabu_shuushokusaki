@@ -3,7 +3,7 @@ const state = {
   loginUser: null
 };
 const getters = {
-  loginUser: state => state.loginUser
+  getLoginUser: state => state.loginUser
 };
 const mutations = {
   loginUser(state, user) {

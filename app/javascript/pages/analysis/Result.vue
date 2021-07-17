@@ -65,7 +65,7 @@
             >
               <v-btn
                 v-if="saveButton"
-                @click="saveResult"
+                @click="handleResult"
                 class="mb-2"
                 block
               >
@@ -115,6 +115,10 @@
         </v-col>
       </v-col>
     </v-row>
+    <UserModal
+      :display="userModal"
+      @close-modal="userModal=false"
+    ></UserModal>
   </v-container>
 </template>
 
@@ -126,6 +130,7 @@ import DoughnutGraph from '../../components/DoughnutGraph.vue'
 import AboutAnalisysMethod from '../../components/AboutAnalisysMethod.vue'
 import TheButtons from './components/TheButtons.vue'
 import DataTable from '../../components/DataTable.vue'
+import UserModal from './components/UserModal.vue'
 export default {
   name: 'Result',
   components: {
@@ -133,14 +138,16 @@ export default {
     DoughnutGraph,
     AboutAnalisysMethod,
     TheButtons,
-    DataTable
+    DataTable,
+    UserModal
   },
   data() {
     return {
       chart: false,
       alertSuccess: false,
       alertError: false,
-      saveButton: true
+      saveButton: true,
+      userModal: false
     }
   },
   computed: {
@@ -177,7 +184,18 @@ export default {
     bestChoice() {
       return this.$calculator.bestChoice(this.result)
     },
-    ...mapGetters('analyses', ['getAlternatives','getCriterionImportances', 'getAlternativeEvaluations'])
+    ...mapGetters(
+      'analyses', [
+        'getAlternatives',
+        'getCriterionImportances',
+        'getAlternativeEvaluations',
+      ]
+    ),
+    ...mapGetters(
+      'users', [
+        'getLoginUser'
+      ]
+    )
   },
   methods: {
     topPage() {
@@ -185,11 +203,10 @@ export default {
     },
     displayResult() {
       this.chart = true
-      console.log(this.result)
     },
     saveResult() {
       const hash = {
-        criterion_importance: this.getCriterionImportances,
+        criterion_importance: this.criImp,
         alternative_result: this.result
       }
       this.$axios.post('../../api/analyses', { analysis: hash })
@@ -203,6 +220,13 @@ export default {
         console.error(err)
       }
       )
+    },
+    handleResult() {
+      if (this.getLoginUser) {
+        this.saveResult
+      } else {
+        this.userModal = true
+      }
     }
   }
 }

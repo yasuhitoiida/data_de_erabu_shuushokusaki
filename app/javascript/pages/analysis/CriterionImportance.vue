@@ -64,7 +64,7 @@ export default {
       // EvaluationListから送られてきた評点配列を受け取る
       this.evaluationData = arr
     },
-    async handleCriterionImportance() {
+    handleCriterionImportance() {
       // バリデーションした上で素点と重要度をストアに保存
       if (this.evaluationData) { // これがないということは未入力のEvaluationItemがあるということ
         const raw = [].concat(this.evaluationData) //素点
