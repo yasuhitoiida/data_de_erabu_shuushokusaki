@@ -65,7 +65,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('analysis', ['getAlternatives'])
+    ...mapGetters('analyses', ['getAlternatives'])
   },
   created() {
     // 次ページから戻ってきたときに入力値が残ってるように
@@ -102,7 +102,7 @@ export default {
         this.errors = ['選択肢を2つ以上入力してください']
       }
     },
-    ...mapActions('analysis', ['setAlternatives', 'setAlternativeEvaluations'])
+    ...mapActions('analyses', ['setAlternatives', 'setAlternativeEvaluations'])
   }
 }
 </script>

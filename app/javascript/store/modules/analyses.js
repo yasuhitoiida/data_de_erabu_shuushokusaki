@@ -42,13 +42,17 @@ const actions = {
   setCriteria({commit}, array) {
     commit('setCriteria', array)
   },
-  setCriterionImportances({commit}, hash) {
-    commit('setCriterionImportances', hash.imp)
-    commit('setImpRawData', hash.raw)
+  setCriterionImportances({commit}, array) {
+    commit('setCriterionImportances', array)
   },
-  setAlternativeEvaluations({commit}, hash) {
-    commit('setAlternativeEvaluations', hash.eval)
-    commit('setEvalRawData', hash.raw)
+  setImpRawData({commit}, array) {
+    commit('setImpRawData', array)
+  },
+  setAlternativeEvaluations({commit}, array) {
+    commit('setAlternativeEvaluations', array)
+  },
+  setEvalRawData({commit}, array) {
+    commit('setEvalRawData', array)
   }
 }
 

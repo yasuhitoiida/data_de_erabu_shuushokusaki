@@ -57,11 +57,22 @@
               title="条件の重要度"
             />
           </v-col>
-          <v-row>
-            <v-col align="center">
-              <v-btn @click="saveResult">
+          <v-row justify="center">
+            <v-col
+              cols="12"
+              md="8"
+              align="center"
+            >
+              <v-btn
+                v-if="saveButton"
+                @click="saveResult"
+                class="mb-2"
+                block
+              >
                 結果を保存
               </v-btn>
+              <v-alert type="success" color="#6495ed" v-if="alertSuccess">分析結果を保存しました</v-alert>
+              <v-alert type="error" v-if="alertError">分析結果を保存できませんでした</v-alert>
             </v-col>
           </v-row>
           <v-row>
@@ -126,51 +137,55 @@ export default {
   },
   data() {
     return {
-      barChartData: null,
-      doughnutChartData: null,
-      tableDataCri: {
-        headers: null,
-        items: null
-      },
-      tableDataAlt: {
-        headers: null,
-        items: null
-      },
-      tableDataResult: {
-        headers: null,
-        items: null
-      },
-      bestChoice: null,
       chart: false,
-      result: null
+      alertSuccess: false,
+      alertError: false,
+      saveButton: true
     }
   },
   computed: {
-    ...mapGetters('analysis', ['getAlternatives','getCriterionImportances', 'getAlternativeEvaluations'])
+    criImp() {
+      return this.getCriterionImportances
+    },
+    altEval() {
+      return this.getAlternativeEvaluations
+    },
+    result() {
+      return this.$calculator.resultCalculation(this.criImp, this.altEval)
+    },
+    barChartData() {
+      return this.$chart.createBarChartData(this.result)
+    },
+    doughnutChartData() {
+      return this.$chart.createDoughnutChartData(this.criImp)
+    },
+    tableDataCri() {
+      const h = this.$chart.createTableHeaderWeight(this.criImp[0])
+      const i = this.criImp
+      return { headers: h, items: i}
+    },
+    tableDataAlt() {
+      const h = this.$chart.createTableHeaderWeight(this.altEval[0].data[0])
+      const i = this.altEval
+      return { headers: h, items: i}
+    },
+    tableDataResult() {
+      const h = this.$chart.createTableHeaderResult(this.result[0])
+      const i = this.result
+      return { headers: h, items: i}
+    },
+    bestChoice() {
+      return this.$calculator.bestChoice(this.result)
+    },
+    ...mapGetters('analyses', ['getAlternatives','getCriterionImportances', 'getAlternativeEvaluations'])
   },
   methods: {
     topPage() {
       location.href = '/'
     },
     displayResult() {
-      const cri = this.getCriterionImportances //評価基準の重要度
-      const alt = this.getAlternativeEvaluations //選択肢の評価値
-      const result = this.$calculator.resultCalculation(cri, alt) //総合評点
-      // 総合評点の棒グラフ用データと評価基準重要度の円グラフ用データを作成
-      this.barChartData = this.$chart.createBarChartData(result)
-      this.doughnutChartData = this.$chart.createDoughnutChartData(cri)
-      // データテーブル用のヘッダーとアイテムを作成
-      this.tableDataCri.headers = this.$chart.createTableHeaderWeight(cri[0])
-      this.tableDataCri.items = cri
-      this.tableDataAlt.headers = this.$chart.createTableHeaderWeight(alt[0].data[0])
-      this.tableDataAlt.items = alt
-      this.tableDataResult.headers = this.$chart.createTableHeaderResult(result[0])
-      this.tableDataResult.items = result
-      // ベストチョイス
-      this.bestChoice = this.$calculator.bestChoice(result)
-      this.chart = true //グラフ等々を表示
-      this.result = result
-      console.log(result)
+      this.chart = true
+      console.log(this.result)
     },
     saveResult() {
       const hash = {
@@ -179,9 +194,12 @@ export default {
       }
       this.$axios.post('../../api/analyses', { analysis: hash })
       .then(res => {
+        this.alertSuccess = true
+        this.saveButton = false
         console.log(res)
       })
       .catch(err => {
+        this.alertError = true
         console.error(err)
       }
       )

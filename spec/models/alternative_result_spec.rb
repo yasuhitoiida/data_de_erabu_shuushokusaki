@@ -7,17 +7,17 @@ RSpec.describe AlternativeResult, type: :model do
   end
 
   it '選択肢名がないとき無効' do
-    alt = build(:alternative_result, alternative_name: '')
+    alt = build(:alternative_result, name: '')
     expect(alt).to_not be_valid
   end
 
   it '選択肢名が51文字以上であるとき無効' do
-    alt = build(:alternative_result, alternative_name: 'a' * 51)
+    alt = build(:alternative_result, name: 'a' * 51)
     expect(alt).to_not be_valid
   end
 
   it '選択肢名が空白文字であるとき無効' do
-    alt = build(:alternative_result, alternative_name: ' ')
+    alt = build(:alternative_result, name: ' ')
     expect(alt).to_not be_valid
   end
 

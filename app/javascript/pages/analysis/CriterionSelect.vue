@@ -83,7 +83,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('analysis', ['getAlternatives', 'getCriteria'])
+    ...mapGetters('analyses', ['getAlternatives', 'getCriteria'])
   },
   created() {
     // 他ページから移動してきたとき入力値が残ってるように
@@ -127,7 +127,7 @@ export default {
         this.errors = ['条件を2つ以上選んでください']
       }
     },
-    ...mapActions('analysis', ['setCriteria', 'setCriterionImportances', 'setAlternativeEvaluations'])
+    ...mapActions('analyses', ['setCriteria', 'setCriterionImportances', 'setAlternativeEvaluations'])
   }
 }
 </script>
