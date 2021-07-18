@@ -11,7 +11,7 @@ class Api::AnalysesController < ApplicationController
     alt = analysis.alternative_results
     results = JSON.parse(alt.map.to_json(methods: :multipledWeight))
 
-    render json: { criterion_importances: importances, alternative_results: results }
+    render json: { analysis: analysis, criterion_importances: importances, alternative_results: results }
   end
 
   def create

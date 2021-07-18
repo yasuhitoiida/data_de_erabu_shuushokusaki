@@ -4,9 +4,8 @@
       <v-col
         cols="12"
         lg="10"
-        class="mx-auto"
+        class="mx-auto my-12"
       >
-        <h3>結果</h3>
         <v-row v-if="!chart">
           <v-col
             align="center"
@@ -26,16 +25,18 @@
             cols="12"
             align="center"
           >
-            <h3>
+            <h4>
               <div class="mb-2">
                 あなたのベストな選択肢
               </div>
+            </h4>
+            <h2>
               <span
                 v-for="item in bestChoice"
                 :key="item"
                 class="mx-2"
               >{{ item }}</span>
-            </h3>
+            </h2>
           </v-col>
           <v-col
             cols="12"
@@ -67,10 +68,13 @@
                 @click="handleResult"
                 class="mb-2"
                 block
+                outlined
+                color="#6495ed"
+                height="60"
               >
-                結果を保存
+                <h4>結果を保存</h4>
               </v-btn>
-              <v-alert type="success" color="#6495ed" v-if="alertSuccess">分析結果を保存しました</v-alert>
+              <v-alert type="success" v-if="alertSuccess">分析結果を保存しました</v-alert>
               <v-alert type="error" v-if="alertError">分析結果を保存できませんでした</v-alert>
             </v-col>
           </v-row>
@@ -239,5 +243,8 @@ export default {
 h3 {
   margin: 50px auto;
   text-align: center;
+}
+h4 {
+  margin-bottom: 0;
 }
 </style>

@@ -6,7 +6,7 @@
         lg="10"
         class="mx-auto"
       >
-        <h3>マイページ</h3>
+        <h3>{{ getLoginUser.name }}</h3>
         <v-row
           v-if="chart"
         >
@@ -16,6 +16,7 @@
             class="mx-auto my-auto"
             v-if="chart"
           >
+            <h4>{{ dateFormat(createdAt) }}の分析結果</h4>
             <BarGraph
               :chart-data="barChartData"
               title="総合評点"
@@ -32,6 +33,7 @@
             />
           </v-col>
         </v-row>
+        <h4>分析履歴</h4>
         <v-card>
           <v-list>
             <v-list-item-group>
@@ -40,7 +42,7 @@
                 :key="index"
               >
                 <v-list-item-content @click="showAnalysis(item.id)">
-                  <v-list-item-title>{{ timeFormat(item.created_at) }}</v-list-item-title>
+                  <v-list-item-title>{{ dateFormat(item.created_at) }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-list-item-group>
@@ -53,6 +55,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import DoughnutGraph from '../components/DoughnutGraph.vue'
 import BarGraph from '../components/BarGraph.vue'
 export default {
@@ -64,7 +67,8 @@ export default {
   data() {
     return {
       analyses: null,
-      criImp: null,
+      createdAt: null,
+      criterionImportance: null,
       result: null,
       chart: false
     }
@@ -81,14 +85,15 @@ export default {
   },
   computed: {
     doughnutChartData() {
-      return this.$chart.createDoughnutChartData(this.criImp)
+      return this.$chart.createDoughnutChartData(this.criterionImportance)
     },
     barChartData() {
       return this.$chart.createBarChartData(this.result)
-    }
+    },
+    ...mapGetters('users', ['getLoginUser'])
   },
   methods: {
-    timeFormat(t) {
+    dateFormat(t) {
       const month = t.substr(5, 2)
       const date = t.substr(8, 2)
       return Number(month) + '/' + date
@@ -97,7 +102,8 @@ export default {
       this.chart = false
       this.$axios.get(`../../api/analyses/${id}`)
       .then(res => {
-        this.criImp = res.data.criterion_importances
+        this.createdAt = res.data.analysis.created_at
+        this.criterionImportance = res.data.criterion_importances
         this.result = res.data.alternative_results
         this.chart = true
         console.log(res)
