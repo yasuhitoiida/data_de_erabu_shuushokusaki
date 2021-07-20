@@ -7,14 +7,11 @@
         class="mx-auto"
       >
         <h3>{{ getLoginUser.name }}</h3>
-        <v-row
-          v-if="chart"
-        >
+        <v-row v-if="chart">
           <v-col
             cols="12"
             md="8"
             class="mx-auto my-auto"
-            v-if="chart"
           >
             <h4>{{ dateFormat(createdAt) }}の分析結果</h4>
             <BarGraph
@@ -70,26 +67,32 @@ export default {
       createdAt: null,
       criterionImportance: null,
       result: null,
-      chart: false
+      doughnutChartData: null,
+      barChartData: null,
+      chart: null
     }
   },
   created() {
-    this.$axios.get('../../api/analyses')
+    this.$axios.get('analyses')
     .then(res => {
       this.analyses = res.data
+      this.showAnalysis(res.data[0].id)
       console.log(res)
     })
     .catch(err => {
       console.log(err)
     })
   },
+  watch: {
+    criterionImportance(v) {
+      this.doughnutChartData = this.$chart.createDoughnutChartData(v)
+    },
+    result(v) {
+      this.barChartData = this.$chart.createBarChartData(v)
+      this.chart = true
+    }
+  },
   computed: {
-    doughnutChartData() {
-      return this.$chart.createDoughnutChartData(this.criterionImportance)
-    },
-    barChartData() {
-      return this.$chart.createBarChartData(this.result)
-    },
     ...mapGetters('users', ['getLoginUser'])
   },
   methods: {
@@ -100,12 +103,11 @@ export default {
     },
     showAnalysis(id) {
       this.chart = false
-      this.$axios.get(`../../api/analyses/${id}`)
+      this.$axios.get(`analyses/${id}`)
       .then(res => {
         this.createdAt = res.data.analysis.created_at
         this.criterionImportance = res.data.criterion_importances
         this.result = res.data.alternative_results
-        this.chart = true
         console.log(res)
       })
       .catch(err => {
