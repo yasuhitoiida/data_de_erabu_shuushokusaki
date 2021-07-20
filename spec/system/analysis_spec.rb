@@ -184,7 +184,7 @@ RSpec.describe 'Analysis', type: :system do
         sleep 2
         click_on '結果を保存'
       end
-      it 'ログインに成功すると保存できる' do
+      xit 'ログインに成功すると保存できる' do
         within '#user-modal' do
           within '#login-form' do
             fill_in 'メールアドレス', with: user.email
@@ -196,7 +196,7 @@ RSpec.describe 'Analysis', type: :system do
         expect(Analysis.count).to eq(1), '結果が保存されていません'
       end
 
-      it 'ログインに失敗すると保存できない' do
+      xit 'ログインに失敗すると保存できない' do
         within '#user-modal' do
           click_on 'ログイン'
         end
@@ -208,7 +208,7 @@ RSpec.describe 'Analysis', type: :system do
   end
 
   describe 'マイページ' do
-    xit '分析結果を表示できる' do
+    it '分析結果を表示できる' do
       login(create(:user))
       visit '/step1'
       analysis(criterion_number, alternative_number)
@@ -216,7 +216,6 @@ RSpec.describe 'Analysis', type: :system do
       sleep 2
       click_on '結果を保存'
       visit '/mypage'
-      find('.v-list-item').click
       expect(page).to have_selector('#bar-chart')
     end
   end

@@ -46,6 +46,7 @@ export default {
     }
   },
   errorCaptured(e, vm, info) {
+    console.log(vm)
     this.dialog = true
   },
   methods: {

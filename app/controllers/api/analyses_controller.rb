@@ -2,7 +2,7 @@ class Api::AnalysesController < ApplicationController
   before_action :authenticate!
 
   def index
-    render json: @@current_user.analyses
+    render json: @@current_user.analyses.order(created_at: :desc)
   end
 
   def show
