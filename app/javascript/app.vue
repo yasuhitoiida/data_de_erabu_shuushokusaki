@@ -46,8 +46,9 @@ export default {
     }
   },
   errorCaptured(e, vm, info) {
-    console.log(vm)
-    this.dialog = true
+    if (vm.$root.$el.baseURI.match(/step || result/)) {
+      this.dialog = true
+    }
   },
   methods: {
     retry() {
