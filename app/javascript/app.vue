@@ -69,4 +69,7 @@ export default {
 #app a {
   text-decoration: none;
 }
+#app .v-btn {
+  text-transform: none;
+}
 </style>

@@ -98,8 +98,6 @@ export default {
 
 <style scoped>
 #logo {
-  font-family: Avenir;
-  text-transform: none;
   font-size: 18px;
 }
 #logo span {
