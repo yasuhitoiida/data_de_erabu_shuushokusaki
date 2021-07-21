@@ -1,19 +1,12 @@
 class Api::AlternativesController < ApplicationController
   before_action :authenticate!
 
-  def create
-    alternatives = @current_user.alternatives.build(alternative_params)
-
-    if alternatives.save
-      render json: alternatives
-    else
-      render json: alternatives.errors.full_messages, status: :unprocessable_entity
+  def index
+    analyses = @@current_user.analyses
+    alternatives = []
+    analyses.each do |a|
+      alternatives.concat(a.alternative_results.pluck(:name))
     end
-  end
-
-  private
-
-  def alternative_params
-    params.require(:alternative).permit(name: [])
+    render json: alternatives
   end
 end

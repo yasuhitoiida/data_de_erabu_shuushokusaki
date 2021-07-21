@@ -7,11 +7,28 @@
         class="mx-auto alternative-forms"
       >
         <h3>STEP1 選択肢の記入</h3>
-        <v-col align="center">
-          <p>
-            あなたが今考えている会社名や求人などを記入してください。
-          </p>
-        </v-col>
+        <v-row>
+          <v-col align="center">
+            <p>
+              あなたが今考えている会社名や求人などを記入してください。
+            </p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col
+            class="mb-6"
+          >
+            <v-btn
+              v-for="(item, index) in alternativeHistory"
+              @click="pickUpFromHistory(item)"
+              flat
+              outlined
+              color="#6495ed"
+              height="24"
+              class="mr-1"
+            >{{ item }}</v-btn>
+          </v-col>
+        </v-row>
         <div
           v-for="(item, index) in alternatives"
           :key="index"
@@ -61,11 +78,13 @@ export default {
   data() {
     return {
       alternatives: [null, null, null], //要素の数だけフォームが表示される
-      errors: null
+      errors: null,
+      alternativeHistory: null
     }
   },
   computed: {
-    ...mapGetters('analyses', ['getAlternatives'])
+    ...mapGetters('analyses', ['getAlternatives']),
+    ...mapGetters('users', ['getLoginUser'])
   },
   created() {
     // 次ページから戻ってきたときに入力値が残ってるように
@@ -76,6 +95,15 @@ export default {
     this.$watch('alternatives', function() {
       this.setAlternativeEvaluations({eval: null, raw: null})
     })
+    // 分析履歴のある選択肢を取得
+    if (this.getLoginUser) {
+      this.$axios.get('alternatives')
+      .then(res => {
+        this.alternativeHistory = new Set(res.data)
+        console.log(res)
+      })
+      .catch(err => { console.log(err) })
+    }
   },
   methods: {
     addForm() {
@@ -88,6 +116,9 @@ export default {
     },
     isEnough(arr) {
       return arr.length >= 2 ? true : false
+    },
+    pickUpFromHistory(item) {
+      this.alternatives.unshift(item)
     },
     handleAlternative() {
       // バリデーションした上で入力値をストアに保存

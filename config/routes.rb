@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api, format: 'json' do
     post 'login', to: 'sessions#create'
+    get 'alternatives', to: 'alternatives#index'
     resources :users, only: :create do
       collection do
         get 'me'
