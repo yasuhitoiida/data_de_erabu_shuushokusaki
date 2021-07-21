@@ -21,7 +21,6 @@
             <v-btn
               v-for="(item, index) in alternativeHistory"
               @click="pickUpFromHistory(item)"
-              flat
               outlined
               color="#6495ed"
               height="24"
@@ -29,11 +28,10 @@
             >{{ item }}</v-btn>
           </v-col>
         </v-row>
-        <div
-          v-for="(item, index) in alternatives"
-          :key="index"
-        >
+        <div>
           <input
+            v-for="(item, index) in alternatives"
+            :key="index"
             :id="'alternative' + index"
             v-model="alternatives[index]"
             class="form-control mb-3"
