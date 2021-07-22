@@ -72,16 +72,8 @@ export default {
       chart: null
     }
   },
-  created() {
-    this.$axios.get('analyses')
-    .then(res => {
-      this.analyses = res.data
-      this.showAnalysis(res.data[0].id)
-      console.log(res)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+  computed: {
+    ...mapGetters('users', ['getLoginUser'])
   },
   watch: {
     criterionImportance(v) {
@@ -92,8 +84,16 @@ export default {
       this.chart = true
     }
   },
-  computed: {
-    ...mapGetters('users', ['getLoginUser'])
+  created() {
+    this.$axios.get('analyses')
+    .then(res => {
+      this.analyses = res.data
+      this.showAnalysis(res.data[0].id)
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
   },
   methods: {
     dateFormat(t) {

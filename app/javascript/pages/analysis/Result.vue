@@ -65,17 +65,27 @@
             >
               <v-btn
                 v-if="saveButton"
-                @click="handleResult"
                 class="mb-2"
                 block
                 outlined
                 color="#6495ed"
                 height="60"
+                @click="handleResult"
               >
                 <h4>結果を保存</h4>
               </v-btn>
-              <v-alert type="success" v-if="alertSuccess">分析結果を保存しました</v-alert>
-              <v-alert type="error" v-if="alertError">分析結果を保存できませんでした</v-alert>
+              <v-alert
+                v-if="alertSuccess"
+                type="success"
+              >
+                分析結果を保存しました
+              </v-alert>
+              <v-alert
+                v-if="alertError"
+                type="error"
+              >
+                分析結果を保存できませんでした
+              </v-alert>
             </v-col>
           </v-row>
           <v-row>
@@ -122,7 +132,7 @@
       :display="userModal"
       @close-modal="closeModal"
       @authenticated="saveResultAfterAuthentication"
-    ></UserModal>
+    />
   </v-container>
 </template>
 

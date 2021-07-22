@@ -22,15 +22,8 @@
             dark
             large
           >
-            Start
+            START
           </v-btn>
-          <v-btn-toggle>
-            <v-btn
-              v-for="n in 3"
-              color="red"
-              min-width="23"
-              :key="n">{{n}}</v-btn>
-          </v-btn-toggle>
         </v-col>
       </v-row>
       <v-row class="my-7">

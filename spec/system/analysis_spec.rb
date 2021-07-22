@@ -163,7 +163,7 @@ RSpec.describe 'Analysis', type: :system do
     context 'ログイン状態のとき' do
       xit '保存ボタンを押すと結果が保存できる' do
         login(user)
-        click_on 'Start'
+        click_on 'START'
         analysis(criterion_number, alternative_number)
         click_on '決定'
         sleep 2

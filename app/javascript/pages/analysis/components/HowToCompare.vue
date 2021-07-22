@@ -6,19 +6,49 @@
     <v-card>
       <v-col align="center">
         <v-col>
-          on-mouse!
+          {{ clickOrOnMouse }}
+        </v-col>
+        <v-btn-toggle
+          borderless
+          tile
+          color="deep-purple accent-3"
+          name="#"
+        >
           <v-tooltip
+            v-for="n in 7"
+            :key="n"
             bottom
-            max-width="80%"
+            :open-on-click="true"
+          >
+            <template #activator="{ on, attrs }">
+              <v-btn
+                v-bind="attrs"
+                class="mr-1"
+                elevation="4"
+                :min-width="width"
+                v-on="on"
+              >
+                {{ n }}
+              </v-btn>
+            </template>
+            {{ tooltip[n-1] }}
+          </v-tooltip>
+        </v-btn-toggle>
+        <v-col align="center" class="mt-4 pb-1">
+          <v-tooltip
+          bottom
+          max-width="80%"
+          :open-on-click="true"
+          :open-on-hover="false"
           >
           <template #activator="{ on, attrs }">
-            <v-icon
+            <a
             class="ml-3"
             v-bind="attrs"
             v-on="on"
             >
-            mdi-head-question-outline
-          </v-icon>
+            for example..
+          </a>
         </template>
         <v-card width="600">
           <v-col>
@@ -31,33 +61,8 @@
             >
           </v-col>
         </v-card>
-          </v-tooltip>
+      </v-tooltip>
         </v-col>
-        <v-btn-toggle
-          borderless
-          tile
-          color="deep-purple accent-3"
-          name="#"
-        >
-          <v-tooltip
-            v-for="n in 7"
-            :key="n"
-            bottom
-          >
-            <template #activator="{ on, attrs }">
-              <v-btn
-                v-bind="attrs"
-                class="mr-1"
-                elevation="4"
-                v-on="on"
-                :min-width="width"
-              >
-                {{ n }}
-              </v-btn>
-            </template>
-            {{ tooltip[n-1] }}
-          </v-tooltip>
-        </v-btn-toggle>
       </v-col>
     </v-card>
     <template #activator="{ on, attrs }">
@@ -67,13 +72,14 @@
         v-bind="attrs"
         v-on="on"
       >
-        Help
+        HELP
       </v-btn>
     </template>
   </v-dialog>
 </template>
 
 <script>
+import isMobile from 'ismobilejs'
 export default {
   name: 'HowToCompare',
   props: {
@@ -111,6 +117,9 @@ export default {
   computed: {
     width() {
       return this.$vuetify.breakpoint.width <= 450 ? 36 : 48
+    },
+    clickOrOnMouse() {
+      return isMobile.any ? 'CLICK!' : 'ON-MOUSE!'
     },
     tooltip() {
       return this.type === 'importance' ? this.tooltipImp : this.tooltipEval

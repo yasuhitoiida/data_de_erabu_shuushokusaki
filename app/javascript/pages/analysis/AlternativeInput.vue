@@ -20,19 +20,22 @@
           >
             <v-btn
               v-for="(item, index) in alternativeHistory"
-              @click="pickUpFromHistory(item)"
+              :key="index"
               outlined
               color="#6495ed"
               height="24"
               class="mr-1"
-            >{{ item }}</v-btn>
+              @click="pickUpFromHistory(item)"
+            >
+              {{ item }}
+            </v-btn>
           </v-col>
         </v-row>
         <div>
           <input
             v-for="(item, index) in alternatives"
-            :key="index"
             :id="'alternative' + index"
+            :key="index"
             v-model="alternatives[index]"
             class="form-control mb-3"
             maxlength="50"

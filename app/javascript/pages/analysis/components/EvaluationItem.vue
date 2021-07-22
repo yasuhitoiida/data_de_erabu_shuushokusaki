@@ -86,9 +86,9 @@ export default {
     const m = this.listNumber
     const n = this.itemNumber
     // ストアに保存した評点の配列から、自身と対応する評点を取得する
-    if (this.getImpRawData && this.$route.path === '/analysis/step3') {
+    if (this.getImpRawData && this.$route.path === '/step3') {
         this.value = this.getImpRawData[n] //評価基準の重要度の評点配列から評点を取得
-    } else if ( this.getEvalRawData && this.$route.path === '/analysis/step4') {
+    } else if ( this.getEvalRawData && this.$route.path === '/step4') {
         this.value = this.getEvalRawData[m][n] //選択肢の評価データから該当する評点配列を取得し、その中から評点を取得
     }
   },
@@ -117,13 +117,4 @@ export default {
 </script>
 
 <style scoped>
-  /* // @import '~vuetify/src/styles/styles.sass';
-  //
-  // .custom-class {
-  //   padding: $stepper-step-padding;
-  // } */
-  button {
-    color: #6495ed;
-    min-width: 60px;
-  }
 </style>
