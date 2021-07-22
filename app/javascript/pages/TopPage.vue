@@ -22,7 +22,7 @@
             dark
             large
           >
-            Start
+            START
           </v-btn>
         </v-col>
       </v-row>

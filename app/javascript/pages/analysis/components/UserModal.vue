@@ -1,95 +1,97 @@
 <template>
-    <v-row>
-      <v-dialog
-        v-model="dialog"
-        @click:outside="closeModal"
-        :width="width"
-      >
-        <v-card>
-          <div id="user-modal">
-            <v-row>
-              <v-col
-                align="right"
-                class="pb-0"
+  <v-row>
+    <v-dialog
+      v-model="dialog"
+      :width="width"
+      @click:outside="closeModal"
+    >
+      <v-card>
+        <div id="user-modal">
+          <v-row>
+            <v-col
+              align="right"
+              class="pb-0"
+            >
+              <v-btn
+                icon
+                @click="closeModal"
               >
-                <v-btn
-                  @click="closeModal"
-                  icon
-                ><v-icon>mdi-close</v-icon></v-btn>
-              </v-col>
-            </v-row>
-            <v-col>
-              <h3>ユーザー登録</h3>
-              <template v-if="errors">
-                <ErrorMessage
-                  :messages="errors"
-                />
-              </template>
-              <div id="register-form">
-                <label for="register_name_form">ユーザー名</label>
-                <input
-                  id="register_name_form"
-                  v-model="userRegister.name"
-                  class="form-control mb-4"
-                >
-                <label for="register_email_form">メールアドレス</label>
-                <input
-                  id="register_email_form"
-                  v-model="userRegister.email"
-                  type="email"
-                  class="form-control mb-4"
-                >
-                <label for="register_password_form">パスワード</label>
-                <input
-                  id="register_password_form"
-                  v-model="userRegister.password"
-                  type="password"
-                  class="form-control mb-4"
-                >
-                <label for="register_password_confirmation_form">パスワード（確認）</label>
-                <input
-                  id="register_password_confirmation_form"
-                  v-model="userRegister.password_confirmation"
-                  type="password"
-                  class="form-control mb-4"
-                >
-                <v-btn
-                  dark
-                  color="#6495ed"
-                  @click="register"
-                >
-                  登録
-                </v-btn>
-              </div>
-              <h3>ログイン</h3>
-              <div id="login-form">
-                <label for="login_email_form">メールアドレス</label>
-                <input
-                  id="login_email_form"
-                  v-model="userLogin.email"
-                  type="email"
-                  class="form-control mb-4"
-                >
-                <label for="login_password_form">パスワード</label>
-                <input
-                  id="login_password_form"
-                  v-model="userLogin.password"
-                  type="password"
-                  class="form-control mb-4"
-                >
-                <v-btn
-                  dark
-                  color="#6495ed"
-                  @click="login"
-                >
-                  ログイン
-                </v-btn>
-              </div>
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
             </v-col>
-          </div>
-        </v-card>
-      </v-dialog>
-    </v-row>
+          </v-row>
+          <v-col>
+            <h3>ユーザー登録</h3>
+            <template v-if="errors">
+              <ErrorMessage
+                :messages="errors"
+              />
+            </template>
+            <div id="register-form">
+              <label for="register_name_form">ユーザー名</label>
+              <input
+                id="register_name_form"
+                v-model="userRegister.name"
+                class="form-control mb-4"
+              >
+              <label for="register_email_form">メールアドレス</label>
+              <input
+                id="register_email_form"
+                v-model="userRegister.email"
+                type="email"
+                class="form-control mb-4"
+              >
+              <label for="register_password_form">パスワード</label>
+              <input
+                id="register_password_form"
+                v-model="userRegister.password"
+                type="password"
+                class="form-control mb-4"
+              >
+              <label for="register_password_confirmation_form">パスワード（確認）</label>
+              <input
+                id="register_password_confirmation_form"
+                v-model="userRegister.password_confirmation"
+                type="password"
+                class="form-control mb-4"
+              >
+              <v-btn
+                dark
+                color="#6495ed"
+                @click="register"
+              >
+                登録
+              </v-btn>
+            </div>
+            <h3>ログイン</h3>
+            <div id="login-form">
+              <label for="login_email_form">メールアドレス</label>
+              <input
+                id="login_email_form"
+                v-model="userLogin.email"
+                type="email"
+                class="form-control mb-4"
+              >
+              <label for="login_password_form">パスワード</label>
+              <input
+                id="login_password_form"
+                v-model="userLogin.password"
+                type="password"
+                class="form-control mb-4"
+              >
+              <v-btn
+                dark
+                color="#6495ed"
+                @click="login"
+              >
+                ログイン
+              </v-btn>
+            </div>
+          </v-col>
+        </div>
+      </v-card>
+    </v-dialog>
+  </v-row>
 </template>
 
 <script>
@@ -130,8 +132,7 @@ export default {
         case 'xs': return '100%'
         case 'sm': return '80%'
         case 'md': return '60%'
-        case 'lg': return '40%'
-        case 'xl': return '40%'
+        default: return '40%'
       }
     }
   },

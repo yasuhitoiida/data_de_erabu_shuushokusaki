@@ -5,9 +5,9 @@
   >
     <v-card>
       <v-col align="center">
-        <p>
-          on-mouse!
-        </p>
+        <v-col>
+          {{ clickOrOnMouse }}
+        </v-col>
         <v-btn-toggle
           borderless
           tile
@@ -18,12 +18,14 @@
             v-for="n in 7"
             :key="n"
             bottom
+            :open-on-click="true"
           >
             <template #activator="{ on, attrs }">
               <v-btn
                 v-bind="attrs"
                 class="mr-1"
                 elevation="4"
+                :min-width="width"
                 v-on="on"
               >
                 {{ n }}
@@ -31,32 +33,36 @@
             </template>
             {{ tooltip[n-1] }}
           </v-tooltip>
-          <v-tooltip
-            bottom
-            max-width="80%"
-          >
-            <template #activator="{ on, attrs }">
-              <v-icon
-                class="ml-3"
-                v-bind="attrs"
-                v-on="on"
-              >
-                mdi-head-question-outline
-              </v-icon>
-            </template>
-            <v-card width="600">
-              <v-col>
-                <p>
-                  {{ tooltipDescription }}
-                </p>
-                <img
-                  :src="require(`../../../../assets/images/${tooltipImage}`)"
-                  style="width:100%"
-                >
-              </v-col>
-            </v-card>
-          </v-tooltip>
         </v-btn-toggle>
+        <v-col align="center" class="mt-4 pb-1">
+          <v-tooltip
+          bottom
+          max-width="80%"
+          :open-on-click="true"
+          :open-on-hover="false"
+          >
+          <template #activator="{ on, attrs }">
+            <a
+            class="ml-3"
+            v-bind="attrs"
+            v-on="on"
+            >
+            for example..
+          </a>
+        </template>
+        <v-card width="600">
+          <v-col>
+            <p>
+              {{ tooltipDescription }}
+            </p>
+            <img
+            :src="require(`../../../../assets/images/${tooltipImage}`)"
+            style="width:100%"
+            >
+          </v-col>
+        </v-card>
+      </v-tooltip>
+        </v-col>
       </v-col>
     </v-card>
     <template #activator="{ on, attrs }">
@@ -66,13 +72,14 @@
         v-bind="attrs"
         v-on="on"
       >
-        Help
+        HELP
       </v-btn>
     </template>
   </v-dialog>
 </template>
 
 <script>
+import isMobile from 'ismobilejs'
 export default {
   name: 'HowToCompare',
   props: {
@@ -108,6 +115,12 @@ export default {
     }
   },
   computed: {
+    width() {
+      return this.$vuetify.breakpoint.width <= 450 ? 36 : 48
+    },
+    clickOrOnMouse() {
+      return isMobile.any ? 'CLICK!' : 'ON-MOUSE!'
+    },
     tooltip() {
       return this.type === 'importance' ? this.tooltipImp : this.tooltipEval
     },
