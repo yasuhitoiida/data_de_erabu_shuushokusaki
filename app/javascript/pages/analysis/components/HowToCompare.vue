@@ -5,9 +5,34 @@
   >
     <v-card>
       <v-col align="center">
-        <p>
+        <v-col>
           on-mouse!
-        </p>
+          <v-tooltip
+            bottom
+            max-width="80%"
+          >
+          <template #activator="{ on, attrs }">
+            <v-icon
+            class="ml-3"
+            v-bind="attrs"
+            v-on="on"
+            >
+            mdi-head-question-outline
+          </v-icon>
+        </template>
+        <v-card width="600">
+          <v-col>
+            <p>
+              {{ tooltipDescription }}
+            </p>
+            <img
+            :src="require(`../../../../assets/images/${tooltipImage}`)"
+            style="width:100%"
+            >
+          </v-col>
+        </v-card>
+          </v-tooltip>
+        </v-col>
         <v-btn-toggle
           borderless
           tile
@@ -25,36 +50,12 @@
                 class="mr-1"
                 elevation="4"
                 v-on="on"
+                :min-width="width"
               >
                 {{ n }}
               </v-btn>
             </template>
             {{ tooltip[n-1] }}
-          </v-tooltip>
-          <v-tooltip
-            bottom
-            max-width="80%"
-          >
-            <template #activator="{ on, attrs }">
-              <v-icon
-                class="ml-3"
-                v-bind="attrs"
-                v-on="on"
-              >
-                mdi-head-question-outline
-              </v-icon>
-            </template>
-            <v-card width="600">
-              <v-col>
-                <p>
-                  {{ tooltipDescription }}
-                </p>
-                <img
-                  :src="require(`../../../../assets/images/${tooltipImage}`)"
-                  style="width:100%"
-                >
-              </v-col>
-            </v-card>
           </v-tooltip>
         </v-btn-toggle>
       </v-col>
@@ -108,6 +109,9 @@ export default {
     }
   },
   computed: {
+    width() {
+      return this.$vuetify.breakpoint.width <= 450 ? 36 : 48
+    },
     tooltip() {
       return this.type === 'importance' ? this.tooltipImp : this.tooltipEval
     },

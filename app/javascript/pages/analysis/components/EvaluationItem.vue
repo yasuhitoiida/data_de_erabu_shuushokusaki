@@ -37,6 +37,7 @@
                 :value="n"
                 elevation="4"
                 class="mr-1"
+                :min-width="width"
               >
                 {{ n }}
               </v-btn>
@@ -72,6 +73,9 @@ export default {
     }
   },
   computed: {
+    width() {
+      return this.$vuetify.breakpoint.width <= 450 ? 36 : 48
+    },
     ...mapGetters('analyses', ['getImpRawData', 'getEvalRawData'])
   },
   watch: {
@@ -113,4 +117,13 @@ export default {
 </script>
 
 <style scoped>
+  /* // @import '~vuetify/src/styles/styles.sass';
+  //
+  // .custom-class {
+  //   padding: $stepper-step-padding;
+  // } */
+  button {
+    color: #6495ed;
+    min-width: 60px;
+  }
 </style>
