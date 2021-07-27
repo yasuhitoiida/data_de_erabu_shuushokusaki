@@ -106,8 +106,8 @@ export default {
       this.$axios.get(`analyses/${id}`)
       .then(res => {
         this.createdAt = res.data.analysis.created_at
-        this.criterionImportance = res.data.criterion_importances
-        this.result = res.data.alternative_results
+        this.criterionImportance = res.data.criterionImportances
+        this.result = res.data.alternativeResults
         console.log(res)
       })
       .catch(err => {

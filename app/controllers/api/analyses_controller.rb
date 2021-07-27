@@ -11,7 +11,7 @@ class Api::AnalysesController < ApplicationController
     alt = analysis.alternative_results
     results = JSON.parse(alt.map.to_json(methods: :multipledWeight))
 
-    render json: { analysis: analysis, criterion_importances: importances, alternative_results: results }
+    render json: { analysis: analysis, criterionImportances: importances, alternativeResults: results }
   end
 
   def create
@@ -27,6 +27,6 @@ class Api::AnalysesController < ApplicationController
   private
 
   def analysis_params
-    params.require(:analysis).permit(criterion_importance: %i[name weight], alternative_result: [:name, :total, { multipledWeight: %i[criterion value] }])
+    params.require(:analysis).permit(criterionImportance: %i[name weight], alternativeResult: [:name, :total, multipledWeight: %i[criterion value]])
   end
 end

@@ -223,8 +223,8 @@ export default {
     },
     saveResult() {
       const hash = {
-        criterion_importance: this.criImp,
-        alternative_result: this.result
+        criterionImportance: this.criImp,
+        alternativeResult: this.result
       }
       this.$axios.post('analyses', { analysis: hash })
       .then(res => {
