@@ -78,7 +78,7 @@ Rails.application.configure do
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
-  config.logger = ActiveSupport::Logger.new("log/production.log", 5, 1 * 1024 * 1024)
+  config.logger = Logger.new("shared/log/production.log", 5, 1 * 1024 * 1024)
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
