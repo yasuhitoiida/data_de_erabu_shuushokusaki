@@ -30,7 +30,7 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  # database: <%= Rails.application.credentials.db[:database] %>
+  database: <%= Rails.application.credentials.db[:database] %>
   username: <%= Rails.application.credentials.db[:username] %>
   password: <%= Rails.application.credentials.db[:password] %>
   # socket: <%= Rails.application.credentials.db[:socket] %>
