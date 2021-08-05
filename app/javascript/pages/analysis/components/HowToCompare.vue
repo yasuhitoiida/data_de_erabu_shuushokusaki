@@ -53,10 +53,10 @@
         <v-card width="600">
           <v-col>
             <p>
-              {{ tooltipDescription }}
+              労働時間が通勤時間よりやや重要であるとき
             </p>
             <img
-            :src="require(`../../../../assets/images/${tooltipImage}`)"
+            src="../../../../../public/b245b040c198967969f8819e201edc3f.png"
             style="width:100%"
             >
           </v-col>
@@ -108,8 +108,8 @@ export default {
         '右側が優れている',
         '右側がとても優れている'
       ],
-      tooltipImageImp: 'b245b040c198967969f8819e201edc3f.png',
-      tooltipImageEval: '6df413eb6a048f8dca2df5b18d6241b2.png',
+      tooltipImageImp: '../../../../../public/b245b040c198967969f8819e201edc3f.png',
+      tooltipImageEval: '../../../../../public/6df413eb6a048f8dca2df5b18d6241b2.png',
       tooltipDescriptionImp: '労働時間が通勤時間よりやや重要であるとき',
       tooltipDescriptionEval: '労働時間においてA社がB社よりとても優れているとき'
     }

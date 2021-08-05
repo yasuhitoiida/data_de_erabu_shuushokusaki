@@ -36,7 +36,7 @@
             width="400"
             height="550"
           >
-            <img src="../../assets/images/undraw_Travel_mode_re_2lxo.svg">
+            <img src="../../../public/undraw_Travel_mode_re_2lxo.svg">
             <v-divider />
             <v-card-title><h5>こんなあなたに</h5></v-card-title>
             <v-card-text align="left">
@@ -72,7 +72,7 @@
             width="400"
             height="550"
           >
-            <img src="../../assets/images/undraw_Metrics_re_6g90.svg">
+            <img src="../../../public/undraw_Metrics_re_6g90.svg">
             <v-divider />
             <v-card-title><h5>ベストな選択肢を提案</h5></v-card-title>
             <v-card-text align="left">
@@ -89,7 +89,7 @@
             width="400"
             height="550"
           >
-            <img src="../../assets/images/undraw_Projections_re_1mrh.svg">
+            <img src="../../../public/undraw_Projections_re_1mrh.svg">
             <v-divider />
             <v-card-title center>
               <h5>簡単に、スピーディーに</h5>
