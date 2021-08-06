@@ -4,6 +4,8 @@ import Top from '../pages/TopPage.vue'
 import Register from '../pages/RegisterPage.vue'
 import Login from '../pages/LoginPage.vue'
 import MyPage from '../pages/MyPage.vue'
+import UserPolicy from '../pages/UserPolicy.vue'
+import PrivacyPolicy from '../pages/PrivacyPolicy.vue'
 import AlternativeInput from '../pages/analysis/AlternativeInput.vue'
 import CriterionSelect from '../pages/analysis/CriterionSelect.vue'
 import CriterionImportance from '../pages/analysis/CriterionImportance.vue'
@@ -26,6 +28,8 @@ const router = new Router({
            {path: '/register', component: Register},
            {path: '/login', component: Login},
            {path: '/mypage', component: MyPage, meta: { requiredAuth: true }},
+           {path: '/user_policy', component: UserPolicy},
+           {path: '/privacy_policy', component: PrivacyPolicy},
            {path: '/step1', component: AlternativeInput},
            {path: '/step2', component: CriterionSelect},
            {path: '/step3', component: CriterionImportance},
