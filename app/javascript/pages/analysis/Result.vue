@@ -27,7 +27,7 @@
           >
             <h4>
               <div class="mb-2">
-                あなたのベストな選択肢
+                YOUR BEST CHOICE:
               </div>
             </h4>
             <h2>
@@ -65,14 +65,16 @@
             >
               <v-btn
                 v-if="saveButton"
-                class="mb-2"
+                class="mb-5"
                 block
-                outlined
+                dark
                 color="#6495ed"
                 height="56"
                 @click="handleResult"
               >
-                <h4>結果を保存</h4>
+                <div class="mt-1">
+                  <h4>SAVE</h4>
+                </div>
               </v-btn>
               <v-alert
                 v-if="alertSuccess"
@@ -89,14 +91,16 @@
               <v-btn
                 class="mb-2"
                 block
-                outlined
-                color="#6495ed"
+                dark
                 height="56"
+                color="#00acee"
                 :href="twitterLink"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <h4>結果をツイート</h4>
+                <div class="mt-2">
+                  <h4>SHARE <v-icon class="mb-2">mdi-twitter</v-icon></h4>
+                </div>
               </v-btn>
             </v-col>
           </v-row>
@@ -212,11 +216,10 @@ export default {
     },
     twitterLink() {
       const endpoint = 'https://twitter.com/intent/tweet'
-      const cri = this.criImp.reduce((str,i) => str + `${i.name}:${i.weight}%0a`, '')
+      const cri = this.criImp.reduce((str,i) => str + `${i.name}:${(i.weight*100).toFixed(1)+'％'}%0a`, '')
       const res = this.result.reduce((str,i) => str + `${i.name}:${i.total}%0a`, '')
-      const text = '志望度%0a' + res + '重視ポイント%0a' + cri
-      return endpoint + `?text=${text}` + '&hashtags=就活意志決定ツール%0a,ジョブハンターズチョイス%0a' + '&url=https://jobhunters-choice.com%0a'
-      // return text=&hashtags=ハッシュタグ&url=シェアしたいURL
+      const text = 'ジョブハンターズチョイスはこんなデータで仕事選びをサポート！%0a' + '%0aマッチ度%0a' + res + '%0a重視する基準%0a' + cri
+      return endpoint + `?text=${text}` + '&hashtags=就活用意思決定ツール%0a,ジョブハンターズチョイス%0a' + '&url=https://jobhunters-choice.com%0a'
     },
     ...mapGetters(
       'analyses', [
