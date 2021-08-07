@@ -69,7 +69,7 @@
                 block
                 outlined
                 color="#6495ed"
-                height="60"
+                height="56"
                 @click="handleResult"
               >
                 <h4>結果を保存</h4>
@@ -86,6 +86,18 @@
               >
                 分析結果を保存できませんでした
               </v-alert>
+              <v-btn
+                class="mb-2"
+                block
+                outlined
+                color="#6495ed"
+                height="56"
+                :href="twitterLink"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h4>結果をツイート</h4>
+              </v-btn>
             </v-col>
           </v-row>
           <v-row>
@@ -198,6 +210,14 @@ export default {
     bestChoice() {
       return this.$calculator.bestChoice(this.result)
     },
+    twitterLink() {
+      const endpoint = 'https://twitter.com/intent/tweet'
+      const cri = this.criImp.reduce((str,i) => str + `${i.name}:${i.weight}%0a`, '')
+      const res = this.result.reduce((str,i) => str + `${i.name}:${i.total}%0a`, '')
+      const text = '志望度%0a' + res + '重視ポイント%0a' + cri
+      return endpoint + `?text=${text}` + '&hashtags=就活意志決定ツール%0a,ジョブハンターズチョイス%0a' + '&url=https://jobhunters-choice.com%0a'
+      // return text=&hashtags=ハッシュタグ&url=シェアしたいURL
+    },
     ...mapGetters(
       'analyses', [
         'getAlternatives',
@@ -220,6 +240,7 @@ export default {
     },
     displayResult() {
       this.chart = true
+      console.log(this.result)
     },
     saveResult() {
       const hash = {
