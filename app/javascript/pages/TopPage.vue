@@ -188,7 +188,7 @@ export default {
 <style scoped>
 h2 {
   margin: 40px auto;
-  font-size: 70px;
+  font-size: 52px;
   text-align: center;
 }
 h2 span {

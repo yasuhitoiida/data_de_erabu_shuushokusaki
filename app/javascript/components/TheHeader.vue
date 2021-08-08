@@ -12,26 +12,40 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
-      <v-btn
-        :href="twitterLink"
-        target="_blank"
-        rel="noopener noreferrer"
-        depressed
-        class="px-0"
-      >
-        <v-icon color="#424242">mdi-twitter</v-icon>
-      </v-btn>
+      <v-toolbar-items>
+        <v-btn
+          :href="twitterLink"
+          target="_blank"
+          rel="noopener noreferrer"
+          depressed
+          min-width="48"
+          width="48"
+        >
+          <v-icon color="#424242">mdi-twitter</v-icon>
+        </v-btn>
+      </v-toolbar-items>
       <v-toolbar-items
         v-if="isAuthenticated"
       >
         <v-menu offset-y>
           <template #activator="{ on, attrs }">
             <v-btn
+              v-if="tooNarrowForDisplayingName"
+              depressed
+              min-width="48"
+              width="48"
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon>mdi-dots-horizontal</v-icon>
+            </v-btn>
+            <v-btn
+              v-else
               color="secondary"
               dark
               v-bind="attrs"
-              style="text-transform: none;"
               v-on="on"
+              class="mx-4"
             >
               {{ isAuthenticated.name }}
               <v-icon>mdi-menu-down</v-icon>
@@ -69,6 +83,9 @@ export default {
     // ...mapGetters('users', ['loginUser']),
     isAuthenticated() {
       return this.$store.getters['users/getLoginUser']
+    },
+    tooNarrowForDisplayingName() {
+      return this.$vuetify.breakpoint.width <= 600 ? true : false
     },
     twitterLink() {
       const endpoint = 'https://twitter.com/intent/tweet'
