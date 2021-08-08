@@ -54,7 +54,7 @@
           >
             <DoughnutGraph
               :chart-data="doughnutChartData"
-              title="条件の重要度"
+              title="重視する条件"
             />
           </v-col>
           <v-row justify="center">
@@ -117,7 +117,7 @@
                   <DataTable
                     :headers="tableDataCri.headers"
                     :items="tableDataCri.items"
-                    title="条件の重要度"
+                    title="重視する条件"
                   />
                   <DataTable
                     v-for="(item, index) in tableDataAlt.items"
