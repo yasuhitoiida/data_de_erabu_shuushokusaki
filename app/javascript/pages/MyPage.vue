@@ -99,7 +99,7 @@ export default {
     dateFormat(t) {
       const month = t.substr(5, 2)
       const date = t.substr(8, 2)
-      return Number(month) + '/' + date
+      return Number(month) + '/' + Number(date)
     },
     showAnalysis(id) {
       this.chart = false
