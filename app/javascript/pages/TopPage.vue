@@ -8,11 +8,25 @@
       <h2>JobHunter<span>'</span>s Choice</h2>
       <v-row>
         <v-col align="center">
-          <h5>お仕事選びをデータで後押し</h5>
+          <h5>仕事選びのための意思決定ツール</h5>
         </v-col>
       </v-row>
       <v-row>
-        <v-col align="center">
+        <v-col
+          cols="12"
+          md="8"
+          align="center"
+          class="graphs"
+        >
+          <v-card>
+            <img src="../../assets/images/toppage_graphs.png" />
+          </v-card>
+        </v-col>
+        <v-col
+          align="center"
+          cols="12"
+          md="4"
+        >
           <v-btn
             id="analysis-btn"
             to="/step1"
@@ -24,9 +38,45 @@
           >
             START
           </v-btn>
+          <v-btn
+            v-if="isAuthenticated"
+            to="/mypage"
+            outlined
+            color="#6495ed"
+            height="70"
+            width="260"
+            class="mt-3"
+            large
+          >
+            マイページ
+          </v-btn>
+          <v-btn
+            v-if="!isAuthenticated"
+            to="/register"
+            outlined
+            color="#6495ed"
+            height="70"
+            width="260"
+            class="mt-3"
+            large
+          >
+            ユーザー登録
+          </v-btn>
+          <v-btn
+            v-if="!isAuthenticated"
+            to="/login"
+            outlined
+            color="#6495ed"
+            height="70"
+            width="260"
+            class="mt-3"
+            large
+          >
+            ログイン
+          </v-btn>
         </v-col>
       </v-row>
-      <v-row class="my-7">
+      <v-row class="my-7 description">
         <v-col
           cols="12"
           lg="4"
@@ -38,12 +88,12 @@
           >
             <img src="../../assets/images/undraw_Travel_mode_re_2lxo.svg">
             <v-divider />
-            <v-card-title><h5>こんなあなたに</h5></v-card-title>
+            <v-card-title><h5>就職先選びでお悩みの方へ</h5></v-card-title>
             <v-card-text align="left">
               <div>
                 <v-icon>mdi-hexagon-multiple-outline</v-icon>
                 <span>
-                  複数の求人で迷っている
+                  内定がいくつか出ている
                 </span>
               </div>
               <p />
@@ -74,9 +124,9 @@
           >
             <img src="../../assets/images/undraw_Metrics_re_6g90.svg">
             <v-divider />
-            <v-card-title><h5>ベストな選択肢を提案</h5></v-card-title>
+            <v-card-title><h5>ベストな選択肢を算出</h5></v-card-title>
             <v-card-text align="left">
-              企業活動や公共事業でも用いられる意思決定法「AHP」により、複数の志望先からベストな選択肢を提案。<br>あなたの企業研究の成果を元に、根拠あるデータで意思決定をサポートします。
+              企業活動や公共事業でも用いられる意思決定法「AHP」により、複数の志望先からベストな選択肢を算出。<br>あなたの企業研究の成果を元に、根拠あるデータで意思決定をサポートします。
             </v-card-text>
           </v-card>
         </v-col>
@@ -126,6 +176,11 @@ export default {
   name: 'Home',
   components: {
     AboutAHP,
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters['users/getLoginUser']
+    },
   }
 }
 </script>
@@ -139,7 +194,11 @@ h2 {
 h2 span {
   color: #6495ed;
 }
-img {
+.graphs img {
+  max-width: 100%;
+  width /***/:auto;
+}
+.description img {
   max-width: 100%;
   height: 300px;
   width /***/:auto;

@@ -58,24 +58,6 @@
           </v-list>
         </v-menu>
       </v-toolbar-items>
-      <v-toolbar-items
-        v-else
-      >
-        <v-btn
-          text
-          to="/register"
-          class="list-inline-item"
-        >
-          ユーザー登録
-        </v-btn>
-        <v-btn
-          text
-          to="/login"
-          class="list-inline-item"
-        >
-          ログイン
-        </v-btn>
-      </v-toolbar-items>
     </v-app-bar>
   </div>
 </template>
