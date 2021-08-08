@@ -1,6 +1,6 @@
 class AlternativeResult < ApplicationRecord
   belongs_to :analysis
-  has_many :multipled_weights
+  has_many :multipled_weights, dependent: :destroy
 
   validates :name,  presence: true, length: { maximum: 50 }
   validates :total, presence: true

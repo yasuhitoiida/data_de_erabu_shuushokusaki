@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     post 'login', to: 'sessions#create'
     get 'alternatives', to: 'alternatives#index'
-    resources :users, only: %i[create update] do
+    resources :users, only: %i[create update destroy] do
       collection do
         get 'me'
       end

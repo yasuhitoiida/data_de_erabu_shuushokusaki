@@ -65,12 +65,10 @@ RSpec.describe 'User', type: :system do
   end
 
   describe '登録情報変更' do
-    before do
-      user = create(:user)
+    let(:user) { create(:user, name: 'default', email: 'default@test.com') }
+    it '更新用の各フォームに入力し「更新」を押すと登録情報が更新されている' do
       login(user)
       visit '/mypage'
-    end
-    it '更新用の各フォームに入力し「更新」を押すと登録情報が更新されている' do
       within "#update-form" do
         fill_in 'ユーザー名', with: 'edited'
         fill_in 'メールアドレス', with: 'edited@test.com'
@@ -81,11 +79,25 @@ RSpec.describe 'User', type: :system do
     end
 
     it '入力内容に不備があると登録情報が更新されない' do
+      login(user)
+      visit '/mypage'
       within "#update-form" do
         fill_in 'ユーザー名', with: ''
         click_on '更新'
       end
       expect(page).to have_css('li.error-message'), 'エラーメッセージが表示されていません'
+    end
+  end
+
+  describe '退会' do
+    it '退会ボタンを押すと退会できる' do
+      user = create(:user)
+      n = User.count
+      login(user)
+      visit '/mypage'
+      click_on '退会'
+      sleep 1
+      expect(User.count).to eq n-1
     end
   end
 end

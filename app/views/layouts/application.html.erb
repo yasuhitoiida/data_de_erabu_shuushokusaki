@@ -9,12 +9,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="google-site-verification" content="Fv8jXkiSXL_D0yPFEuTNP5gpFULFJln_WMuj2M-gm5o" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="twitter:card" content="summary_large_image"></meta>
+    <meta name="twitter:card" content="summary_large_image" />
     <!-- <meta name="twitter:site" content="@ユーザー名" /> -->
     <meta property="twitter:url" content="https://jobhunters-choice.com" />
     <meta property="twitter:title" content="JobHunter's Choice" />
     <meta property="twitter:description" content="複数の求人で迷っているジョブハンターのみなさんへ。その決断を後押しします。" />
-    <meta property="twitter:image" content="https://jobhunters-choice.com/app/assets/images/toppage_graphs.png" />
+    <meta property="twitter:image" content="<%= asset_url('toppage_graphs.png') %>" />
   </head>
   <body>
     <%= yield %>

@@ -46,7 +46,7 @@ const actions = {
     commit('loginUser', null)
     localStorage.removeItem('token')
     axios.defaults.headers.common['Authorization'] = ''
-  }
+  },
 }
 
 export default {

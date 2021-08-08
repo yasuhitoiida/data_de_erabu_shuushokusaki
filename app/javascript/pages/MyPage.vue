@@ -76,11 +76,17 @@
             <v-btn
               dark
               color="#6495ed"
-              @click="userUpdate(getCurrentUser.id)"
+              @click="userUpdate(currentUserId)"
             >
               更新
             </v-btn>
           </div>
+          <v-btn
+            @click="userDestroy(currentUserId)"
+            color="red lighten-2"
+            outlined
+            class="mt-12"
+          >退会</v-btn>
         </v-col>
       </v-col>
     </v-row>
@@ -118,6 +124,9 @@ export default {
         name: this.getCurrentUser.name,
         email: this.getCurrentUser.email
       }
+    },
+    currentUserId() {
+      return this.getCurrentUser.id
     },
     ...mapGetters('users', ['getCurrentUser'])
   },
@@ -169,8 +178,19 @@ export default {
         this.errors = err.response.data
       }
     },
+    userDestroy(id) {
+      this.$axios.delete(`users/${id}`)
+      .then(res => {
+        this.logoutUser()
+        location.href = '/'
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
     ...mapActions('analyses', ['setCriterionImportances']),
-    ...mapActions('users', ['updateUser'])
+    ...mapActions('users', ['updateUser', 'logoutUser'])
   }
 }
 </script>

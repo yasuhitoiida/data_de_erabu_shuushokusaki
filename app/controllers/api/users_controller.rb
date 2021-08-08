@@ -19,6 +19,10 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @@current_user.destroy!
+  end
+
   def me
     render json: @@current_user
   end
