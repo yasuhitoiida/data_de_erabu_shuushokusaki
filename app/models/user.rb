@@ -2,7 +2,6 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   include JwtToken
   has_many :analyses,     dependent: :destroy
-  has_many :alternatives, dependent: :destroy
 
   validates :name,              presence: true, length: { maximum: 255 }
   validates :email,             presence: true, uniqueness: true

@@ -4,11 +4,26 @@
     <v-row justify="center">
       <v-col cols="8">
         <h3>STEP2 評価基準の選択</h3>
-        <v-col align="center">
-          <p>
-            あなたが就職先を決める上で考慮する条件にチェックをつけてください。
-          </p>
-        </v-col>
+        <v-row>
+          <v-col align="center">
+            <p>あなたが就職先を決める上で考慮する条件にチェックをつけてください。</p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col class="mb-6">
+            <v-btn
+              v-for="(item, index) in criterionHistory"
+              :key="index"
+              outlined
+              color="#6495ed"
+              height="24"
+              class="mr-1"
+              @click="pickUpFromHistory(item)"
+            >
+              {{ item }}
+            </v-btn>
+          </v-col>
+        </v-row>
         <v-checkbox
           v-for="(item, index) in criteria"
           :id="'criterion' + index"
@@ -79,11 +94,13 @@ export default {
       ],
       selectedCriteria: [],
       addedCriteria: null,
+      criterionHistory: null,
       errors: null
     }
   },
   computed: {
-    ...mapGetters('analyses', ['getAlternatives', 'getCriteria'])
+    ...mapGetters('analyses', ['getAlternatives', 'getCriteria']),
+    ...mapGetters('users', ['getCurrentUser'])
   },
   created() {
     // 他ページから移動してきたとき入力値が残ってるように
@@ -97,18 +114,27 @@ export default {
       this.setCriterionImportances({eval: null, raw: null})
       this.setAlternativeEvaluations({eval: null, raw: null})
     })
+    // 分析履歴のある評価基準を取得
+    if (this.getCurrentUser) {
+      this.$axios.get('criteria')
+      .then(res => {
+        this.criterionHistory = new Set(res.data)
+        console.log(res)
+      })
+      .catch(err => { console.log(err) })
+    }
   },
   methods: {
     isUnique(arr) {
-      const s = new Set(arr) //一意性の検証　Setには重複値は入らない
-      return s.size == arr.length ? true : false
+      const set = new Set(arr) //一意性の検証　Setには重複値は入らない
+      return set.size == arr.length ? true : false
     },
     addCriterion() {
-      if (!this.addedCriteria) { return }
+      if (!this.addedCriteria) { return } // 空要素追加防止
       // 評価基準の追加
       // 入力値がcriteriaの要素と重複していないが検証し、クリアすればselectedCriteriaに追加
-      const cri = this.criteria.concat(this.addedCriteria)
-      if (this.isUnique(cri)) {
+      const array = this.criteria.concat(this.addedCriteria)
+      if (this.isUnique(array)) {
         this.criteria.push(this.addedCriteria)
         this.selectedCriteria.push(this.addedCriteria)
       } else {
@@ -116,9 +142,20 @@ export default {
       }
       this.addedCriteria = null
     },
+    pickUpFromHistory(item) {
+      // 履歴からの追加
+      // 選択項目がcriteriaの要素と重複してるか検証し、重複がある＝デフォルトの基準ならそのままselectedCriteriaに追加
+      // 重複がない＝ユーザーオリジナルの基準ならcriteriaに加えた上でselectedCriteriaに追加
+      const array = this.criteria.concat([item])
+      if (this.isUnique(array)) {
+        this.criteria.unshift(item)
+      }
+      this.selectedCriteria.push(item)
+    },
     handleSelectedCriteria() {
       // バリデーションした上で選択した条件をストアに保存
-      const array = this.selectedCriteria
+      const set = new Set(this.selectedCriteria) // 履歴ボタンを複数回押したときのために重複を除く
+      const array = Array.from(set)
       if (array.length >= 2) {
         this.setCriteria(array)
         this.$router.push('/step3')
