@@ -4,7 +4,7 @@ RSpec.describe 'User', type: :system do
   let(:password) { '12345678' }
   describe '新規登録' do
     before { visit '/register' }
-    it '新規登録ページで各フィールドに入力し「登録」を押すとユーザーが登録されている' do
+    it '新規登録ページで各フォームに入力し「登録」を押すとユーザーが登録されている' do
       user = build(:user)
       within "#register-form" do
         fill_in 'ユーザー名', with: user.name
@@ -59,6 +59,31 @@ RSpec.describe 'User', type: :system do
       visit '/login'
       within "#login-form" do
         click_on 'ログイン'
+      end
+      expect(page).to have_css('li.error-message'), 'エラーメッセージが表示されていません'
+    end
+  end
+
+  describe '登録情報変更' do
+    before do
+      user = create(:user)
+      login(user)
+      visit '/mypage'
+    end
+    it '更新用の各フォームに入力し「更新」を押すと登録情報が更新されている' do
+      within "#update-form" do
+        fill_in 'ユーザー名', with: 'edited'
+        fill_in 'メールアドレス', with: 'edited@test.com'
+        click_on '更新'
+      end
+      expect(user.name).to eq('edited'), '名前が変更できていません'
+      expect(user.email).to eq('edited@test.com'), 'メールアドレスが変更できていません'
+    end
+
+    it '入力内容に不備があると登録情報が更新されない' do
+      within "#update-form" do
+        fill_in 'ユーザー名', with: ''
+        click_on '更新'
       end
       expect(page).to have_css('li.error-message'), 'エラーメッセージが表示されていません'
     end

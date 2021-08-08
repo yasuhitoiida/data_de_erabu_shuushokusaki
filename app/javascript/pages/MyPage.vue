@@ -50,9 +50,9 @@
           md="6"
           class="p-0"
         >
-          <h3>登録情報更新</h3>
+          <h3>登録情報</h3>
           <div id="update-form">
-            <label for="name-form">名前</label>
+            <label for="name-form">ユーザー名</label>
             <input
               id="name-form"
               :value="userParams.name"
