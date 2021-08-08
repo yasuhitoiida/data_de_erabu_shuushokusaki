@@ -131,6 +131,7 @@ export default {
     ...mapGetters('users', ['getCurrentUser'])
   },
   watch: {
+    // エラー防止の為、値がセットされてからグラフ作成用のメソッドを発火させる
     criterionImportance(v) {
       this.doughnutChartData = this.$chart.createDoughnutChartData(v)
     },
@@ -140,6 +141,7 @@ export default {
     }
   },
   created() {
+    // 分析履歴を取得したあとに最新の分析結果を取得
     this.$axios.get('analyses')
     .then(res => {
       this.analyses = res.data
