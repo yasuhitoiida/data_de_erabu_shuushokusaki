@@ -229,9 +229,7 @@ export default {
       ]
     ),
     ...mapGetters(
-      'users', [
-        'getLoginUser'
-      ]
+      'users', ['getCurrentUser']
     )
   },
   methods: {
@@ -267,7 +265,7 @@ export default {
       this.saveResult()
     },
     handleResult() {
-      this.getLoginUser ? this.saveResult() : this.userModal = true
+      this.getCurrentUser ? this.saveResult() : this.userModal = true
     }
   }
 }

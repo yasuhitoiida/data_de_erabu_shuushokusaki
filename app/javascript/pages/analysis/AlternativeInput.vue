@@ -85,7 +85,7 @@ export default {
   },
   computed: {
     ...mapGetters('analyses', ['getAlternatives']),
-    ...mapGetters('users', ['getLoginUser'])
+    ...mapGetters('users', ['getCurrentUser'])
   },
   created() {
     // 次ページから戻ってきたときに入力値が残ってるように
@@ -97,7 +97,7 @@ export default {
       this.setAlternativeEvaluations({eval: null, raw: null})
     })
     // 分析履歴のある選択肢を取得
-    if (this.getLoginUser) {
+    if (this.getCurrentUser) {
       this.$axios.get('alternatives')
       .then(res => {
         this.alternativeHistory = new Set(res.data)
