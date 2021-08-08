@@ -28,29 +28,29 @@
               />
             </template>
             <div id="register-form">
-              <label for="register_name_form">ユーザー名</label>
+              <label for="register-name-form">ユーザー名</label>
               <input
-                id="register_name_form"
+                id="register-name-form"
                 v-model="userRegister.name"
                 class="form-control mb-4"
               >
-              <label for="register_email_form">メールアドレス</label>
+              <label for="register-email-form">メールアドレス</label>
               <input
-                id="register_email_form"
+                id="register-email-form"
                 v-model="userRegister.email"
                 type="email"
                 class="form-control mb-4"
               >
-              <label for="register_password_form">パスワード</label>
+              <label for="register-password-form">パスワード</label>
               <input
-                id="register_password_form"
+                id="register-password-form"
                 v-model="userRegister.password"
                 type="password"
                 class="form-control mb-4"
               >
-              <label for="register_password_confirmation_form">パスワード（確認）</label>
+              <label for="register-password_confirmation-form">パスワード（確認）</label>
               <input
-                id="register_password_confirmation_form"
+                id="register-password_confirmation-form"
                 v-model="userRegister.password_confirmation"
                 type="password"
                 class="form-control mb-4"
@@ -65,16 +65,16 @@
             </div>
             <h3>ログイン</h3>
             <div id="login-form">
-              <label for="login_email_form">メールアドレス</label>
+              <label for="login-email-form">メールアドレス</label>
               <input
-                id="login_email_form"
+                id="login-email-form"
                 v-model="userLogin.email"
                 type="email"
                 class="form-control mb-4"
               >
-              <label for="login_password_form">パスワード</label>
+              <label for="login-password-form">パスワード</label>
               <input
-                id="login_password_form"
+                id="login-password-form"
                 v-model="userLogin.password"
                 type="password"
                 class="form-control mb-4"

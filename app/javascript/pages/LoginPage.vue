@@ -8,26 +8,22 @@
       >
         <h3>ログイン</h3>
         <div id="login-form">
-          <div class="email-form">
-            <label for="email_form">メールアドレス</label>
-            <input
-              id="email_form"
-              v-model="user.email"
-              type="email"
-              class="form-control mb-4"
-              @focus="errors=null"
-            >
-          </div>
-          <div class="password-form">
-            <label for="password_form">パスワード</label>
-            <input
-              id="password_form"
-              v-model="user.password"
-              type="password"
-              class="form-control mb-4"
-              @focus="errors=null"
-            >
-          </div>
+          <label for="email-form">メールアドレス</label>
+          <input
+            id="email-form"
+            v-model="user.email"
+            type="email"
+            class="form-control mb-4"
+            @focus="errors=null"
+          >
+          <label for="password-form">パスワード</label>
+          <input
+            id="password-form"
+            v-model="user.password"
+            type="password"
+            class="form-control mb-4"
+            @focus="errors=null"
+          >
           <template v-if="errors">
             <ErrorMessage
               :messages="errors"

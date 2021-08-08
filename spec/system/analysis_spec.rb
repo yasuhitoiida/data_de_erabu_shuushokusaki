@@ -5,24 +5,24 @@ RSpec.describe 'Analysis', type: :system do
   let(:alternative_number) { 3 }
   describe 'STEP1' do
     before { visit '/step1' }
-  xit '入力された選択肢が2つ以上のとき次ページに遷移する' do
+  it '入力された選択肢が2つ以上のとき次ページに遷移する' do
       alternative_input(2)
       expect(page).to have_current_path('/step2'), '次ページに遷移していません'
     end
 
-  xit '入力された選択肢が2つ未満のときエラーメッセージが表示される' do
+  it '入力された選択肢が2つ未満のときエラーメッセージが表示される' do
       alternative_input(1)
       expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
     end
 
-  xit '入力値が重複しているときエラーメッセージが表示される' do
+  it '入力値が重複しているときエラーメッセージが表示される' do
       find('#alternative0').set('foobar')
       find('#alternative1').set('foobar')
       click_on '決定'
       expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
     end
 
-  xit '前のページから戻ったとき以前の入力値が保持されている' do
+  it '前のページから戻ったとき以前の入力値が保持されている' do
       find('#alternative0').set('foobar')
       find('#alternative1').set('foobuzz')
       click_on '決定'
@@ -37,23 +37,23 @@ RSpec.describe 'Analysis', type: :system do
       visit '/step1'
       alternative_input(alternative_number)
     end
-  xit '条件が2つ以上選択されているとき次ページに遷移する' do
+  it '条件が2つ以上選択されているとき次ページに遷移する' do
       criterion_select(2)
       expect(page).to have_current_path('/step3'), '次ページに遷移していません'
     end
 
-  xit '条件が2つ以上選択されていないときエラーメッセージが表示される' do
+  it '条件が2つ以上選択されていないときエラーメッセージが表示される' do
       criterion_select(1)
       expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
     end
 
-  xit '追加した条件が他の条件と重複しているときエラーメッセージが表示される' do
+  it '追加した条件が他の条件と重複しているときエラーメッセージが表示される' do
       find('#addedCriteria').set(find('#criterion0', visible: false).value)
       click_on '条件を追加'
       expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
     end
 
-  xit '前のページから戻ったとき以前の入力値が保持されている' do
+  it '前のページから戻ったとき以前の入力値が保持されている' do
       check('criterion0', allow_label_click: true)
       check('criterion1', allow_label_click: true)
       click_on '決定'
@@ -69,17 +69,17 @@ RSpec.describe 'Analysis', type: :system do
       alternative_input(alternative_number)
       criterion_select(criterion_number)
     end
-  xit 'ラジオボタンがすべて押されているとき次ページに遷移する' do
+  it 'ラジオボタンがすべて押されているとき次ページに遷移する' do
       criterion_importance(criterion_number)
       expect(page).to have_current_path('/step4'), '次ページに遷移していません'
     end
 
-  xit 'ラジオボタンがすべて押されていないときエラーメッセージが表示される' do
+  it 'ラジオボタンがすべて押されていないときエラーメッセージが表示される' do
       criterion_importance(criterion_number-1)
       expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
     end
 
-  xit '前のページから戻ったとき以前の入力値が保持されている' do
+  it '前のページから戻ったとき以前の入力値が保持されている' do
       within "div[id='0-0']" do
         find_button('1').click
       end
@@ -107,17 +107,17 @@ RSpec.describe 'Analysis', type: :system do
       criterion_select(criterion_number)
       criterion_importance(criterion_number)
     end
-  xit "ラジオボタンがすべて押されているとき次ページに遷移する" do
+  it "ラジオボタンがすべて押されているとき次ページに遷移する" do
       alternative_evaluation(criterion_number, alternative_number)
       expect(page).to have_current_path('/result'), '次ページに遷移していません'
     end
 
-  xit "ラジオボタンがすべて押されていないときエラーメッセージが出る" do
+  it "ラジオボタンがすべて押されていないときエラーメッセージが出る" do
       alternative_evaluation(criterion_number, alternative_number-1)
       expect(page).to have_selector('.error-message'), 'エラーメッセージが表示されていません'
     end
 
-  xit '前のページから戻ったとき以前の入力値が保持されている' do
+  it '前のページから戻ったとき以前の入力値が保持されている' do
       3.times do |n|
         within "div[id='#{n}-0']" do
           find_button('1').click
@@ -151,7 +151,7 @@ RSpec.describe 'Analysis', type: :system do
       visit '/step1'
       analysis(criterion_number, alternative_number)
     end
-  xit '決定ボタンを押すと結果が表示される' do
+  it '決定ボタンを押すと結果が表示される' do
       click_on '決定'
       expect(page).to have_selector('#bar-chart'), '結果が表示されていません'
     end
@@ -161,13 +161,13 @@ RSpec.describe 'Analysis', type: :system do
   describe '保存' do
     let(:user) { create(:user) }
     context 'ログイン状態のとき' do
-      xit '保存ボタンを押すと結果が保存できる' do
+      it '保存ボタンを押すと結果が保存できる' do
         login(user)
         click_on 'START'
         analysis(criterion_number, alternative_number)
         click_on '決定'
         sleep 2
-        click_on '結果を保存'
+        click_on 'SAVE'
         visit current_path
         expect(Analysis.count).to eq(1), '結果が保存されていません'
         expect(CriterionImportance.count).to eq(criterion_number), '結果が保存されていません'
@@ -182,9 +182,9 @@ RSpec.describe 'Analysis', type: :system do
         analysis(criterion_number, alternative_number)
         click_on '決定'
         sleep 2
-        click_on '結果を保存'
+        click_on 'SAVE'
       end
-      xit 'ログインに成功すると保存できる' do
+      it 'ログインに成功すると保存できる' do
         within '#user-modal' do
           within '#login-form' do
             fill_in 'メールアドレス', with: user.email
@@ -196,7 +196,7 @@ RSpec.describe 'Analysis', type: :system do
         expect(Analysis.count).to eq(1), '結果が保存されていません'
       end
 
-      xit 'ログインに失敗すると保存できない' do
+      it 'ログインに失敗すると保存できない' do
         within '#user-modal' do
           click_on 'ログイン'
         end
@@ -214,7 +214,7 @@ RSpec.describe 'Analysis', type: :system do
       analysis(criterion_number, alternative_number)
       click_on '決定'
       sleep 2
-      click_on '結果を保存'
+      click_on 'SAVE'
       visit '/mypage'
       expect(page).to have_selector('#bar-chart')
     end

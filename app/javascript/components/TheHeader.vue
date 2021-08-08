@@ -82,7 +82,7 @@ export default {
   computed: {
     // ...mapGetters('users', ['loginUser']),
     isAuthenticated() {
-      return this.$store.getters['users/getLoginUser']
+      return this.$store.getters['users/getCurrentUser']
     },
     tooNarrowForDisplayingName() {
       return this.$vuetify.breakpoint.width <= 600 ? true : false

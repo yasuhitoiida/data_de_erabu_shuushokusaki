@@ -11,7 +11,7 @@
           <h5>仕事選びのための意思決定ツール</h5>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row justify="center">
         <v-col
           cols="12"
           md="8"
@@ -24,7 +24,7 @@
         </v-col>
         <v-col
           align="center"
-          cols="12"
+          cols="8"
           md="4"
         >
           <v-btn
@@ -179,7 +179,7 @@ export default {
   },
   computed: {
     isAuthenticated() {
-      return this.$store.getters['users/getLoginUser']
+      return this.$store.getters['users/getCurrentUser']
     },
   }
 }

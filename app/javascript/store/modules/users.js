@@ -1,27 +1,19 @@
 import axios from '../../plugins/axios.js'
 const state = {
-  loginUser: null
+  currentUser: null
 };
 const getters = {
-  getLoginUser: state => state.loginUser
+  getCurrentUser: state => state.currentUser
 };
 const mutations = {
   loginUser(state, user) {
-    state.loginUser = user
+    state.currentUser = user
   },
 };
 const actions = {
   async fetchCurrentUser({ commit, state }) {
     if (!localStorage.token) return null
-    if (state.loginUser) return state.loginUser
-
-    // const res = await axios.get('users/me')
-    // .catch((err) => {
-    //   return null
-    // })
-    // console.log(res.data)
-    // commit('loginUser', res.data)
-    // return res.data
+    if (state.currentUser) return state.currentUser
 
     const res = await axios.get('users/me')
       .catch((err) => {
@@ -42,14 +34,19 @@ const actions = {
     const res = await axios.post('login', user)
     localStorage.setItem('token', res.data.token)
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.token}`
-    console.log(res)
     commit('loginUser', res.data.user)
+    console.log(res)
+  },
+  async updateUser({commit}, hash) {
+    const res = await axios.patch(`users/${hash.id}`, hash.user)
+    commit('loginUser', res.data)
+    console.log(res)
   },
   logoutUser({commit}) {
     commit('loginUser', null)
     localStorage.removeItem('token')
     axios.defaults.headers.common['Authorization'] = ''
-  }
+  },
 }
 
 export default {

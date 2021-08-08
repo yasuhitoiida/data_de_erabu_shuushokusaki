@@ -6,7 +6,7 @@
         lg="10"
         class="mx-auto"
       >
-        <h3>{{ getLoginUser.name }}</h3>
+        <h3>{{ userParams.name }}</h3>
         <v-row v-if="chart">
           <v-col
             cols="12"
@@ -45,6 +45,49 @@
             </v-list-item-group>
           </v-list>
         </v-card>
+        <v-col
+          cols="10"
+          md="6"
+          class="p-0"
+        >
+          <h3>登録情報</h3>
+          <div id="update-form">
+            <label for="name-form">ユーザー名</label>
+            <input
+              id="name-form"
+              :value="userParams.name"
+              type="name"
+              class="form-control mb-4"
+              @input="userParams.name=$event.target.value"
+            >
+            <label for="email-form">メールアドレス</label>
+            <input
+              id="email-form"
+              :value="userParams.email"
+              type="email"
+              class="form-control mb-4"
+              @input="userParams.email=$event.target.value"
+            >
+            <template v-if="errors">
+              <ErrorMessage
+                :messages="errors"
+              />
+            </template>
+            <v-btn
+              dark
+              color="#6495ed"
+              @click="userUpdate(currentUserId)"
+            >
+              更新
+            </v-btn>
+          </div>
+          <v-btn
+            @click="userDestroy(currentUserId)"
+            color="red lighten-2"
+            outlined
+            class="mt-12"
+          >退会</v-btn>
+        </v-col>
       </v-col>
     </v-row>
   </v-container>
@@ -55,11 +98,13 @@ import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 import DoughnutGraph from '../components/DoughnutGraph.vue'
 import BarGraph from '../components/BarGraph.vue'
+import ErrorMessage from '../components/ErrorMessage.vue'
 export default {
   name: 'MyPage',
   components: {
     DoughnutGraph,
-    BarGraph
+    BarGraph,
+    ErrorMessage
   },
   data() {
     return {
@@ -69,11 +114,21 @@ export default {
       result: null,
       doughnutChartData: null,
       barChartData: null,
-      chart: null
+      chart: null,
+      errors: null,
     }
   },
   computed: {
-    ...mapGetters('users', ['getLoginUser'])
+    userParams() {
+      return {
+        name: this.getCurrentUser.name,
+        email: this.getCurrentUser.email
+      }
+    },
+    currentUserId() {
+      return this.getCurrentUser.id
+    },
+    ...mapGetters('users', ['getCurrentUser'])
   },
   watch: {
     criterionImportance(v) {
@@ -114,7 +169,28 @@ export default {
         console.log(err)
       })
     },
-    ...mapActions('analyses', ['setCriterionImportances'])
+    async userUpdate(id) {
+      try {
+        await this.updateUser({ id: id, user: this.userParams })
+        location.href = '/mypage'
+      } catch(err) {
+        console.log(err)
+        this.errors = err.response.data
+      }
+    },
+    userDestroy(id) {
+      this.$axios.delete(`users/${id}`)
+      .then(res => {
+        this.logoutUser()
+        location.href = '/'
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    ...mapActions('analyses', ['setCriterionImportances']),
+    ...mapActions('users', ['updateUser', 'logoutUser'])
   }
 }
 </script>
