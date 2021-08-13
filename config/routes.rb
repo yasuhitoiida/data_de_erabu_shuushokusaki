@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         get 'me'
       end
     end
-    resources :analyses, only: %i[index show create]
+    resources :analyses, only: %i[index show create destroy]
   end
   get '*path', to: 'home#index'
   root 'home#index'

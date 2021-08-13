@@ -29,11 +29,20 @@
               title="重視する条件"
             />
           </v-col>
-          <v-col align="center">
+        </v-row>
+        <v-row v-if="chart">
+          <v-col
+            align="center"
+            class="mb-7"
+          >
             <v-btn
-            icon
-            :href="twitterLink"
+              icon
+              :href="twitterLink"
             ><v-icon>mdi-twitter</v-icon></v-btn>
+            <v-btn
+              icon
+              @click="analysisDestroy(analysisId)"
+            ><v-icon>mdi-trash-can</v-icon></v-btn>
           </v-col>
         </v-row>
         <h4>分析履歴</h4>
@@ -175,10 +184,20 @@ export default {
       this.chart = false
       this.$axios.get(`analyses/${id}`)
       .then(res => {
+        this.analysisId = res.data.analysis.id
         this.createdAt = res.data.analysis.created_at
         this.criterionImportance = res.data.criterionImportances
         this.result = res.data.alternativeResults
         console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    analysisDestroy(id) {
+      this.$axios.delete(`analyses/${id}`)
+      .then(res => {
+        location.href = '/mypage'
       })
       .catch(err => {
         console.log(err)
