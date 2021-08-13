@@ -29,6 +29,12 @@
               title="重視する条件"
             />
           </v-col>
+          <v-col align="center">
+            <v-btn
+            icon
+            :href="twitterLink"
+            ><v-icon>mdi-twitter</v-icon></v-btn>
+          </v-col>
         </v-row>
         <h4>分析履歴</h4>
         <v-card>
@@ -127,6 +133,13 @@ export default {
     },
     currentUserId() {
       return this.getCurrentUser.id
+    },
+    twitterLink() {
+      const endpoint = 'https://twitter.com/intent/tweet'
+      const cri = this.criterionImportance.reduce((str,i) => str + `${i.name}:${(i.weight*100).toFixed(1)+'％'}%0a`, '')
+      const res = this.result.reduce((str,i) => str + `${i.name}:${i.total}%0a`, '')
+      const text = 'ジョブハンターズチョイスはこんなデータで仕事選びをサポート！%0a' + '%0aマッチ度%0a' + res + '%0a重視する基準%0a' + cri
+      return endpoint + `?text=${text}` + '&hashtags=就活用意思決定ツール%0a,ジョブハンターズチョイス%0a' + '&url=https://jobhunters-choice.com%0a'
     },
     ...mapGetters('users', ['getCurrentUser'])
   },
