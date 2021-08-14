@@ -89,8 +89,8 @@ export default {
     },
     twitterLink() {
       const endpoint = 'https://twitter.com/intent/tweet'
-      const text = '%23就活%20×%20%23階層分析%0a%0a公共事業や企業活動でも用いられる意思決定法"AHP"で、後悔のない仕事選びを！%0a%0a'
-      return endpoint + `?text=${text}` + '&hashtags=就活用意思決定ツール%0a,ジョブハンターズチョイス%0a,階層分析%0a' + '&url=https://jobhunters-choice.com%0a'
+      const text = '%23就活%20×%20%23階層分析%0a%0a公共事業や企業活動でも用いられる意思決定法"AHP"で、後悔のない仕事選びをしましょう%0a%0a'
+      return endpoint + `?text=${text}` + '&hashtags=就活用意思決定ツール%0a,JobHunters_Choice%0a,ジョブハンターズチョイス%0a' + '&url=https://jobhunters-choice.com%0a'
     },
   },
   methods: {
