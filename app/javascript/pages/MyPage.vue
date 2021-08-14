@@ -181,15 +181,17 @@ export default {
       }
     },
     userDestroy(id) {
-      this.$axios.delete(`users/${id}`)
-      .then(res => {
-        this.logoutUser()
-        location.href = '/'
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      if(window.confirm('本当に退会しますか？')) {
+        this.$axios.delete(`users/${id}`)
+        .then(res => {
+          this.logoutUser()
+          location.href = '/'
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
     },
     ...mapActions('analyses', ['setCriterionImportances']),
     ...mapActions('users', ['updateUser', 'logoutUser'])
