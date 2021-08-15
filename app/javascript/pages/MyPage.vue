@@ -30,6 +30,21 @@
             />
           </v-col>
         </v-row>
+        <v-row v-if="chart">
+          <v-col
+            align="center"
+            class="mb-7"
+          >
+            <v-btn
+              icon
+              :href="twitterLink"
+            ><v-icon>mdi-twitter</v-icon></v-btn>
+            <v-btn
+              icon
+              @click="analysisDestroy(analysisId)"
+            ><v-icon>mdi-trash-can</v-icon></v-btn>
+          </v-col>
+        </v-row>
         <h4>分析履歴</h4>
         <v-card>
           <v-list>
@@ -128,6 +143,13 @@ export default {
     currentUserId() {
       return this.getCurrentUser.id
     },
+    twitterLink() {
+      const endpoint = 'https://twitter.com/intent/tweet'
+      const cri = this.criterionImportance.reduce((str,i) => str + `${i.name}:${(i.weight*100).toFixed(1)+'％'}%0a`, '')
+      const res = this.result.reduce((str,i) => str + `${i.name}:${i.total}%0a`, '')
+      const text = 'ジョブハンターズチョイスはこんなデータで仕事選びをサポート！%0a' + '%0aマッチ度%0a' + res + '%0a重視する基準%0a' + cri
+      return endpoint + `?text=${text}` + '&hashtags=就活用意思決定ツール%0a,ジョブハンターズチョイス%0a' + '&url=https://jobhunters-choice.com%0a'
+    },
     ...mapGetters('users', ['getCurrentUser'])
   },
   watch: {
@@ -162,10 +184,20 @@ export default {
       this.chart = false
       this.$axios.get(`analyses/${id}`)
       .then(res => {
+        this.analysisId = res.data.analysis.id
         this.createdAt = res.data.analysis.created_at
         this.criterionImportance = res.data.criterionImportances
         this.result = res.data.alternativeResults
         console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    analysisDestroy(id) {
+      this.$axios.delete(`analyses/${id}`)
+      .then(res => {
+        location.href = '/mypage'
       })
       .catch(err => {
         console.log(err)
@@ -181,7 +213,7 @@ export default {
       }
     },
     userDestroy(id) {
-      if(window.confirm('本当に退会しますか？')) {
+      if (window.confirm('退会してもよろしいですか？')) {
         this.$axios.delete(`users/${id}`)
         .then(res => {
           this.logoutUser()
