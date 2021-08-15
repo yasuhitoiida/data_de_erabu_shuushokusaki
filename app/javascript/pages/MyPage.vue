@@ -38,6 +38,8 @@
             <v-btn
               icon
               :href="twitterLink"
+              target="_blank"
+              rel="noopener noreferrer"
             ><v-icon>mdi-twitter</v-icon></v-btn>
             <v-btn
               icon
