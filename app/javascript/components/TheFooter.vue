@@ -1,5 +1,8 @@
 <template>
-  <v-footer>
+  <v-footer
+    color="rgba(100, 149, 237, 0.4)"
+    elevation="24"
+  >
     <v-col align="center" class="p-1">
       <v-btn
         to='/user_policy'

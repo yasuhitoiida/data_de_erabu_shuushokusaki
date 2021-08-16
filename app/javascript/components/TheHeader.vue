@@ -2,10 +2,12 @@
   <div>
     <v-app-bar
       app
+      color="rgba(100, 149, 237, 0.4)"
     >
       <v-toolbar-title>
         <v-btn
           id="logo"
+          color="transparent"
           @click="topPage"
         >
           JobHunter<span>'</span>s&nbsp;Choice
@@ -14,6 +16,7 @@
       <v-spacer />
       <v-toolbar-items>
         <v-btn
+          icon
           :href="twitterLink"
           target="_blank"
           rel="noopener noreferrer"
@@ -31,6 +34,7 @@
           <template #activator="{ on, attrs }">
             <v-btn
               v-if="tooNarrowForDisplayingName"
+              icon
               depressed
               min-width="48"
               width="48"
