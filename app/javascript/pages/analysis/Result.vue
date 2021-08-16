@@ -99,7 +99,11 @@
                 rel="noopener noreferrer"
               >
                 <div class="mt-2">
-                  <h4>SHARE <v-icon class="mb-2">mdi-twitter</v-icon></h4>
+                  <h4>
+                    SHARE <v-icon class="mb-2">
+                      mdi-twitter
+                    </v-icon>
+                  </h4>
                 </div>
               </v-btn>
             </v-col>

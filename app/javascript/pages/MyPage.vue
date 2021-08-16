@@ -40,11 +40,15 @@
               :href="twitterLink"
               target="_blank"
               rel="noopener noreferrer"
-            ><v-icon>mdi-twitter</v-icon></v-btn>
+            >
+              <v-icon>mdi-twitter</v-icon>
+            </v-btn>
             <v-btn
               icon
               @click="analysisDestroy(analysisId)"
-            ><v-icon>mdi-trash-can</v-icon></v-btn>
+            >
+              <v-icon>mdi-trash-can</v-icon>
+            </v-btn>
           </v-col>
         </v-row>
         <h4>分析履歴</h4>
@@ -99,11 +103,13 @@
             </v-btn>
           </div>
           <v-btn
-            @click="userDestroy(currentUserId)"
             color="red lighten-2"
             outlined
             class="mt-12"
-          >退会</v-btn>
+            @click="userDestroy(currentUserId)"
+          >
+            退会
+          </v-btn>
         </v-col>
       </v-col>
     </v-row>

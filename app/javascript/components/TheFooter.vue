@@ -3,19 +3,26 @@
     color="rgba(100, 149, 237, 0.4)"
     elevation="24"
   >
-    <v-col align="center" class="p-1">
+    <v-col
+      align="center"
+      class="p-1"
+    >
       <v-btn
-        to='/user_policy'
+        to="/user_policy"
         plain
-      >USER POLICY</v-btn>
+      >
+        USER POLICY
+      </v-btn>
       <v-btn
-        to='/privacy_policy'
+        to="/privacy_policy"
         plain
-      >PRIVACY POLICY</v-btn>
+      >
+        PRIVACY POLICY
+      </v-btn>
       <v-btn
         href="mailto:jobhunterschoice@gmail.com"
         plain
-        >
+      >
         CONTACT US
       </v-btn>
       <div>

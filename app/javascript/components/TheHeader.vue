@@ -24,7 +24,9 @@
           min-width="48"
           width="48"
         >
-          <v-icon color="#424242">mdi-twitter</v-icon>
+          <v-icon color="#424242">
+            mdi-twitter
+          </v-icon>
         </v-btn>
       </v-toolbar-items>
       <v-toolbar-items
@@ -48,8 +50,8 @@
               color="secondary"
               dark
               v-bind="attrs"
-              v-on="on"
               class="mx-4"
+              v-on="on"
             >
               {{ isAuthenticated.name }}
               <v-icon>mdi-menu-down</v-icon>

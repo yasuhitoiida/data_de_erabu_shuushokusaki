@@ -119,7 +119,9 @@
       <li>本サービスに関して紛争が生じた場合には，当局の本店所在地を管轄する裁判所を専属的合意管轄とします。</li>
     </ol>
     <v-col align="center">
-      <v-btn to="/">戻る</v-btn>
+      <v-btn to="/">
+        戻る
+      </v-btn>
     </v-col>
   </v-container>
 </template>

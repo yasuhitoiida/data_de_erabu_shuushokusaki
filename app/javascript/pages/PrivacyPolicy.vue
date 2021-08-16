@@ -111,7 +111,9 @@
     <h2>第10条（アクセス解析ツール）</h2>
     当サービスでは、サービスの利用状況を把握するためにGoogle Analyticsを利用しています。Google Analyticsは、クッキーを利用して利用者の情報を収集します。Google Analyticsの利用規約及びプライバシーポリシーに関する説明については、Google Analyticsのサイトをご覧ください。
     <v-col align="center">
-      <v-btn to="/">戻る</v-btn>
+      <v-btn to="/">
+        戻る
+      </v-btn>
     </v-col>
   </v-container>
 </template>

@@ -34,34 +34,37 @@
             {{ tooltip[n-1] }}
           </v-tooltip>
         </v-btn-toggle>
-        <v-col align="center" class="mt-4 pb-1">
+        <v-col
+          align="center"
+          class="mt-4 pb-1"
+        >
           <v-tooltip
-          bottom
-          max-width="80%"
-          :open-on-click="true"
-          :open-on-hover="false"
+            bottom
+            max-width="80%"
+            :open-on-click="true"
+            :open-on-hover="false"
           >
-          <template #activator="{ on, attrs }">
-            <a
-            class="ml-3"
-            v-bind="attrs"
-            v-on="on"
-            >
-            for example..
-          </a>
-        </template>
-        <v-card width="600">
-          <v-col>
-            <p>
-              {{ tooltipDescription }}
-            </p>
-            <img
-            :src="require(`../../../../assets/images/${tooltipImage}`)"
-            style="width:100%"
-            >
-          </v-col>
-        </v-card>
-      </v-tooltip>
+            <template #activator="{ on, attrs }">
+              <a
+                class="ml-3"
+                v-bind="attrs"
+                v-on="on"
+              >
+                for example..
+              </a>
+            </template>
+            <v-card width="600">
+              <v-col>
+                <p>
+                  {{ tooltipDescription }}
+                </p>
+                <img
+                  :src="require(`../../../../assets/images/${tooltipImage}`)"
+                  style="width:100%"
+                >
+              </v-col>
+            </v-card>
+          </v-tooltip>
         </v-col>
       </v-col>
     </v-card>
