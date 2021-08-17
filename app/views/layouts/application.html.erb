@@ -24,7 +24,18 @@
     <meta property="twitter:title" content="JobHunter's Choice" />
     <meta property="twitter:description" content="複数の求人で迷っているジョブハンターのみなさんへ。その決断を後押しします。" />
     <meta property="twitter:image" content="<%= asset_url('thumbnail.png') %>" />
+
     <link rel="index" href="https://jobhunters-choice.com" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QFD1B2YSLZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-QFD1B2YSLZ');
+    </script>
   </head>
   <body>
     <%= yield %>
