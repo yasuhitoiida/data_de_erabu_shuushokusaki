@@ -1,9 +1,7 @@
 <template>
   <v-container>
     <v-col
-      cols="12"
-      md="10"
-      class="mx-auto"
+      align="center"
     >
       <h2>JobHunter<span>'</span>s Choice</h2>
       <v-row>
@@ -14,7 +12,7 @@
       <v-row class="my-7 description">
         <v-col
           cols="12"
-          lg="4"
+          md="4"
           align="center"
         >
           <v-card
@@ -50,7 +48,7 @@
         </v-col>
         <v-col
           cols="12"
-          lg="4"
+          md="4"
           align="center"
         >
           <v-card
@@ -67,7 +65,7 @@
         </v-col>
         <v-col
           cols="12"
-          lg="4"
+          md="4"
           align="center"
         >
           <v-card
@@ -90,14 +88,13 @@
           align="center"
           cols="12"
           sm="8"
-          md="4"
         >
           <v-btn
             id="analysis-btn"
             to="/step1"
             color="#6495ed"
             height="70"
-            width="260"
+            width="100%"
             dark
             large
           >
@@ -109,7 +106,7 @@
             outlined
             color="#6495ed"
             height="70"
-            width="260"
+            width="100%"
             class="mt-3 mb-6"
             large
           >
@@ -121,7 +118,7 @@
             outlined
             color="#6495ed"
             height="70"
-            width="260"
+            width="100%"
             class="mt-3"
             large
           >
@@ -133,7 +130,7 @@
             outlined
             color="#6495ed"
             height="70"
-            width="260"
+            width="100%"
             class="mt-3 mb-6"
             large
           >
