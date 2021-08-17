@@ -92,6 +92,7 @@
           <v-btn
             id="analysis-btn"
             to="/step1"
+            onclick="gtag('event', 'click', {'event_category': 'link','event_label': '/step1','value': '1'});"
             color="#6495ed"
             height="70"
             width="100%"
