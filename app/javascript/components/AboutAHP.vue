@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-col align="left">
     <b>AHPとは</b>
     <p>
       AHP（階層分析法）は複雑な状況での意思決定を行うための構造化法の1つである。AHPは個人的な決定問題で大いに役立つが、複雑な決定問題に取り組む集団意思決定場面で大きな効果を発揮する。例えば利害関係がある場合、人間の認知や判断に頼らざるを得ない場合、さらにはその結果が長期にわたり影響を与える場合に大きな成果をあげている。
@@ -72,7 +72,7 @@
       <li>Dey, Prasanta Kumar (November 2003). “Analytic Hierarchy Process Analyzes Risk of Operating Cross-Country Petroleum Pipelines in India”. Natural Hazards Review 4 (4): 213–221. </li>
       <li>de Steiguer, J.E.; Jennifer Duberstein, Vicente Lopes (October 2003). “The Analytic Hierarchy Process as a Means for Integrated Watershed Management”.</li>
     </ol>
-  </div>
+  </v-col>
 </template>
 
 <script>
