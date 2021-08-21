@@ -110,8 +110,12 @@ export default {
       } else { //最後のListの最後のItemであるとき、スクロールしない
         var nxt = cur
       }
-      window.scrollBy(0, nxt-cur) //ターゲットと自身のy座標の差分だけスクロール
-    }
+      window.scrollBy({
+          behavior: "smooth",
+          top: nxt-cur,
+          left: 0
+      }) //ターゲットと自身のy座標の差分だけスクロール
+    },
   }
 }
 </script>
