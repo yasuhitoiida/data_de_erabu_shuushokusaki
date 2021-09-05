@@ -1,7 +1,8 @@
 <template>
   <v-footer
-    color="rgba(100, 149, 237, 0.4)"
+    color="#424242"
     elevation="24"
+    dark
   >
     <v-col
       align="center"
