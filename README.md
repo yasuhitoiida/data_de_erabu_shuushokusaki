@@ -19,14 +19,14 @@
 入力欄はデフォルトで３つですが、必要に応じて増やすことが可能。
 <br/>
 <br/>
-<a href="https://gyazo.com/b3dbb3605530776879118f47b2d305a9"><img src="https://i.gyazo.com/b3dbb3605530776879118f47b2d305a9.jpg" alt="Image from Gyazo" width="50%"/></a>
+<a href="https://gyazo.com/b454c2ff41097dcd6a424525680ecb88"><img src="https://i.gyazo.com/b454c2ff41097dcd6a424525680ecb88.jpg" alt="Image from Gyazo" width="50%"/></a>
 
 ### STEP2 評価基準の選択
 就職先選びの上で考慮する条件にチェックを付けます。  
 基準はデフォルトで出ているものの他に追加することが可能。
 <br/>
 <br/>
-<a href="https://gyazo.com/5f022b6c5f11f8601b1e903c6359cdbb"><img src="https://i.gyazo.com/5f022b6c5f11f8601b1e903c6359cdbb.png" alt="Image from Gyazo" width="50%"/></a>
+<a href="https://gyazo.com/18e7c0158ed05932fd4a1cc64c7aef7e"><img src="https://i.gyazo.com/18e7c0158ed05932fd4a1cc64c7aef7e.jpg" alt="Image from Gyazo" width="50%"/></a>
 
 ### STEP3 評価基準の重要度評価
 STEP2で選んだ基準がそれぞれペアになっており、全ての組み合わせが表示されています。  
@@ -36,14 +36,12 @@ STEP2で選んだ基準がそれぞれペアになっており、全ての組み
 4 = 両方同じくらい  
 7 = 右側の基準を重視する  
 <br/>
-<a href="https://gyazo.com/3970e4e13e23c54c00ade674545071f8"><img src="https://i.gyazo.com/3970e4e13e23c54c00ade674545071f8.png" alt="Image from Gyazo" width="50%"/></a>
-
+<a href="https://gyazo.com/3b5cbc51cb63da4eda0c1b15fea1ae00"><img src="https://i.gyazo.com/3b5cbc51cb63da4eda0c1b15fea1ae00.jpg" alt="Image from Gyazo" width="50%"/></a>
 ### STEP4 選択肢の評価
 評価基準ごとに、STEP1入力した選択肢がそれぞれペアになって表示されています。  
 その基準においてどちらの選択肢が優れている（と思う）かをSTEP4と同様に7段階評価ボタンで評価します。  
 <br/>
-<a href="https://gyazo.com/1649e97e08b8725ef0d592fabcc218ba"><img src="https://i.gyazo.com/1649e97e08b8725ef0d592fabcc218ba.png" alt="Image from Gyazo" width="50%"/></a>
-
+<a href="https://gyazo.com/16994662060a321a11a7b6f156d9fe35"><img src="https://i.gyazo.com/16994662060a321a11a7b6f156d9fe35.png" alt="Image from Gyazo" width="50%"/></a>
 ### 結果
 全て評価し終えてボタンを押すと、結果が表示されます！  
 階層分析によって企業ごとの評点が算出されており、総合評点が最も高い企業がベストチョイスになります。  
