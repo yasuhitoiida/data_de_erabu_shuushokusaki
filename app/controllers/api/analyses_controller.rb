@@ -8,10 +8,9 @@ class Api::AnalysesController < ApplicationController
 
   def show
     importances = @analysis.criterion_importances
-    alt = @analysis.alternative_results
-    results = JSON.parse(alt.map.to_json(methods: :multipledWeight))
+    results = @analysis.alternative_results.eager_load(:multipled_weights).map.to_json(methods: :multipledWeight)
 
-    render json: { analysis: @analysis, criterionImportances: importances, alternativeResults: results }
+    render json: { analysis: @analysis, criterionImportances: importances, alternativeResults: JSON.parse(results) }
   end
 
   def create
