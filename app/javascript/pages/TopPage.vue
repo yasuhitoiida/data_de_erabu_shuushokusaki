@@ -3,10 +3,10 @@
     <v-col
       align="center"
     >
-      <h2>JobHunter<span>'</span>s Choice</h2>
       <v-row>
-        <v-col align="center">
-          <h5>仕事選びのための意思決定ツール</h5>
+        <v-col align="center" class="mt-10">
+          <h5>就活用意思決定ツール</h5>
+          <h2>JobHunter<span>'</span>s Choice</h2>
         </v-col>
       </v-row>
       <v-row class="my-7 description">
@@ -176,16 +176,13 @@ export default {
 
 <style scoped>
 h2 {
-  margin: 40px auto;
-  font-size: 52px;
-  text-align: center;
+  font-size: 60px;
 }
 h2 span {
   color: #6495ed;
 }
 .graphs {
   position: relative;
-  /* background-color: rgba(100, 149, 237, 0.4); */
 }
 .graphs p {
   position: absolute;
