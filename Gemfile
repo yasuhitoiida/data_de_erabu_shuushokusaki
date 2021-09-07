@@ -20,7 +20,6 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
-gem 'rails-i18n'
 gem 'rename'
 gem 'sorcery'
 gem "actionpack", ">= 6.0.4.1"
