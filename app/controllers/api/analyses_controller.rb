@@ -3,7 +3,7 @@ class Api::AnalysesController < ApplicationController
   before_action :set_analysis, only: %i[show destroy]
 
   def index
-    render json: @@current_user.analyses.order(created_at: :desc)
+    render json: @current_user.analyses.order(created_at: :desc)
   end
 
   def show
@@ -30,7 +30,7 @@ class Api::AnalysesController < ApplicationController
   private
 
   def analysis_params
-    params.require(:analysis).permit(criterionImportance: %i[name weight], alternativeResult: [:name, :total, multipledWeight: %i[criterion value]])
+    params.require(:analysis).permit(criterionImportance: %i[name weight], alternativeResult: [:name, :total, multipledWeight: %i[criterion value]]).merge(user: @current_user)
   end
 
   def set_analysis

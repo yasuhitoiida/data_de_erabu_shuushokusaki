@@ -1,23 +1,24 @@
 class AnalysisObject < ApplicationController
   include ActiveModel::Model
   include ActiveModel::Attributes
-  # include ActiveModel::Validations
 
   attribute :criterionImportance
   attribute :alternativeResult
+  attribute :user
 
   def save
-    analysis = @@current_user.analyses.build
-    analysis.save
+    ActiveRecord::Base.transaction do
+      analysis = self.user.analyses.create
 
-    criterionImportance.each do |cri|
-      analysis.criterion_importances.create(name: cri[:name], weight: cri[:weight])
-    end
+      self.criterionImportance.each do |cri|
+        analysis.criterion_importances.create(name: cri[:name], weight: cri[:weight])
+      end
 
-    alternativeResult.each do |alt|
-      alternative = analysis.alternative_results.create(name: alt[:name], total: alt[:total])
-      alt[:multipledWeight].each do |arr|
-        alternative.multipled_weights.create(criterion: arr[:criterion], value: arr[:value])
+      self.alternativeResult.each do |alt|
+        alternative = analysis.alternative_results.create(name: alt[:name], total: alt[:total])
+        alt[:multipledWeight].each do |mul|
+          alternative.multipled_weights.create(criterion: mul[:criterion], value: mul[:value])
+        end
       end
     end
   end

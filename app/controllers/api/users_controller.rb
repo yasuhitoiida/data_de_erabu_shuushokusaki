@@ -12,19 +12,19 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    if @@current_user.update(user_params)
-      render json: @@current_user
+    if @current_user.update(user_params)
+      render json: @current_user
     else
-      render json: @@current_user.errors.full_messages, status: :unprocessable_entity
+      render json: @current_user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @@current_user.destroy!
+    @current_user.destroy!
   end
 
   def me
-    render json: @@current_user
+    render json: @current_user
   end
 
   private

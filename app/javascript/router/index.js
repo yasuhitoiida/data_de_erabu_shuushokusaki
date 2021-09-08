@@ -11,6 +11,8 @@ import CriterionSelect from '../pages/analysis/CriterionSelect.vue'
 import CriterionImportance from '../pages/analysis/CriterionImportance.vue'
 import AlternativeEvaluation from '../pages/analysis/AlternativeEvaluation.vue'
 import Result from '../pages/analysis/Result.vue'
+// import AdminLogin from '../pages/admin/AdminLogin.vue'
+// import AdminDashboard from '../pages/admin/AdminDashboard.vue'
 import store from '../store/index.js'
 
 Vue.use(Router)
@@ -34,7 +36,10 @@ const router = new Router({
            {path: '/step2', component: CriterionSelect},
            {path: '/step3', component: CriterionImportance},
            {path: '/step4', component: AlternativeEvaluation},
-           {path: '/result', component: Result}]
+           {path: '/result', component: Result},
+           // {path: '/admin/login', component: AdminLogin},
+           // {path: '/admin/dashboard', component: AdminDashboard, meta: { requiredAuth: true }},
+         ]
 })
 
 router.beforeEach((to, from, next) => {

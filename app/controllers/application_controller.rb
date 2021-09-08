@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     return unless bearer_token
 
     payload, = User.decode(bearer_token)
-    @@current_user = User.find_by(id: payload['user_id'])
+    @current_user = User.find_by(id: payload['user_id'])
   end
 
   def authenticate!
