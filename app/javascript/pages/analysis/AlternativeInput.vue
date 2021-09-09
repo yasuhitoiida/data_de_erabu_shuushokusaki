@@ -10,25 +10,9 @@
         <v-row>
           <v-col align="center">
             <p>
-              あなたが今考えている会社名や求人などを記入してください。
+              あなたが今考えている会社名を記入してください。<br/>
+              <b>ご自身で判別できる形であれば、形式は自由です。</b>
             </p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col
-            class="mb-6"
-          >
-            <v-btn
-              v-for="(item, index) in alternativeHistory"
-              :key="index"
-              outlined
-              color="#6495ed"
-              height="24"
-              class="mr-1"
-              @click="pickUpFromHistory(item)"
-            >
-              {{ item }}
-            </v-btn>
           </v-col>
         </v-row>
         <div>
@@ -37,7 +21,7 @@
             :id="'alternative' + index"
             :key="index"
             v-model="alternatives[index]"
-            class="form-control mb-3"
+            class="form-control my-2"
             maxlength="50"
           >
         </div>
@@ -49,6 +33,46 @@
             記入欄を追加
           </router-link>
         </div>
+        <v-row>
+          <v-col
+            class="mt-6"
+          >
+            <v-sheet
+              class="py-3 mb-3"
+            >
+              <p>会社名をイニシャルで入力する</p>
+              <v-btn
+                v-for="(item, index) in alphabets"
+                :key="index"
+                outlined
+                color="#6495ed"
+                style="background-color:#ffffff"
+                class="mr-2 mb-1"
+                min-width="24"
+                width="24"
+                @click="inputInitial(item)"
+              >{{ item }}</v-btn>
+            </v-sheet>
+            <v-sheet
+              class="py-3"
+            >
+              <p>過去の入力履歴（ログイン時に利用可能）</p>
+              <p v-show="!alternativeHistory">履歴はありません</p>
+              <v-btn
+                v-for="(item, index) in alternativeHistory"
+                :key="index"
+                outlined
+                color="#6495ed"
+                height="24"
+                class="mr-1 history"
+                style="background-color:#ffffff;"
+                @click="pickUpFromHistory(item)"
+              >
+                {{ item }}
+              </v-btn>
+            </v-sheet>
+          </v-col>
+        </v-row>
         <template v-if="errors">
           <ErrorMessage
             :messages="errors"
@@ -84,6 +108,12 @@ export default {
     }
   },
   computed: {
+    alphabets() {
+      const c = 'A'.charCodeAt(0)
+      return Array.apply(null, new Array(26)).map((v, i) => {
+        return String.fromCharCode(c + i)
+      })
+    },
     ...mapGetters('analyses', ['getAlternatives']),
     ...mapGetters('users', ['getCurrentUser'])
   },
@@ -118,8 +148,20 @@ export default {
     isEnough(arr) {
       return arr.length >= 2 ? true : false
     },
+    inputFromButton(item) { // alternativesにnullがあれば最初のnullと置換、なければpush
+      const ind = this.alternatives.findIndex(f => f === null)
+      if (ind >= 0) {
+        this.alternatives.splice(ind, 1, item)
+      } else {
+        this.alternatives.push(item)
+      }
+    },
+    inputInitial(item) {
+      const i = "会社" + `${item}`
+      this.inputFromButton(i)
+    },
     pickUpFromHistory(item) {
-      this.alternatives.unshift(item)
+      this.inputFromButton(item)
     },
     handleAlternative() {
       // バリデーションした上で入力値をストアに保存
