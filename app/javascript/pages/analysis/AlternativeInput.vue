@@ -3,7 +3,7 @@
     <TheSteppers :value="1" />
     <v-row>
       <v-col
-        cols="8"
+        cols="9"
         class="mx-auto alternative-forms"
       >
         <h3>STEP1 選択肢の記入</h3>
@@ -57,7 +57,13 @@
               class="py-3"
             >
               <p>過去の入力履歴（ログイン時に利用可能）</p>
-              <p v-show="!alternativeHistory">履歴はありません</p>
+              <v-card
+                v-show="!alternativeHistory"
+                class="px-4 py-4"
+                elevation = "1"
+              >
+                <h6>no data</h6>
+              </v-card>
               <v-btn
                 v-for="(item, index) in alternativeHistory"
                 :key="index"

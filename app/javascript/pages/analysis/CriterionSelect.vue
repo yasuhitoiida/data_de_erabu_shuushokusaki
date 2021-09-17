@@ -10,7 +10,19 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col class="mb-6">
+          <v-sheet
+            class="pt-3"
+          >
+            <p>過去のチェック履歴（ログイン時に利用可能）</p>
+            <v-card
+              v-show="!criterionHistory"
+              class="px-4 py-4"
+              elevation = "1"
+            >
+              <h6>no data</h6>
+            </v-card>
+          </v-sheet>
+          <v-col class="mb-10 pt-0">
             <v-btn
               v-for="(item, index) in criterionHistory"
               :key="index"
