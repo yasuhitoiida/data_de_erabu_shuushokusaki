@@ -6,7 +6,7 @@
     <v-card>
       <v-col align="center">
         <v-col>
-          {{ clickOrOnMouse }}
+          {{ tapOrClick }}
         </v-col>
         <v-btn-toggle
           borderless
@@ -82,7 +82,6 @@
 </template>
 
 <script>
-import isMobile from 'ismobilejs'
 export default {
   name: 'HowToCompare',
   props: {
@@ -121,8 +120,8 @@ export default {
     width() {
       return this.$vuetify.breakpoint.width <= 450 ? 36 : 48
     },
-    clickOrOnMouse() {
-      return isMobile.any ? 'CLICK!' : 'ON-MOUSE!'
+    tapOrClick() {
+      return navigator.userAgent.indexOf('Mobile') > 0 ? 'TAP!' : 'CLICK!'
     },
     tooltip() {
       return this.type === 'importance' ? this.tooltipImp : this.tooltipEval
