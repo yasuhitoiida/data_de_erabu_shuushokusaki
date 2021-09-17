@@ -155,7 +155,7 @@ export default {
       const endpoint = 'https://twitter.com/intent/tweet'
       const cri = this.criterionImportance.reduce((str,i) => str + `${i.name}:${(i.weight*100).toFixed(1)+'％'}%0a`, '')
       const res = this.result.reduce((str,i) => str + `${i.name}:${i.total}%0a`, '')
-      const text = 'ジョブハンターズチョイスはこんなデータで仕事選びをサポート！%0a' + '%0aマッチ度%0a' + res + '%0a重視する基準%0a' + cri
+      const text = '職場に求めるもの%0a' + cri + '%0a入るべき会社%0a' + res 
       return endpoint + `?text=${text}` + '&hashtags=就活用意思決定ツール%0a,ジョブハンターズチョイス%0a' + '&url=https://jobhunters-choice.com%0a'
     },
     ...mapGetters('users', ['getCurrentUser'])
