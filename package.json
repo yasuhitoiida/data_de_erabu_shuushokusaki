@@ -15,6 +15,7 @@
     "google-palette": "^1.1.0",
     "material-design-icons-iconfont": "^6.1.0",
     "scroll-behavior-polyfill": "^2.0.13",
+    "set-value": "^4.0.1",
     "tar": "^6.1.9",
     "trim-newlines": "^3.0.1",
     "turbolinks": "^5.2.0",
