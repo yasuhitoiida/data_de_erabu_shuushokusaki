@@ -221,7 +221,9 @@ export default {
     twitterLink() {
       const endpoint = 'https://twitter.com/intent/tweet'
       const cri = this.criImp.reduce((str,i) => str + `${i.name}:${(i.weight*100).toFixed(1)+'％'}%0a`, '')
-      const res = this.result.reduce((str,i) => str + `${i.name}:${i.total}%0a`, '')
+      const res = this.result.sort((a, b) => {
+        return a.total < b.total ? 1 : -1
+      }).reduce((str,cur,idx) => str + `${idx+1}位 ${cur.name} ${cur.total}pt%0a`, '')
       const text = '職場に求めるもの%0a' + cri + '%0a入るべき会社%0a' + res
       return endpoint + `?text=${text}` + '&hashtags=就活用意思決定ツール%0a,ジョブハンターズチョイス%0a' + '&url=https://jobhunters-choice.com%0a'
     },
