@@ -74,8 +74,8 @@ RSpec.describe 'User', type: :system do
         fill_in 'メールアドレス', with: 'edited@test.com'
         click_on '更新'
       end
-      expect(user.name).to eq('edited'), '名前が変更できていません'
-      expect(user.email).to eq('edited@test.com'), 'メールアドレスが変更できていません'
+      expect(page.find("#update-form")).to have_field('name-form', with: 'edited'), '名前が変更できていません'
+      expect(page.find("#update-form")).to have_field('email-form', with: 'edited@test.com'), 'メールアドレスが変更できていません'
     end
 
     it '入力内容に不備があると登録情報が更新されない' do
@@ -96,6 +96,7 @@ RSpec.describe 'User', type: :system do
       login(user)
       visit '/mypage'
       click_on '退会'
+      page.driver.browser.switch_to.alert.accept
       sleep 1
       expect(User.count).to eq n-1
     end

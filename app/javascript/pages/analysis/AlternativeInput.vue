@@ -10,7 +10,7 @@
         <v-row>
           <v-col align="center">
             <p>
-              あなたが今考えている会社名を記入してください。<br/>
+              あなたが今考えている会社名を記入してください。<br>
               <b>ご自身で判別できる形であれば、形式は自由です。</b>
             </p>
           </v-col>
@@ -51,7 +51,9 @@
                 min-width="24"
                 width="24"
                 @click="inputInitial(item)"
-              >{{ item }}</v-btn>
+              >
+                {{ item }}
+              </v-btn>
             </v-sheet>
             <v-sheet
               class="py-3"
@@ -60,7 +62,7 @@
               <v-card
                 v-show="!alternativeHistory"
                 class="px-4 py-4"
-                elevation = "1"
+                elevation="1"
               >
                 <h6>no data</h6>
               </v-card>

@@ -4,7 +4,10 @@
       align="center"
     >
       <v-row>
-        <v-col align="center" class="mt-10">
+        <v-col
+          align="center"
+          class="mt-10"
+        >
           <h5>就活用意思決定ツール</h5>
           <h2>JobHunter<span>'</span>s Choice</h2>
         </v-col>

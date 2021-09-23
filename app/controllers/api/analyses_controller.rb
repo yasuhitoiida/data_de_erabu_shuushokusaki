@@ -14,7 +14,7 @@ class Api::AnalysesController < ApplicationController
   end
 
   def create
-    analysis = AnalysisObject.new(analysis_params)
+    analysis = AnalysisCreator.new(analysis_params)
 
     if analysis.save
       render json: analysis
@@ -30,7 +30,7 @@ class Api::AnalysesController < ApplicationController
   private
 
   def analysis_params
-    params.require(:analysis).permit(criterionImportance: %i[name weight], alternativeResult: [:name, :total, multipledWeight: %i[criterion value]]).merge(user: @current_user)
+    params.require(:analysis).permit(criterionImportance: %i[name weight], alternativeResult: [:name, :total, { multipledWeight: %i[criterion value] }]).merge(user: @current_user)
   end
 
   def set_analysis

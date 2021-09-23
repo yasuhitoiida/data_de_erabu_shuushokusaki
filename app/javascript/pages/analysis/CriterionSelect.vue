@@ -17,7 +17,7 @@
             <v-card
               v-show="!criterionHistory"
               class="px-4 py-4"
-              elevation = "1"
+              elevation="1"
             >
               <h6>no data</h6>
             </v-card>

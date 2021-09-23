@@ -221,7 +221,7 @@ export default {
     twitterLink() {
       const endpoint = 'https://twitter.com/intent/tweet'
       const cri = this.criImp.reduce((str,i) => str + `${i.name}:${(i.weight*100).toFixed(1)+'％'}%0a`, '')
-      const res = this.result.sort((a, b) => {
+      const res = this.result.slice().sort((a, b) => { // 元の配列を変更しないためのslice
         return a.total < b.total ? 1 : -1
       }).reduce((str,cur,idx) => str + `${idx+1}位 ${cur.name} ${cur.total}pt%0a`, '')
       const text = '職場に求めるもの%0a' + cri + '%0a入るべき会社%0a' + res

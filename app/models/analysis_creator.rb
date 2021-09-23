@@ -1,4 +1,4 @@
-class AnalysisObject < ApplicationController
+class AnalysisCreator < ApplicationController
   include ActiveModel::Model
   include ActiveModel::Attributes
 
