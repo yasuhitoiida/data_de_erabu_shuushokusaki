@@ -60,6 +60,9 @@ STEP2で選んだ基準がそれぞれペアになっており、全ての組み
 **WebServer** - nginx 1.20.0  
 **AppServer** - unicorn 6.0.0  
 **DB** - PostgreSQL 13.x
+<br/>
+<a href="https://user-images.githubusercontent.com/67829710/134758526-32b55b2c-5973-41e2-b423-c88362d3a303.png"><img src="https://user-images.githubusercontent.com/67829710/134758526-32b55b2c-5973-41e2-b423-c88362d3a303.png" alt="Image from Gyazo" width="70%"/></a>
+<a href="https://user-images.githubusercontent.com/67829710/134758535-f2ac16fe-38c8-432b-9b50-4a29d2cd17e5.png"><img src="https://user-images.githubusercontent.com/67829710/134758535-f2ac16fe-38c8-432b-9b50-4a29d2cd17e5.png" alt="Image from Gyazo" width="70%"/></a>
 
 ## Qiita記事
 [【個人開発】階層分析で最高の就職先を算出するアプリをつくりました](https://qiita.com/saitaman_zarathustra/items/57030cf64224a53ee557)
