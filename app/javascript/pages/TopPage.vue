@@ -13,7 +13,10 @@
         </v-col>
       </v-row>
       <v-row justify="center">
-        <v-col md="10" sm="7">
+        <v-col
+          md="10"
+          sm="7"
+        >
           <v-card elevation="4">
             <v-row
               class="my-7"
@@ -102,15 +105,15 @@
                 md="7"
                 class="py-0 image"
               >
-                  <!-- <v-btn @click="resultExampleModal=true">分析例を表示</v-btn> -->
-                  <!-- <img src="../../assets/images/company_form.png" /> -->
-                  <v-col cols="12" md="9">
-                    <BarGraph :chart-data="demo" title="選択肢を順位付けします"></BarGraph>
-                  </v-col>
-                <!-- <v-dialog :width="modalWidth" v-model="resultExampleModal" >
-                  <img src="../../assets/images/toppage_graphs.png">
-                  <v-btn @click="resultExampleModal=false">close</v-btn>
-                </v-dialog> -->
+                <v-col
+                  cols="12"
+                  md="9"
+                >
+                  <BarGraph
+                    :chart-data="demo"
+                    title="選択肢を順位付けします"
+                  />
+                </v-col>
               </v-col>
             </v-row>
           </v-card>
