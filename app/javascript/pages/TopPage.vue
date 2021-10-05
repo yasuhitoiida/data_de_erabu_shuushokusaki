@@ -111,8 +111,9 @@
                 >
                   <BarGraph
                     :chart-data="demo"
-                    title="選択肢を順位付けします"
+                    title="分析結果の例"
                   />
+                  このように複数の選択肢を順位付けします！
                 </v-col>
               </v-col>
             </v-row>
