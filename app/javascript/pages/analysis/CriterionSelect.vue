@@ -2,17 +2,16 @@
   <v-container>
     <TheSteppers :value="2" />
     <v-row justify="center">
-      <v-col cols="8">
+      <v-col cols="9" md="6">
         <h3>STEP2 評価基準の選択</h3>
         <v-row>
           <v-col align="center">
             <p>あなたが就職先を決める上で考慮する条件にチェックをつけてください。</p>
           </v-col>
         </v-row>
+        <v-divider></v-divider>
         <v-row>
-          <v-sheet
-            class="pt-3"
-          >
+          <v-col class="my-2">
             <p>過去のチェック履歴（ログイン時に利用可能）</p>
             <v-card
               v-show="!criterionHistory"
@@ -21,8 +20,6 @@
             >
               <h6>no data</h6>
             </v-card>
-          </v-sheet>
-          <v-col class="mb-10 pt-0">
             <v-btn
               v-for="(item, index) in criterionHistory"
               :key="index"
@@ -36,6 +33,7 @@
             </v-btn>
           </v-col>
         </v-row>
+        <v-divider></v-divider>
         <v-checkbox
           v-for="(item, index) in criteria"
           :id="'criterion' + index"

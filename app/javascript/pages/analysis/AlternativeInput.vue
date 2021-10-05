@@ -4,82 +4,89 @@
     <v-row>
       <v-col
         cols="9"
+        md="6"
         class="mx-auto alternative-forms"
       >
         <h3>STEP1 選択肢の記入</h3>
         <v-row>
-          <v-col align="center">
+          <v-col
+            align="center"
+          >
             <p>
-              あなたが今考えている会社名を記入してください。<br>
+              あなたが今選択肢として考えている会社名を記入欄に記入してください。<br>
               <b>ご自身で判別できる形であれば、形式は自由です。</b>
             </p>
           </v-col>
         </v-row>
-        <div>
-          <input
-            v-for="(item, index) in alternatives"
-            :id="'alternative' + index"
-            :key="index"
-            v-model="alternatives[index]"
-            class="form-control my-2"
-            maxlength="50"
-          >
-        </div>
-        <div>
-          <router-link
-            to="#"
-            @click.native="addForm"
-          >
-            記入欄を追加
-          </router-link>
-        </div>
+        <v-divider></v-divider>
         <v-row>
-          <v-col
-            class="mt-6"
-          >
-            <v-sheet
-              class="py-3 mb-3"
+          <v-col class="mt-5">
+            <p>過去の入力履歴（ログイン時に利用可能）</p>
+            <v-card
+              v-show="!alternativeHistory"
+              class="px-4 py-4"
+              elevation="1"
             >
-              <p>会社名をイニシャルで入力する</p>
-              <v-btn
-                v-for="(item, index) in alphabets"
-                :key="index"
-                outlined
-                color="#6495ed"
-                style="background-color:#ffffff"
-                class="mr-2 mb-1"
-                min-width="24"
-                width="24"
-                @click="inputInitial(item)"
-              >
-                {{ item }}
-              </v-btn>
-            </v-sheet>
-            <v-sheet
-              class="py-3"
+              <h6>no data</h6>
+            </v-card>
+            <v-btn
+              v-for="(item, index) in alternativeHistory"
+              :key="index"
+              height="24"
+              outlined
+              color="#6495ed"
+              depressed
+              class="mr-1 history"
+              @click="pickUpFromHistory(item)"
             >
-              <p>過去の入力履歴（ログイン時に利用可能）</p>
-              <v-card
-                v-show="!alternativeHistory"
-                class="px-4 py-4"
-                elevation="1"
-              >
-                <h6>no data</h6>
-              </v-card>
-              <v-btn
-                v-for="(item, index) in alternativeHistory"
-                :key="index"
-                outlined
-                color="#6495ed"
-                height="24"
-                class="mr-1 history"
-                style="background-color:#ffffff;"
-                @click="pickUpFromHistory(item)"
-              >
-                {{ item }}
-              </v-btn>
-            </v-sheet>
+              {{ item }}
+            </v-btn>
           </v-col>
+        </v-row>
+        <v-row>
+          <v-col class="mt-5">
+            <p>会社名をイニシャルで入力する</p>
+            <v-btn
+              v-for="(item, index) in alphabets"
+              :key="index"
+              outlined
+              :color="palette[index]"
+              class="mr-2 mb-1"
+              min-width="24"
+              width="24"
+              @click="inputInitial(item)"
+            >
+              {{ item }}
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col class="mt-3">
+          <div>
+            <p>記入欄</p>
+            <v-text-field
+              v-for="(item, index) in alternatives"
+              :id="'alternative' + index"
+              :key="index"
+              v-model="alternatives[index]"
+              outlined
+              hide-details
+              dense
+              color="#6495ed"
+              class="my-4"
+              maxlength="50"
+            />
+          </div>
+          <div>
+            <router-link
+              to="#"
+              @click.native="addForm"
+            >
+              記入欄を追加
+            </router-link>
+          </div>
+        </v-col>
         </v-row>
         <template v-if="errors">
           <ErrorMessage
@@ -101,6 +108,7 @@ import { mapGetters } from 'vuex'
 import TheButtons from './components/TheButtons.vue'
 import TheSteppers from './components/TheSteppers.vue'
 import ErrorMessage from '../../components/ErrorMessage.vue'
+import palette from 'google-palette'
 export default {
   name: 'AlternativeInput',
   components: {
@@ -121,6 +129,16 @@ export default {
       return Array.apply(null, new Array(26)).map((v, i) => {
         return String.fromCharCode(c + i)
       })
+    },
+    palette() {
+      const colors = palette('cb-Set2', 8).map(hex => {
+        return '#' + hex
+      })
+      const array = []
+      for (let n = 0; n < 27; n++) {
+        array.push(colors[n%8])
+      }
+      return array
     },
     ...mapGetters('analyses', ['getAlternatives']),
     ...mapGetters('users', ['getCurrentUser'])
