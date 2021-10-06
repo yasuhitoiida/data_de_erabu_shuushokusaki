@@ -18,7 +18,7 @@
             </p>
           </v-col>
         </v-row>
-        <v-divider></v-divider>
+        <!-- <v-divider></v-divider> -->
         <v-row>
           <v-col class="mt-5">
             <p>過去の入力履歴（ログイン時に利用可能）</p>
@@ -60,33 +60,33 @@
             </v-btn>
           </v-col>
         </v-row>
-        <v-divider></v-divider>
+        <!-- <v-divider></v-divider> -->
         <v-row>
           <v-col class="mt-3">
-          <div>
-            <p>記入欄</p>
-            <v-text-field
-              v-for="(item, index) in alternatives"
-              :id="'alternative' + index"
-              :key="index"
-              v-model="alternatives[index]"
-              outlined
-              hide-details
-              dense
-              color="#6495ed"
-              class="my-4"
-              maxlength="50"
-            />
-          </div>
-          <div>
-            <router-link
-              to="#"
-              @click.native="addForm"
-            >
-              記入欄を追加
-            </router-link>
-          </div>
-        </v-col>
+            <div>
+              <p>記入欄</p>
+              <v-text-field
+                v-for="(item, index) in alternatives"
+                :id="'alternative' + index"
+                :key="index"
+                v-model="alternatives[index]"
+                outlined
+                hide-details
+                dense
+                color="#6495ed"
+                class="my-4"
+                maxlength="50"
+              />
+            </div>
+            <div>
+              <router-link
+                to="#"
+                @click.native="addForm"
+              >
+                記入欄を追加
+              </router-link>
+            </div>
+          </v-col>
         </v-row>
         <template v-if="errors">
           <ErrorMessage

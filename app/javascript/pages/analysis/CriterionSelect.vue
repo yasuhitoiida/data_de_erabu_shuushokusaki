@@ -2,14 +2,17 @@
   <v-container>
     <TheSteppers :value="2" />
     <v-row justify="center">
-      <v-col cols="9" md="6">
+      <v-col
+        cols="9"
+        md="6"
+      >
         <h3>STEP2 評価基準の選択</h3>
         <v-row>
           <v-col align="center">
             <p>あなたが就職先を決める上で考慮する条件にチェックをつけてください。</p>
           </v-col>
         </v-row>
-        <v-divider></v-divider>
+        <!-- <v-divider></v-divider> -->
         <v-row>
           <v-col class="my-2">
             <p>過去のチェック履歴（ログイン時に利用可能）</p>
@@ -33,41 +36,45 @@
             </v-btn>
           </v-col>
         </v-row>
-        <v-divider></v-divider>
-        <v-checkbox
-          v-for="(item, index) in criteria"
-          :id="'criterion' + index"
-          :key="item"
-          v-model="selectedCriteria"
-          color="orange"
-          :value="item"
-          :label="item"
-          class="mt-0"
-        />
-        <div class="input-group">
-          <input
-            id="addedCriteria"
-            v-model="addedCriteria"
-            placeholder="追加したい条件を記入"
-            class="form-control"
-            maxlength="50"
-            @focus="errors = null"
-          >
-          <v-btn
-            @click.native="addCriterion"
-          >
-            条件を追加
-          </v-btn>
-        </div>
-        <template v-if="errors">
-          <ErrorMessage
-            :messages="errors"
-          />
-        </template>
-        <TheButtons
-          preview-page-path="/step1"
-          @ok-button="handleSelectedCriteria"
-        />
+        <!-- <v-divider></v-divider> -->
+        <v-row>
+          <v-col class="mt-4">
+            <v-checkbox
+              v-for="(item, index) in criteria"
+              :id="'criterion' + index"
+              :key="item"
+              v-model="selectedCriteria"
+              color="orange"
+              :value="item"
+              :label="item"
+              class="mt-0"
+            />
+            <div class="input-group">
+              <input
+                id="addedCriteria"
+                v-model="addedCriteria"
+                placeholder="追加したい条件を記入"
+                class="form-control"
+                maxlength="50"
+                @focus="errors = null"
+              >
+              <v-btn
+                @click.native="addCriterion"
+              >
+                条件を追加
+              </v-btn>
+            </div>
+            <template v-if="errors">
+              <ErrorMessage
+                :messages="errors"
+              />
+            </template>
+            <TheButtons
+              preview-page-path="/step1"
+              @ok-button="handleSelectedCriteria"
+            />
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
