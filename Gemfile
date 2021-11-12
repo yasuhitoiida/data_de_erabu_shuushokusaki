@@ -65,7 +65,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '~> 1.2'
+  gem 'mysql2'
   gem 'unicorn'
 end
 
